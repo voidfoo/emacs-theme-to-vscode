@@ -1,0 +1,111 @@
+{
+    "name": "Spacemacs Light",
+    "type": "light",
+    "colors": {
+        "editor.background": "#fbf8ef",
+        "editor.foreground": "#655370",
+        "editor.lineHighlightBackground": "#d3d3e7",
+        "editorCursor.foreground": "#100a14",
+        "editorLineNumber.foreground": "#a8a8bf",
+        "editorLineNumber.activeForeground": "#655370",
+        "titleBar.activeBackground": "#efeae9",
+        "titleBar.activeForeground": "#655370",
+        "activityBar.background": "#efeae9",
+        "activityBar.foreground": "#3a81c3",
+        "sideBar.background": "#efeae9",
+        "sideBar.foreground": "#655370",
+        "statusBar.background": "#efeae9",
+        "statusBar.foreground": "#655370",
+        "editor.selectionBackground": "#d3d3e7",
+        "editor.selectionHighlightBackground": "#e7e7fc",
+        "editor.wordHighlightBackground": "#e7e7fc"
+    },
+    "tokenColors": [
+        {
+            "name": "Comments",
+            "scope": [
+                "comment",
+                "punctuation.definition.comment"
+            ],
+            "settings": {
+                "foreground": "#2aa1ae",
+                "fontStyle": "italic"
+            }
+        },
+        {
+            "name": "Constants",
+            "scope": [
+                "constant",
+                "constant.numeric",
+                "constant.language"
+            ],
+            "settings": {
+                "foreground": "#4e3163"
+            }
+        },
+        {
+            "name": "Strings",
+            "scope": [
+                "string"
+            ],
+            "settings": {
+                "foreground": "#2d9574"
+            }
+        },
+        {
+            "name": "Keywords",
+            "scope": [
+                "keyword",
+                "storage.type",
+                "storage.modifier"
+            ],
+            "settings": {
+                "foreground": "#3a81c3",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Functions",
+            "scope": [
+                "entity.name.function",
+                "meta.function-call"
+            ],
+            "settings": {
+                "foreground": "#6c3163",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Classes",
+            "scope": [
+                "entity.name.type",
+                "entity.name.class",
+                "entity.name.namespace"
+            ],
+            "settings": {
+                "foreground": "#ba2f59",
+                "fontStyle": "bold"
+            }
+        },
+        {
+            "name": "Variables",
+            "scope": [
+                "variable",
+                "variable.other"
+            ],
+            "settings": {
+                "foreground": "#715ab1"
+            }
+        },
+        {
+            "name": "Error",
+            "scope": [
+                "invalid",
+                "invalid.illegal"
+            ],
+            "settings": {
+                "foreground": "#e0211d"
+            }
+        }
+    ]
+}
