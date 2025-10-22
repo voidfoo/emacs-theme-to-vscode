@@ -1,0 +1,36 @@
+{
+  "name": "emacs-themes",
+  "displayName": "Emacs Themes for VS Code",
+  "description": "Popular Emacs themes (Spacemacs, Leuven) converted for VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.105.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Spacemacs",
+        "uiTheme": "vs",
+        "path": "./themes/spacemacs.json"
+      },
+      {
+        "label": "Spacemacs Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/spacemacs-dark.json"
+      },
+      {
+        "label": "Spacemacs Light",
+        "uiTheme": "vs",
+        "path": "./themes/spacemacs-light.json"
+      },
+      {
+        "label": "Leuven",
+        "uiTheme": "vs",
+        "path": "./themes/leuven.json"
+      }
+    ]
+  }
+}
