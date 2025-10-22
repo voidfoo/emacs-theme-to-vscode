@@ -22,11 +22,11 @@ Date: October 22, 2025
    - VS Code theme generation with standard token scopes
    - Automatic theme type detection (dark/light)
    - Color derivation for missing values
-6. Successfully converted all theme files to VS Code format, maintaining package structure:
+6. Successfully converted theme definition files to VS Code format:
    - /vscode/leuven-theme/leuven.json (light theme)
-   - /vscode/spacemacs/spacemacs.json
    - /vscode/spacemacs/spacemacs-dark.json (dark theme)
    - /vscode/spacemacs/spacemacs-light.json (light theme)
+   Note: Skipped spacemacs-theme.el as it's a library file, not a theme definition
 
 ## Color Mapping
 The converter maps Emacs faces to VS Code scopes as follows:
@@ -73,7 +73,4 @@ The converter maps Emacs faces to VS Code scopes as follows:
 3. Add theme previews and testing
 4. Publish the VS Code extension to the marketplace
 
-## Next Steps
-1. Fix the leuven theme repository URL in sources.json
-2. Implement full Emacs Lisp theme parsing in the converter
-3. Add proper face mapping between Emacs and VS Code themes
+

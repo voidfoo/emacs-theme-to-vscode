@@ -24,8 +24,16 @@ def convert_emacs_color_to_vscode(color):
     
     return None
 
+def is_theme_definition(content):
+    """Check if this file actually defines a theme by looking for provide-theme."""
+    return bool(re.search(r'\(provide-theme\s+\'[^)]+\)', content))
+
 def parse_emacs_theme(content):
     """Parse an Emacs theme file and extract color definitions."""
+    # Check if this is actually a theme definition
+    if not is_theme_definition(content):
+        return None, None
+        
     colors = {
         # Default colors
         "bg1": "#ffffff",
@@ -191,6 +199,11 @@ def convert_theme(input_path):
     
     # Parse the theme content
     colors, is_dark = parse_emacs_theme(content)
+    
+    # Skip if this file doesn't actually define a theme
+    if colors is None:
+        print(f"Skipping {input_path} - not a theme definition")
+        return
     
     # Determine theme name from filename
     theme_name = Path(input_path).stem.replace('-theme', '').title()
