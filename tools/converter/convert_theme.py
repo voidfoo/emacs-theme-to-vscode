@@ -28,32 +28,60 @@ def is_theme_definition(content):
     """Check if this file actually defines a theme by looking for provide-theme."""
     return bool(re.search(r'\(provide-theme\s+\'[^)]+\)', content))
 
+def read_theme_file(theme_path):
+    """Read a theme file and all its required dependencies."""
+    theme_dir = theme_path.parent
+    content = []
+    
+    with open(theme_path, 'r') as f:
+        file_content = f.read()
+        content.append(file_content)
+        
+        # Look for requires
+        requires = re.findall(r'\(require\s+\'([^)]+)\)', file_content)
+        for req in requires:
+            req_path = theme_dir / f"{req}.el"
+            if req_path.exists():
+                with open(req_path, 'r') as rf:
+                    content.append(rf.read())
+    
+    return '\n'.join(content)
+
 def parse_emacs_theme(content):
     """Parse an Emacs theme file and extract color definitions."""
     # Check if this is actually a theme definition
     if not is_theme_definition(content):
         return None, None
+    
+    # Determine if it's a dark theme
+    is_dark = False
+    if 'spacemacs-dark-theme' in content or "create-spacemacs-theme 'dark" in content:
+        is_dark = True
+    elif 'spacemacs-light-theme' in content or "create-spacemacs-theme 'light" in content:
+        is_dark = False
+    else:
+        is_dark = 'dark' in content.lower() and not 'light' in content.lower()
         
     colors = {
-        # Default colors
-        "bg1": "#ffffff",
-        "bg2": "#f0f0f0",
-        "bg3": "#e8e8e8",
-        "bg4": "#d0d0d0",
-        "base": "#000000",
-        "base-dim": "#666666",
-        "cursor": "#000000",
-        "const": "#800080",
-        "comment": "#808080",
-        "func": "#0000ff",
-        "highlight": "#cccccc",
-        "highlight-dim": "#dddddd",
-        "keyword": "#0000ff",
-        "lnum": "#999999",
-        "str": "#008000",
-        "type": "#800080",
-        "var": "#000080",
-        "err": "#ff0000"
+        # Default colors for light theme
+        "bg1": "#ffffff" if not is_dark else "#292b2e",
+        "bg2": "#f0f0f0" if not is_dark else "#212026",
+        "bg3": "#e8e8e8" if not is_dark else "#100a14",
+        "bg4": "#d0d0d0" if not is_dark else "#0a0814",
+        "base": "#000000" if not is_dark else "#b2b2b2",
+        "base-dim": "#666666" if not is_dark else "#686868",
+        "cursor": "#000000" if not is_dark else "#ffaa00",
+        "const": "#800080" if not is_dark else "#a45bad",
+        "comment": "#808080" if not is_dark else "#2aa1ae",
+        "func": "#0000ff" if not is_dark else "#bc6ec5",
+        "highlight": "#cccccc" if not is_dark else "#444155",
+        "highlight-dim": "#dddddd" if not is_dark else "#3b314d",
+        "keyword": "#0000ff" if not is_dark else "#4f97d7",
+        "lnum": "#999999" if not is_dark else "#44505c",
+        "str": "#008000" if not is_dark else "#2d9574",
+        "type": "#800080" if not is_dark else "#ce537a",
+        "var": "#000080" if not is_dark else "#7590db",
+        "err": "#ff0000" if not is_dark else "#e0211d"
     }
     
     # Extract theme type
@@ -61,19 +89,46 @@ def parse_emacs_theme(content):
     
     # Regular expressions to find color definitions
     color_patterns = {
+        # Basic colors
         r'default.*:background\s+"(#[0-9a-fA-F]+)"': "bg1",
         r'default.*:foreground\s+"(#[0-9a-fA-F]+)"': "base",
         r'cursor.*:background\s+"(#[0-9a-fA-F]+)"': "cursor",
+        
+        # Font-lock faces
         r'font-lock-constant-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "const",
         r'font-lock-comment-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "comment",
         r'font-lock-function-name-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "func",
-        r'region.*:background\s+"(#[0-9a-fA-F]+)"': "highlight",
         r'font-lock-keyword-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "keyword",
-        r'linum.*:foreground\s+"(#[0-9a-fA-F]+)"': "lnum",
         r'font-lock-string-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "str",
         r'font-lock-type-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "type",
         r'font-lock-variable-name-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "var",
-        r'error.*:foreground\s+"(#[0-9a-fA-F]+)"': "err"
+        r'font-lock-doc-face.*:foreground\s+"(#[0-9a-fA-F]+)"': "doc",
+        
+        # UI elements
+        r'region.*:background\s+"(#[0-9a-fA-F]+)"': "highlight",
+        r'linum.*:foreground\s+"(#[0-9a-fA-F]+)"': "lnum",
+        r'error.*:foreground\s+"(#[0-9a-fA-F]+)"': "err",
+        r'mode-line.*:background\s+"(#[0-9a-fA-F]+)"': "statusbar-bg",
+        r'mode-line.*:foreground\s+"(#[0-9a-fA-F]+)"': "statusbar-fg",
+        r'fringe.*:background\s+"(#[0-9a-fA-F]+)"': "gutter-bg",
+        r'fringe.*:foreground\s+"(#[0-9a-fA-F]+)"': "gutter-fg",
+        r'minibuffer-prompt.*:background\s+"(#[0-9a-fA-F]+)"': "input-bg",
+        r'minibuffer-prompt.*:foreground\s+"(#[0-9a-fA-F]+)"': "input-fg",
+        
+        # Diff faces
+        r'diff-added.*:background\s+"(#[0-9a-fA-F]+)"': "diff-add",
+        r'diff-removed.*:background\s+"(#[0-9a-fA-F]+)"': "diff-remove",
+        r'diff-refine-added.*:background\s+"(#[0-9a-fA-F]+)"': "diff-add-highlight",
+        r'diff-refine-removed.*:background\s+"(#[0-9a-fA-F]+)"': "diff-remove-highlight",
+        
+        # Search/match faces
+        r'isearch.*:background\s+"(#[0-9a-fA-F]+)"': "search-bg",
+        r'isearch.*:foreground\s+"(#[0-9a-fA-F]+)"': "search-fg",
+        r'lazy-highlight.*:background\s+"(#[0-9a-fA-F]+)"': "search-highlight",
+        
+        # Special elements
+        r'paren-matched.*:background\s+"(#[0-9a-fA-F]+)"': "bracket-match",
+        r'paren-unmatched.*:background\s+"(#[0-9a-fA-F]+)"': "bracket-unmatch"
     }
     
     # Extract colors using patterns
@@ -98,104 +153,183 @@ def parse_emacs_theme(content):
 
 def create_vscode_theme(name, type_variant, colors):
     """Create a VS Code theme from the extracted colors."""
-    # Use the same theme structure as in the Spacemacs converter
     theme = {
         "name": name,
-        "type": type_variant,
+        "type": "dark" if "dark" in name.lower() else "light",
         "colors": {
-            # UI Colors
-            "editor.background": colors["bg1"],
-            "editor.foreground": colors["base"],
-            "editor.lineHighlightBackground": colors["highlight"],
-            "editorCursor.foreground": colors["cursor"],
-            "editorLineNumber.foreground": colors["lnum"],
-            "editorLineNumber.activeForeground": colors["base"],
+            # Basic editor colors
+            "editor.background": colors.get("bg1", "#ffffff"),
+            "editor.foreground": colors.get("base", "#000000"),
+            "editorCursor.background": colors.get("cursor", "#000000"),
+            
+            # Line highlighting and numbers
+            "editor.lineHighlightBackground": colors.get("highlight", "#cccccc") + "40",
+            "editorLineNumber.foreground": colors.get("lnum", "#999999"),
+            "editorLineNumber.activeForeground": colors.get("base", "#000000"),
+            
+            # Selection and search
+            "editor.selectionBackground": colors.get("highlight", "#cccccc"),
+            "editor.selectionHighlightBackground": colors.get("highlight-dim", "#dddddd") + "60",
+            "editor.findMatchBackground": colors.get("search-bg", "#ffff00"),
+            "editor.findMatchHighlightBackground": colors.get("search-highlight", "#ffff00") + "60",
             
             # UI Elements
-            "titleBar.activeBackground": colors["bg2"],
-            "titleBar.activeForeground": colors["base"],
-            "activityBar.background": colors["bg2"],
-            "activityBar.foreground": colors["keyword"],
-            "sideBar.background": colors["bg2"],
-            "sideBar.foreground": colors["base"],
-            "statusBar.background": colors["bg2"],
-            "statusBar.foreground": colors["base"],
+            "titleBar.activeBackground": colors.get("statusbar-bg", colors.get("bg2", "#f0f0f0")),
+            "titleBar.activeForeground": colors.get("statusbar-fg", colors.get("base", "#000000")),
+            "activityBar.background": colors.get("bg2", "#f0f0f0"),
+            "activityBar.foreground": colors.get("keyword", "#0000ff"),
+            "sideBar.background": colors.get("bg2", "#f0f0f0"),
+            "sideBar.foreground": colors.get("base", "#000000"),
+            "statusBar.background": colors.get("statusbar-bg", colors.get("bg2", "#f0f0f0")),
+            "statusBar.foreground": colors.get("statusbar-fg", colors.get("base", "#000000")),
             
-            # Selection and highlighting
-            "editor.selectionBackground": colors["highlight"],
-            "editor.selectionHighlightBackground": colors["highlight-dim"],
-            "editor.wordHighlightBackground": colors["highlight-dim"],
+            # Input controls
+            "input.background": colors.get("input-bg", colors.get("bg2", "#f0f0f0")),
+            "input.foreground": colors.get("input-fg", colors.get("base", "#000000")),
+            "input.placeholderForeground": colors.get("comment", "#808080"),
+            
+            # Diff editor colors
+            "diffEditor.insertedTextBackground": colors.get("diff-add", "#e6ffed") + "60",
+            "diffEditor.removedTextBackground": colors.get("diff-remove", "#ffeef0") + "60",
+            "diffEditor.insertedLineBackground": colors.get("diff-add", "#e6ffed") + "40",
+            "diffEditor.removedLineBackground": colors.get("diff-remove", "#ffeef0") + "40",
+            
+            # Editor widget colors
+            "editorBracketMatch.background": colors.get("bracket-match", "#c0e8c3"),
+            "editorBracketMatch.border": colors.get("bracket-unmatch", "#ff0000"),
+            
+            # Gutter
+            "editorGutter.background": colors.get("gutter-bg", colors.get("bg1", "#ffffff")),
+            "editorGutter.modifiedBackground": colors.get("diff-add-highlight", "#97f295"),
+            "editorGutter.addedBackground": colors.get("diff-add", "#e6ffed"),
+            "editorGutter.deletedBackground": colors.get("diff-remove", "#ffeef0"),
         },
         "tokenColors": [
             {
                 "name": "Comments",
                 "scope": ["comment", "punctuation.definition.comment"],
                 "settings": {
-                    "foreground": colors["comment"],
+                    "foreground": colors.get("comment", "#808080"),
+                    "fontStyle": "italic"
+                }
+            },
+            {
+                "name": "Documentation",
+                "scope": ["comment.documentation", "comment.block.documentation"],
+                "settings": {
+                    "foreground": colors.get("doc", "#008000"),
                     "fontStyle": "italic"
                 }
             },
             {
                 "name": "Constants",
-                "scope": ["constant", "constant.numeric", "constant.language"],
+                "scope": [
+                    "constant",
+                    "constant.numeric",
+                    "constant.language",
+                    "constant.character",
+                    "constant.other"
+                ],
                 "settings": {
-                    "foreground": colors["const"]
+                    "foreground": colors.get("const", "#800080")
                 }
             },
             {
                 "name": "Strings",
-                "scope": ["string"],
+                "scope": ["string", "string.quoted", "string.template"],
                 "settings": {
-                    "foreground": colors["str"]
+                    "foreground": colors.get("str", "#008000")
                 }
             },
             {
                 "name": "Keywords",
-                "scope": ["keyword", "storage.type", "storage.modifier"],
+                "scope": [
+                    "keyword",
+                    "keyword.control",
+                    "storage.type",
+                    "storage.modifier"
+                ],
                 "settings": {
-                    "foreground": colors["keyword"],
+                    "foreground": colors.get("keyword", "#0000ff"),
                     "fontStyle": "bold"
                 }
             },
             {
                 "name": "Functions",
-                "scope": ["entity.name.function", "meta.function-call"],
+                "scope": [
+                    "entity.name.function",
+                    "meta.function-call",
+                    "meta.function",
+                    "support.function"
+                ],
                 "settings": {
-                    "foreground": colors["func"],
-                    "fontStyle": "bold"
+                    "foreground": colors.get("func", "#0000ff")
                 }
             },
             {
                 "name": "Classes",
-                "scope": ["entity.name.type", "entity.name.class", "entity.name.namespace"],
+                "scope": [
+                    "entity.name.type",
+                    "entity.name.class",
+                    "entity.name.namespace",
+                    "entity.other.inherited-class",
+                    "support.class"
+                ],
                 "settings": {
-                    "foreground": colors["type"],
+                    "foreground": colors.get("type", "#800080"),
                     "fontStyle": "bold"
                 }
             },
             {
                 "name": "Variables",
-                "scope": ["variable", "variable.other"],
+                "scope": [
+                    "variable",
+                    "variable.other",
+                    "variable.parameter",
+                    "variable.language",
+                    "support.variable"
+                ],
                 "settings": {
-                    "foreground": colors["var"]
+                    "foreground": colors.get("var", "#000080")
+                }
+            },
+            {
+                "name": "Parameters",
+                "scope": ["variable.parameter"],
+                "settings": {
+                    "foreground": colors.get("var", "#000080"),
+                    "fontStyle": "italic"
                 }
             },
             {
                 "name": "Error",
                 "scope": ["invalid", "invalid.illegal"],
                 "settings": {
-                    "foreground": colors["err"]
+                    "foreground": colors.get("err", "#ff0000")
                 }
             }
-        ]
+        ],
+        "semanticTokenColors": {
+            "parameter": colors.get("var", "#000080"),
+            "variable": colors.get("var", "#000080"),
+            "property": colors.get("var", "#000080"),
+            "function": colors.get("func", "#0000ff"),
+            "method": colors.get("func", "#0000ff"),
+            "class": colors.get("type", "#800080"),
+            "enum": colors.get("type", "#800080"),
+            "interface": colors.get("type", "#800080"),
+            "typeParameter": colors.get("type", "#800080"),
+            "type": colors.get("type", "#800080"),
+            "comment": colors.get("comment", "#808080")
+        }
     }
     return theme
 
 def convert_theme(input_path):
     """Convert an Emacs theme file to VS Code format."""
-    # Read the input theme
-    with open(input_path, 'r') as f:
-        content = f.read()
+    # Read the input theme and its dependencies
+    input_path = Path(input_path)
+    content = read_theme_file(input_path)
     
     # Parse the theme content
     colors, is_dark = parse_emacs_theme(content)
@@ -210,7 +344,7 @@ def convert_theme(input_path):
     theme_type = "dark" if is_dark else "light"
     
     # Create VS Code theme
-    theme = create_vscode_theme(theme_name, theme_type, colors)
+    theme = create_vscode_theme(theme_name, "dark" if is_dark else "light", colors)
     
     # Determine output path
     # Use the package name (parent directory name) as the output directory
