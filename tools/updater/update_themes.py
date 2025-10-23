@@ -4,7 +4,12 @@ import json
 import os
 import sys
 import urllib.request
+import urllib.error
 from pathlib import Path
+import ssl
+import base64
+
+GITHUB_API = 'https://api.github.com'
 
 def load_sources():
     sources_path = Path(__file__).parent.parent.parent / 'emacs-themes' / 'sources.json'
@@ -55,20 +60,66 @@ def main():
 
         # Doom themes are stored under a themes/ subdirectory and include many files
         elif theme_name == 'doom':
-            # Try to download the entire themes/ directory index is not available via raw, so
-            # attempt to fetch a known list of common theme files present in the repo README.
-            # We'll try to download files from the 'themes/' directory and fall back gracefully.
-            common_files = [
-                'themes/doom-one-theme.el',
-                'themes/doom-dracula-theme.el',
-                'themes/doom-monokai-pro-theme.el',
-                'themes/doom-peacock-theme.el',
-                'themes/doom-ayu-dark-theme.el'
-            ]
-            for file in common_files:
-                url = get_github_raw_url(repo_url, file)
-                save_path = theme_dir / file.split('/')[-1]
-                download_theme_file(url, save_path)
+            # Prefer to enumerate the repository using the GitHub tree API to list all files under themes/
+            def parse_github_repo(url):
+                # Accept forms like https://github.com/owner/repo or git@github.com:owner/repo.git
+                if url.startswith('https://github.com/'):
+                    parts = url.replace('https://github.com/', '').strip('/').split('/')
+                    if len(parts) >= 2:
+                        return parts[0], parts[1].replace('.git','')
+                # naive git@ parser
+                if url.startswith('git@github.com:'):
+                    parts = url.replace('git@github.com:', '').split('/')
+                    return parts[0], parts[1].replace('.git','')
+                return None, None
+
+            owner, repo = parse_github_repo(repo_url)
+            downloaded = False
+            if owner and repo:
+                # Try to get the default branch via repo API
+                try:
+                    headers = {'User-Agent': 'emacs-theme-updater/1.0'}
+                    token = os.environ.get('GITHUB_TOKEN')
+                    if token:
+                        headers['Authorization'] = f'token {token}'
+
+                    def api_get(path):
+                        req = urllib.request.Request(GITHUB_API + path, headers=headers)
+                        with urllib.request.urlopen(req, context=ssl.create_default_context()) as resp:
+                            return json.load(resp)
+
+                    repo_info = api_get(f'/repos/{owner}/{repo}')
+                    default_branch = repo_info.get('default_branch', 'master')
+
+                    # List tree for the default branch recursively and filter themes/
+                    tree_info = api_get(f'/repos/{owner}/{repo}/git/trees/{default_branch}?recursive=1')
+                    tree = tree_info.get('tree', [])
+                    theme_files = [item['path'] for item in tree if item['type']=='blob' and item['path'].startswith('themes/') and item['path'].endswith('-theme.el')]
+
+                    if theme_files:
+                        for path in theme_files:
+                            raw_url = get_github_raw_url(repo_url, path, default_branch)
+                            save_path = theme_dir / Path(path).name
+                            if download_theme_file(raw_url, save_path):
+                                downloaded = True
+                except urllib.error.HTTPError as e:
+                    print(f'GitHub API request failed: {e}', file=sys.stderr)
+                except Exception as e:
+                    print(f'Error while enumerating Doom themes via API: {e}', file=sys.stderr)
+
+            # If API approach failed, fall back to the older small shortlist
+            if not downloaded:
+                common_files = [
+                    'themes/doom-one-theme.el',
+                    'themes/doom-dracula-theme.el',
+                    'themes/doom-monokai-pro-theme.el',
+                    'themes/doom-peacock-theme.el',
+                    'themes/doom-ayu-dark-theme.el'
+                ]
+                for file in common_files:
+                    url = get_github_raw_url(repo_url, file)
+                    save_path = theme_dir / file.split('/')[-1]
+                    download_theme_file(url, save_path)
 
         # Handle single theme files (default)
         else:
