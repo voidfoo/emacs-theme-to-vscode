@@ -426,9 +426,8 @@ def convert_theme(input_path):
     theme = create_vscode_theme(theme_name, "dark" if is_dark else "light", colors)
     
     # Determine output path
-    # Use the package name (parent directory name) as the output directory
-    package_name = input_path.parent.name
-    output_dir = Path(__file__).parent.parent.parent / 'vscode' / package_name
+    # Write directly into the extension themes directory to avoid the intermediate `vscode/` folder
+    output_dir = Path(__file__).parent.parent.parent / 'vscode-extension' / 'themes'
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / f"{theme_name.lower()}.json"
     
