@@ -26,7 +26,8 @@ def convert_emacs_color_to_vscode(color):
 
 def is_theme_definition(content):
     """Check if this file actually defines a theme by looking for provide-theme."""
-    return bool(re.search(r'\(provide-theme\s+\'[^)]+\)', content))
+    # Some packages (doom) use def-doom-theme macro instead of provide-theme
+    return bool(re.search(r'\(provide-theme\s+\'[^)]+\)', content) or re.search(r'def-doom-theme', content))
 
 def read_theme_file(theme_path):
     """Read a theme file and all its required dependencies."""
@@ -53,7 +54,7 @@ def parse_emacs_theme(content):
     if not is_theme_definition(content):
         return None, None
     
-    # Determine if it's a dark theme
+    # Determine if it's a dark theme (default heuristic)
     is_dark = False
     if 'spacemacs-dark-theme' in content or "create-spacemacs-theme 'dark" in content:
         is_dark = True
@@ -84,8 +85,18 @@ def parse_emacs_theme(content):
         "err": "#ff0000" if not is_dark else "#e0211d"
     }
     
-    # Extract theme type
-    is_dark = "dark" in content.lower() and not "light" in content.lower()
+    # Extract theme type more robustly.
+    # Prefer explicit declarations (create-spacemacs-theme, :background-mode, or deftheme name suffix).
+    m_bgmode = re.search(r":background-mode\s+'?(dark|light)\b", content)
+    if m_bgmode:
+        is_dark = (m_bgmode.group(1) == 'dark')
+    else:
+        # Check explicit spacemacs creator or deftheme name ending in -dark/-light
+        if re.search(r"create-spacemacs-theme\s+'dark", content) or re.search(r"deftheme\s+\S*-dark\b", content):
+            is_dark = True
+        elif re.search(r"create-spacemacs-theme\s+'light", content) or re.search(r"deftheme\s+\S*-light\b", content):
+            is_dark = False
+        # otherwise leave is_dark as previously inferred (from earlier checks / defaults)
     
     # Regular expressions to find color definitions
     color_patterns = {
@@ -138,6 +149,74 @@ def parse_emacs_theme(content):
             color = convert_emacs_color_to_vscode(match.group(1))
             if color:
                 colors[key] = color
+
+    # Additional handling: Doom themes use (def-doom-theme name ... ((var '("#hex" ...)) ...))
+    # We'll try to extract common vars like bg, fg, base0..base8, and map them.
+    if 'def-doom-theme' in content:
+        # Parse var definitions like (bg '("#282c34" "black" ...)) and store first hex
+        var_map = {}
+        for m in re.findall(r"\(\s*([a-zA-Z0-9-]+)\s+'?\(\s*\"(#[0-9a-fA-F]{6})\"", content):
+            var_map[m[0]] = m[1]
+
+        # Another pattern: (name '("#hex" ...)) without double-quote capture
+        for m in re.findall(r"\(\s*([a-zA-Z0-9-]+)\s+'?\(\s*'?(\#(?:[0-9a-fA-F]{6}))", content):
+            var_map.setdefault(m[0], m[1])
+
+        # If bg is assigned via another var: e.g. (bg common-bg) -> resolve
+        def resolve_var(name, depth=0):
+            if depth > 5 or not name:
+                return None
+            if name in var_map:
+                return var_map[name]
+            # look for assignment like (name other-var)
+            m = re.search(r"\(%s\s+([a-zA-Z0-9-]+)\)" % re.escape(name), content)
+            if m:
+                return resolve_var(m.group(1), depth+1)
+            return None
+
+        # Map common variables to colors dict where possible
+        bg_hex = None
+        if 'bg' in var_map:
+            bg_hex = var_map['bg']
+        else:
+            # find (bg <var>) usage
+            m_bg = re.search(r"\(bg\s+([a-zA-Z0-9-]+)\)", content)
+            if m_bg:
+                bg_hex = resolve_var(m_bg.group(1))
+
+        if bg_hex:
+            colors['bg1'] = bg_hex
+
+        fg_hex = None
+        if 'fg' in var_map:
+            fg_hex = var_map['fg']
+        else:
+            m_fg = re.search(r"\(fg\s+([a-zA-Z0-9-]+)\)", content)
+            if m_fg:
+                fg_hex = resolve_var(m_fg.group(1))
+        if fg_hex:
+            colors['base'] = fg_hex
+
+        # prefer explicit :background-mode when present (allow optional quote)
+        m_mode = re.search(r":background-mode\s+'?(dark|light)", content)
+        if m_mode:
+            is_dark = (m_mode.group(1) == 'dark')
+
+        # If still ambiguous, use bg1 luminance heuristic
+        if not isinstance(is_dark, bool) or (is_dark is None):
+            is_dark = False
+        try:
+            bg_hex = colors.get('bg1')
+            if bg_hex and re.match(r'^#[0-9a-fA-F]{6}$', bg_hex):
+                r = int(bg_hex[1:3], 16)
+                g = int(bg_hex[3:5], 16)
+                b = int(bg_hex[5:7], 16)
+                # compute simple luminance
+                lum = 0.2126*(r/255.0) + 0.7152*(g/255.0) + 0.0722*(b/255.0)
+                # dark if luminance below threshold
+                is_dark = lum < 0.5
+        except Exception:
+            pass
     
     # Derive missing colors
     if "bg2" not in colors:
@@ -155,7 +234,7 @@ def create_vscode_theme(name, type_variant, colors):
     """Create a VS Code theme from the extracted colors."""
     theme = {
         "name": name,
-        "type": "dark" if "dark" in name.lower() else "light",
+        "type": "dark" if type_variant == 'dark' else "light",
         "colors": {
             # Basic editor colors
             "editor.background": colors.get("bg1", "#ffffff"),

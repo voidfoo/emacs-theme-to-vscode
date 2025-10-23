@@ -41,7 +41,7 @@ def main():
             parts = repo_url.replace('https://github.com/', '').split('/')
             return f"https://raw.githubusercontent.com/{parts[0]}/{parts[1]}/{branch}/{file_path}"
 
-        # Handle spacemacs theme which has multiple theme files
+        # Special-cases for known packages
         if theme_name == 'spacemacs':
             files = [
                 'spacemacs-theme.el',
@@ -52,8 +52,25 @@ def main():
                 url = get_github_raw_url(repo_url, file)
                 save_path = theme_dir / file
                 download_theme_file(url, save_path)
-                
-        # Handle single theme files
+
+        # Doom themes are stored under a themes/ subdirectory and include many files
+        elif theme_name == 'doom':
+            # Try to download the entire themes/ directory index is not available via raw, so
+            # attempt to fetch a known list of common theme files present in the repo README.
+            # We'll try to download files from the 'themes/' directory and fall back gracefully.
+            common_files = [
+                'themes/doom-one-theme.el',
+                'themes/doom-dracula-theme.el',
+                'themes/doom-monokai-pro-theme.el',
+                'themes/doom-peacock-theme.el',
+                'themes/doom-ayu-dark-theme.el'
+            ]
+            for file in common_files:
+                url = get_github_raw_url(repo_url, file)
+                save_path = theme_dir / file.split('/')[-1]
+                download_theme_file(url, save_path)
+
+        # Handle single theme files (default)
         else:
             # Try both main and master branches, and different file paths
             file_name = "leuven-theme.el" if theme_name == "leuven-theme" else f"{theme_name}-theme.el"
