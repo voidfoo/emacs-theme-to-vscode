@@ -1,18 +1,19 @@
 # Emacs Themes for Visual Studio Code
 
-AI coding agent specification.
+AI coding agent specification for converting Emacs themes to VS Code format.
 
-## Supporting utilities
+## Components
 
-### Emacs theme definition dumper
+### Theme Dumper
 
-- The dumper tool lives under `tools/dumper`.
-
-- The dumper tool is written in Emacs Lisp runs in Emacs v30 or later.
-
-- The dumper tool is an interactive Emacs Lisp function that runs in an Emacs graphical session.
-
-- It asks for a theme name, loads the theme, lists all face definitions and writes them into a json file under `emacs-definitions/{theme-name}.json`. Each entry should be a mapping of `faceName` and its foreground color and background color.  For example, `"font-lock-property-use-face": { "fg": "#BA36A5", "bg": "cyan" }`. Here's some example code:
+- Location: `tools/dumper`
+- Implementation: Emacs Lisp (Emacs v30+)
+- Execution: Interactive function in Emacs graphical session
+- Operation: 
+  1. Takes a theme name as input
+  2. Loads the theme
+  3. Outputs face definitions to `emacs-definitions/{theme-name}.json`
+  4. Each entry maps `faceName` to colors: `{"font-lock-property-use-face": {"fg": "#BA36A5", "bg": "cyan"}}`
 
 ```elisp
 (defun list-theme-face-colors ()
@@ -25,24 +26,25 @@ AI coding agent specification.
         (princ (format "%-30s fg: %-12s bg: %-12s\n" face fg bg))))))
 ```
 
-- The dumper is manually executed by the user.
-
 ### Theme Converter
 
-- The converter tool lives under `tools/converter/` directory.
+- Location: `tools/converter`
+- Implementation: JavaScript (NodeJS v24)
+- Input: Emacs theme face definitions (e.g., `emacs-definitions/leuven.json`)
+- Output: VS Code theme (e.g., `samples/output/leuven.json`)
 
-- The converter tool is written in JavaScript and runs on NodeJS v24.
+## Main Application
 
-- The converter tool converts Emacs themes to VS Code themes. Given an input file of an Emacs theme face definitions, it converts it into a VS Code theme as close as possible to the original Emacs theme. An example input ELisp file is `emacs-definitions/leuven.json`.  The example output for it is `samples/output/leuven.json`.
+1. Converts all themes from `emacs-definitions/` using Theme Converter
+2. Saves converted themes to `/vscode-extension/themes/{theme-name}.json`
+3. Validates:
+   - VS Code theme format compliance
+   - Correct Dark/Light theme type
+   - Theme registration in `package.json`
+4. Maintains consistency:
+   - Removes VS Code theme files when Emacs definition is deleted
+   - Updates extension registration accordingly
 
-## The App
+## VS Code Extension
 
-- The app invokes the Theme Converter (described later) on each of the Emacs themes under `emacs-definitions/` and saves the conversion output files under `/vscode-extension/themes` directory. The output file name should have the format of `{theme-name}.json`. Examples of output file names include `/vscode-extension/themes/spacemacs-dark.json`, `/vscode-extension/themes/leuven.json`, and `/vscode-extension/themes/doom-one.json`.
-
-- It then checks the conversion output to ensure the results are proper for Visual Studio Code themes and the theme Dark/Light type is properly set.
-
-- It ensures all converted themes have registration in Visual Studio Code extension's `package.json`. If an Emacs definition file has been deleted, its corresponding Visual Studio Code theme definition file should be removed too, as well as the orphaned registration in the Visual Studio Code extension.
-
-## Visual Studio Code extension
-
-This is the Visual Studio Code extension that provides all the converted themes to Visual Studio Code users.
+Publishes the converted themes for VS Code users.
