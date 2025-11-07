@@ -1,4 +1,4 @@
-# Emacs Themes for Visual Studio Code
+# Emacs Theme Converter
 
 AI coding agent specification for converting Emacs themes to VS Code format.
 
@@ -6,15 +6,24 @@ AI coding agent specification for converting Emacs themes to VS Code format.
 
 ### Theme Dumper
 
-- Location: `tools/dumper`
-- Implementation: Emacs Lisp (Emacs v30+)
-- Execution: Interactive function in Emacs graphical session
-- Operation: 
-  1. Takes a theme name as input
-  2. disable all other enabled themes. Variable `custom-enabled-themes' holds a list of enabled themes.
-  3. Loads the theme
-  4. Outputs face definitions to `emacs-definitions/emacs-{theme-name}.json`
-  5. Each entry maps `faceName` to colors: `{"font-lock-property-use-face": {"fg": "#BA36A5", "bg": "cyan"}}`
+- Path: `tools/dumper`
+- Runtime: Emacs v30+
+- Mode: Interactive Emacs GUI function
+- Process:
+  1. Read theme name
+  2. Clear themes via `custom-enabled-themes`
+  3. Load target theme
+  4. Write faces to `emacs-definitions/emacs-{theme-name}.json`
+
+Face definition format:
+```json
+{
+  "font-lock-property-use-face": {
+    "fg": "#BA36A5",
+    "bg": "cyan"
+  }
+}
+```
 
 ```elisp
 (defun list-theme-face-colors ()
@@ -29,23 +38,24 @@ AI coding agent specification for converting Emacs themes to VS Code format.
 
 ### Theme Converter
 
-- Location: `tools/converter`
-- Implementation: JavaScript (NodeJS v24)
-- Input: Emacs theme face definitions (format: `emacs-definitions/emacs-{theme name}.json`)
-- Output: VS Code theme (format: `vscode-extension/themes/{theme-name}.json`)
-- Reference: existing manual conversion under `samples/`
+- Path: `tools/converter`
+- Runtime: Node.js v24
+- Input: `emacs-definitions/emacs-{theme-name}.json`
+- Output: `vscode-extension/themes/{theme-name}.json`
+- Reference: `samples/` directory
 
-## Main Application
+## Pipeline
 
-1. Converts all themes from `emacs-definitions/` using Theme Converter
-3. Validates:
-   - VS Code theme format compliance
-   - Correct Dark/Light theme type
-   - Theme registration in `package.json`
-4. Maintains consistency:
-   - Removes VS Code theme files when Emacs definition is deleted
-   - Updates extension registration accordingly
+1. Read themes from `emacs-definitions/`
+2. Convert using Theme Converter
+3. Verify:
+   - VS Code theme schema
+   - Theme type (dark/light)
+   - Extension manifest
+4. Clean:
+   - Remove orphaned theme files
+   - Update extension index
 
-## VS Code Extension
+## Extension
 
-Publishes the converted themes for VS Code users.
+Package themes for VS Code distribution.
