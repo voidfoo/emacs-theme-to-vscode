@@ -31,13 +31,13 @@ AI coding agent specification for converting Emacs themes to VS Code format.
 
 - Location: `tools/converter`
 - Implementation: JavaScript (NodeJS v24)
-- Input: Emacs theme face definitions (e.g., `emacs-definitions/leuven.json`)
-- Output: VS Code theme (e.g., `samples/output/leuven.json`)
+- Input: Emacs theme face definitions (format: `emacs-definitions/emacs-{theme name}.json`)
+- Output: VS Code theme (format: `vscode-extension/themes/{theme-name}.json`)
+- Reference: existing manual conversion under `samples/`
 
 ## Main Application
 
 1. Converts all themes from `emacs-definitions/` using Theme Converter
-2. Saves converted themes to `/vscode-extension/themes/{theme-name}.json`
 3. Validates:
    - VS Code theme format compliance
    - Correct Dark/Light theme type
