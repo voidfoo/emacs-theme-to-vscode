@@ -11,9 +11,10 @@ AI coding agent specification for converting Emacs themes to VS Code format.
 - Execution: Interactive function in Emacs graphical session
 - Operation: 
   1. Takes a theme name as input
-  2. Loads the theme
-  3. Outputs face definitions to `emacs-definitions/{theme-name}.json`
-  4. Each entry maps `faceName` to colors: `{"font-lock-property-use-face": {"fg": "#BA36A5", "bg": "cyan"}}`
+  2. disable all other enabled themes. Variable `custom-enabled-themes' holds a list of enabled themes.
+  3. Loads the theme
+  4. Outputs face definitions to `emacs-definitions/emacs-{theme-name}.json`
+  5. Each entry maps `faceName` to colors: `{"font-lock-property-use-face": {"fg": "#BA36A5", "bg": "cyan"}}`
 
 ```elisp
 (defun list-theme-face-colors ()
