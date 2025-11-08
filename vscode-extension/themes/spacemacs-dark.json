@@ -13,279 +13,6 @@
   },
   "tokenColors": [
     {
-      "name": "css-property",
-      "scope": [
-        "support.type.property-name.css"
-      ],
-      "settings": {
-        "foreground": "#4f97d7"
-      }
-    },
-    {
-      "name": "css-selector",
-      "scope": [
-        "entity.name.tag.css",
-        "entity.other.attribute-name.class.css"
-      ],
-      "settings": {
-        "foreground": "#bc6ec5"
-      }
-    },
-    {
-      "name": "sgml-namespace",
-      "scope": [
-        "entity.name.tag.namespace"
-      ],
-      "settings": {
-        "foreground": "#4f97d7"
-      }
-    },
-    {
-      "name": "treemacs-git-added-face",
-      "scope": [
-        "gitDecoration.addedResourceForeground"
-      ],
-      "settings": {
-        "foreground": "#67b11d",
-        "background": "#293235"
-      }
-    },
-    {
-      "name": "treemacs-git-untracked-face",
-      "scope": [
-        "gitDecoration.untrackedResourceForeground"
-      ],
-      "settings": {
-        "foreground": "#2d9574",
-        "background": "#293235"
-      }
-    },
-    {
-      "name": "treemacs-git-ignored-face",
-      "scope": [
-        "gitDecoration.ignoredResourceForeground"
-      ],
-      "settings": {
-        "foreground": "#b1951d"
-      }
-    },
-    {
-      "name": "treemacs-git-renamed-face",
-      "scope": [
-        "gitDecoration.renamedResourceForeground"
-      ],
-      "settings": {
-        "foreground": "#9f8766"
-      }
-    },
-    {
-      "name": "treemacs-git-modified-face",
-      "scope": [
-        "gitDecoration.modifiedResourceForeground"
-      ],
-      "settings": {
-        "foreground": "#4f97d7",
-        "background": "#293239"
-      }
-    },
-    {
-      "name": "treemacs-root-face",
-      "scope": [
-        "breadcrumb.foreground",
-        "tree.tableColumnHeader.foreground"
-      ],
-      "settings": {
-        "foreground": "#a45bad"
-      }
-    },
-    {
-      "name": "treemacs-file-face",
-      "scope": [
-        "explorer.fileForeground"
-      ],
-      "settings": {
-        "foreground": "#b2b2b2",
-        "background": "#292b2e"
-      }
-    },
-    {
-      "name": "treemacs-directory-face",
-      "scope": [
-        "explorer.directoryForeground"
-      ],
-      "settings": {
-        "foreground": "#bc6ec5"
-      }
-    },
-    {
-      "name": "w3m-error (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "Pink"
-      }
-    },
-    {
-      "name": "w3m-unsafe-url-warning (inferred)",
-      "scope": [
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#000000",
-        "background": "#FFFF00"
-      }
-    },
-    {
-      "name": "eval-sexp-fu-flash-error (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#292b2e",
-        "background": "#e0211d"
-      }
-    },
-    {
-      "name": "flycheck-error-list-checker-name (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#4f97d7"
-      }
-    },
-    {
-      "name": "flycheck-error-list-id-with-explainer (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#ce537a"
-      }
-    },
-    {
-      "name": "flycheck-error-list-id (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#ce537a"
-      }
-    },
-    {
-      "name": "flycheck-error-list-filename (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#bc6ec5"
-      }
-    },
-    {
-      "name": "flycheck-error-list-info (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#86dc2f"
-      }
-    },
-    {
-      "name": "flycheck-error-list-warning (inferred)",
-      "scope": [
-        "invalid",
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#dc752f"
-      }
-    },
-    {
-      "name": "flycheck-error-list-error (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#e0211d"
-      }
-    },
-    {
-      "name": "flycheck-fringe-warning (inferred)",
-      "scope": [
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#dc752f"
-      }
-    },
-    {
-      "name": "flycheck-fringe-error (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#e0211d"
-      }
-    },
-    {
-      "name": "rainbow-delimiters-base-error-face (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#88090B"
-      }
-    },
-    {
-      "name": "apropos-variable-button (inferred)",
-      "scope": [
-        "variable"
-      ],
-      "settings": {
-        "foreground": "#7590db"
-      }
-    },
-    {
-      "name": "apropos-function-button (inferred)",
-      "scope": [
-        "entity.name.function"
-      ],
-      "settings": {
-        "foreground": "#bc6ec5"
-      }
-    },
-    {
-      "name": "company-tooltip-common",
-      "scope": [
-        "editorSuggestWidget.highlightForeground"
-      ],
-      "settings": {
-        "foreground": "#4f97d7",
-        "background": "#34323e"
-      }
-    },
-    {
-      "name": "company-tooltip-selection",
-      "scope": [
-        "editorSuggestWidget.selectedBackground"
-      ],
-      "settings": {
-        "foreground": "#b2b2b2",
-        "background": "#5e5079"
-      }
-    },
-    {
-      "name": "company-tooltip",
-      "scope": [
-        "editorSuggestWidget.background"
-      ],
-      "settings": {
-        "foreground": "#9a9aba",
-        "background": "#34323e"
-      }
-    },
-    {
       "name": "restclient-variable-usage-face (inferred)",
       "scope": [
         "variable"
@@ -388,6 +115,55 @@
       }
     },
     {
+      "name": "helm-M-x-short-doc (inferred)",
+      "scope": [
+        "comment.documentation"
+      ],
+      "settings": {
+        "foreground": "DimGray"
+      }
+    },
+    {
+      "name": "company-tooltip-common",
+      "scope": [
+        "editorSuggestWidget.highlightForeground"
+      ],
+      "settings": {
+        "foreground": "#4f97d7",
+        "background": "#34323e"
+      }
+    },
+    {
+      "name": "company-tooltip-selection",
+      "scope": [
+        "editorSuggestWidget.selectedBackground"
+      ],
+      "settings": {
+        "foreground": "#b2b2b2",
+        "background": "#5e5079"
+      }
+    },
+    {
+      "name": "company-tooltip",
+      "scope": [
+        "editorSuggestWidget.background"
+      ],
+      "settings": {
+        "foreground": "#9a9aba",
+        "background": "#34323e"
+      }
+    },
+    {
+      "name": "eval-sexp-fu-flash-error (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#292b2e",
+        "background": "#e0211d"
+      }
+    },
+    {
       "name": "vc-git-log-edit-summary-max-warning (inferred)",
       "scope": [
         "invalid.deprecated"
@@ -406,12 +182,94 @@
       }
     },
     {
-      "name": "helm-M-x-short-doc (inferred)",
+      "name": "flycheck-error-list-checker-name (inferred)",
       "scope": [
-        "comment.documentation"
+        "invalid"
       ],
       "settings": {
-        "foreground": "DimGray"
+        "foreground": "#4f97d7"
+      }
+    },
+    {
+      "name": "flycheck-error-list-id-with-explainer (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#ce537a"
+      }
+    },
+    {
+      "name": "flycheck-error-list-id (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#ce537a"
+      }
+    },
+    {
+      "name": "flycheck-error-list-filename (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#bc6ec5"
+      }
+    },
+    {
+      "name": "flycheck-error-list-info (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#86dc2f"
+      }
+    },
+    {
+      "name": "flycheck-error-list-warning (inferred)",
+      "scope": [
+        "invalid",
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#dc752f"
+      }
+    },
+    {
+      "name": "flycheck-error-list-error (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#e0211d"
+      }
+    },
+    {
+      "name": "flycheck-fringe-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#dc752f"
+      }
+    },
+    {
+      "name": "flycheck-fringe-error (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#e0211d"
+      }
+    },
+    {
+      "name": "rainbow-delimiters-base-error-face (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#88090B"
       }
     },
     {

@@ -13,6 +13,108 @@
   },
   "tokenColors": [
     {
+      "name": "restclient-variable-usage-face (inferred)",
+      "scope": [
+        "variable"
+      ],
+      "settings": {
+        "foreground": "#0072b2"
+      }
+    },
+    {
+      "name": "restclient-variable-multiline-face (inferred)",
+      "scope": [
+        "variable"
+      ],
+      "settings": {
+        "foreground": "#848ea9"
+      }
+    },
+    {
+      "name": "restclient-variable-elisp-face (inferred)",
+      "scope": [
+        "variable"
+      ],
+      "settings": {
+        "foreground": "#d55e00"
+      }
+    },
+    {
+      "name": "restclient-variable-string-face (inferred)",
+      "scope": [
+        "variable",
+        "string"
+      ],
+      "settings": {
+        "foreground": "#848ea9"
+      }
+    },
+    {
+      "name": "restclient-variable-name-face (inferred)",
+      "scope": [
+        "variable"
+      ],
+      "settings": {
+        "foreground": "#0072b2"
+      }
+    },
+    {
+      "name": "org-agenda-filter-regexp (inferred)",
+      "scope": [
+        "string.regexp"
+      ],
+      "settings": {
+        "foreground": "#000000",
+        "background": "#e5e5e5"
+      }
+    },
+    {
+      "name": "org-document-info-keyword (inferred)",
+      "scope": [
+        "keyword",
+        "comment.documentation"
+      ],
+      "settings": {
+        "foreground": "grey50"
+      }
+    },
+    {
+      "name": "org-document-info (inferred)",
+      "scope": [
+        "comment.documentation"
+      ],
+      "settings": {
+        "foreground": "midnight blue"
+      }
+    },
+    {
+      "name": "org-document-title (inferred)",
+      "scope": [
+        "comment.documentation"
+      ],
+      "settings": {
+        "foreground": "midnight blue"
+      }
+    },
+    {
+      "name": "org-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#d55e00"
+      }
+    },
+    {
+      "name": "org-special-keyword (inferred)",
+      "scope": [
+        "keyword"
+      ],
+      "settings": {
+        "foreground": "#56b4e9"
+      }
+    },
+    {
       "name": "helm-M-x-short-doc (inferred)",
       "scope": [
         "comment.documentation"

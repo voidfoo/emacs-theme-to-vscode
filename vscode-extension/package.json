@@ -12,6 +12,16 @@
   "contributes": {
     "themes": [
       {
+        "label": "adwaita",
+        "uiTheme": "vs",
+        "path": "./themes/adwaita.json"
+      },
+      {
+        "label": "deeper-blue",
+        "uiTheme": "vs-dark",
+        "path": "./themes/deeper-blue.json"
+      },
+      {
         "label": "dichromacy",
         "uiTheme": "vs",
         "path": "./themes/dichromacy.json"
@@ -118,8 +128,13 @@
       },
       {
         "label": "doom-gruvbox-light",
-        "uiTheme": "vs-dark",
+        "uiTheme": "vs",
         "path": "./themes/doom-gruvbox-light.json"
+      },
+      {
+        "label": "doom-gruvbox",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-gruvbox.json"
       },
       {
         "label": "doom-henna",
@@ -152,6 +167,11 @@
         "path": "./themes/doom-lantern.json"
       },
       {
+        "label": "doom-laserwave",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-laserwave.json"
+      },
+      {
         "label": "doom-manegarm",
         "uiTheme": "vs-dark",
         "path": "./themes/doom-manegarm.json"
@@ -162,14 +182,294 @@
         "path": "./themes/doom-material-dark.json"
       },
       {
+        "label": "doom-material",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-material.json"
+      },
+      {
+        "label": "doom-meltbus",
+        "uiTheme": "vs",
+        "path": "./themes/doom-meltbus.json"
+      },
+      {
+        "label": "doom-miramare",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-miramare.json"
+      },
+      {
+        "label": "doom-molokai",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-molokai.json"
+      },
+      {
+        "label": "doom-monokai-classic",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-monokai-classic.json"
+      },
+      {
+        "label": "doom-monokai-machine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-monokai-machine.json"
+      },
+      {
+        "label": "doom-monokai-octagon",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-monokai-octagon.json"
+      },
+      {
+        "label": "doom-monokai-pro",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-monokai-pro.json"
+      },
+      {
+        "label": "doom-monokai-ristretto",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-monokai-ristretto.json"
+      },
+      {
+        "label": "doom-monokai-spectrum",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-monokai-spectrum.json"
+      },
+      {
+        "label": "doom-moonlight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-moonlight.json"
+      },
+      {
+        "label": "doom-nord-aurora",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-nord-aurora.json"
+      },
+      {
+        "label": "doom-nord-light",
+        "uiTheme": "vs",
+        "path": "./themes/doom-nord-light.json"
+      },
+      {
+        "label": "doom-nord",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-nord.json"
+      },
+      {
+        "label": "doom-nova",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-nova.json"
+      },
+      {
+        "label": "doom-oceanic-next",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-oceanic-next.json"
+      },
+      {
+        "label": "doom-oksolar-dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-oksolar-dark.json"
+      },
+      {
+        "label": "doom-oksolar-light",
+        "uiTheme": "vs",
+        "path": "./themes/doom-oksolar-light.json"
+      },
+      {
+        "label": "doom-old-hope",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-old-hope.json"
+      },
+      {
+        "label": "doom-one-light",
+        "uiTheme": "vs",
+        "path": "./themes/doom-one-light.json"
+      },
+      {
+        "label": "doom-one",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-one.json"
+      },
+      {
+        "label": "doom-opera-light",
+        "uiTheme": "vs",
+        "path": "./themes/doom-opera-light.json"
+      },
+      {
+        "label": "doom-opera",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-opera.json"
+      },
+      {
+        "label": "doom-outrun-electric",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-outrun-electric.json"
+      },
+      {
+        "label": "doom-palenight",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-palenight.json"
+      },
+      {
+        "label": "doom-peacock",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-peacock.json"
+      },
+      {
+        "label": "doom-pine",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-pine.json"
+      },
+      {
+        "label": "doom-plain-dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-plain-dark.json"
+      },
+      {
+        "label": "doom-plain",
+        "uiTheme": "vs",
+        "path": "./themes/doom-plain.json"
+      },
+      {
+        "label": "doom-rouge",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-rouge.json"
+      },
+      {
+        "label": "doom-shades-of-purple",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-shades-of-purple.json"
+      },
+      {
+        "label": "doom-snazzy",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-snazzy.json"
+      },
+      {
+        "label": "doom-solarized-dark-high-contrast",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-solarized-dark-high-contrast.json"
+      },
+      {
+        "label": "doom-solarized-dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-solarized-dark.json"
+      },
+      {
+        "label": "doom-solarized-light",
+        "uiTheme": "vs",
+        "path": "./themes/doom-solarized-light.json"
+      },
+      {
+        "label": "doom-sourcerer",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-sourcerer.json"
+      },
+      {
+        "label": "doom-spacegrey",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-spacegrey.json"
+      },
+      {
+        "label": "doom-tokyo-night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-tokyo-night.json"
+      },
+      {
+        "label": "doom-tomorrow-day",
+        "uiTheme": "vs",
+        "path": "./themes/doom-tomorrow-day.json"
+      },
+      {
+        "label": "doom-tomorrow-night",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-tomorrow-night.json"
+      },
+      {
+        "label": "doom-vibrant",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-vibrant.json"
+      },
+      {
+        "label": "doom-wilmersdorf",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-wilmersdorf.json"
+      },
+      {
+        "label": "doom-winter-is-coming-dark-blue",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-winter-is-coming-dark-blue.json"
+      },
+      {
+        "label": "doom-winter-is-coming-light",
+        "uiTheme": "vs",
+        "path": "./themes/doom-winter-is-coming-light.json"
+      },
+      {
+        "label": "doom-xcode",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-xcode.json"
+      },
+      {
+        "label": "doom-zenburn",
+        "uiTheme": "vs-dark",
+        "path": "./themes/doom-zenburn.json"
+      },
+      {
+        "label": "leuven-dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/leuven-dark.json"
+      },
+      {
         "label": "leuven",
         "uiTheme": "vs",
         "path": "./themes/leuven.json"
       },
       {
+        "label": "light-blue",
+        "uiTheme": "vs",
+        "path": "./themes/light-blue.json"
+      },
+      {
+        "label": "manoj-dark",
+        "uiTheme": "vs",
+        "path": "./themes/manoj-dark.json"
+      },
+      {
+        "label": "misterioso",
+        "uiTheme": "vs-dark",
+        "path": "./themes/misterioso.json"
+      },
+      {
+        "label": "modus-operandi-deuteranopia",
+        "uiTheme": "vs",
+        "path": "./themes/modus-operandi-deuteranopia.json"
+      },
+      {
+        "label": "modus-operandi-tinted",
+        "uiTheme": "vs",
+        "path": "./themes/modus-operandi-tinted.json"
+      },
+      {
+        "label": "modus-operandi-tritanopia",
+        "uiTheme": "vs",
+        "path": "./themes/modus-operandi-tritanopia.json"
+      },
+      {
         "label": "modus-operandi",
         "uiTheme": "vs",
         "path": "./themes/modus-operandi.json"
+      },
+      {
+        "label": "modus-vivendi-deuteranopia",
+        "uiTheme": "vs-dark",
+        "path": "./themes/modus-vivendi-deuteranopia.json"
+      },
+      {
+        "label": "modus-vivendi-tinted",
+        "uiTheme": "vs-dark",
+        "path": "./themes/modus-vivendi-tinted.json"
+      },
+      {
+        "label": "modus-vivendi-tritanopia",
+        "uiTheme": "vs-dark",
+        "path": "./themes/modus-vivendi-tritanopia.json"
       },
       {
         "label": "modus-vivendi",
@@ -185,6 +485,41 @@
         "label": "spacemacs-light",
         "uiTheme": "vs",
         "path": "./themes/spacemacs-light.json"
+      },
+      {
+        "label": "tango-dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tango-dark.json"
+      },
+      {
+        "label": "tango",
+        "uiTheme": "vs",
+        "path": "./themes/tango.json"
+      },
+      {
+        "label": "tsdh-dark",
+        "uiTheme": "vs",
+        "path": "./themes/tsdh-dark.json"
+      },
+      {
+        "label": "tsdh-light",
+        "uiTheme": "vs",
+        "path": "./themes/tsdh-light.json"
+      },
+      {
+        "label": "wheatgrass",
+        "uiTheme": "vs",
+        "path": "./themes/wheatgrass.json"
+      },
+      {
+        "label": "whiteboard",
+        "uiTheme": "vs",
+        "path": "./themes/whiteboard.json"
+      },
+      {
+        "label": "wombat",
+        "uiTheme": "vs-dark",
+        "path": "./themes/wombat.json"
       }
     ]
   }
