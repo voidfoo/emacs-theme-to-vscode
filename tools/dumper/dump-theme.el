@@ -88,7 +88,11 @@ Disables all currently enabled themes before loading the target theme."
         (setq count (1+ count))
         (message "[%d/%d] Processing theme: %s" count total theme)
         (let ((output-file (expand-file-name (format "emacs-%s.json" theme) output-dir)))
-          (dump-theme-faces theme output-file)))
+          (condition-case err
+              (dump-theme-faces theme output-file)
+            (error
+             (message "Warning: Failed to process theme %s: %s" theme (error-message-string err))
+             (sleep-for 1)))))
       
       ;; Restore original themes
       (dump-theme-disable-all)
