@@ -1,7 +1,9 @@
 // @ts-check
 
 import { promises as fs } from "fs";
-import { join } from "path";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
 import { FACE_TO_SCOPE_MAP } from "./faceToScopeMap.js";
 import { NAMED_COLORS } from "./namedColors.js";
 import {
@@ -12,6 +14,8 @@ import {
   readEmacsTheme,
 } from "./utils.js";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 const EMACS_DEFS_DIR = join(__dirname, "../../emacs-definitions");
 const VSCODE_THEMES_DIR = join(__dirname, "../../vscode-extension/themes");
 const PACKAGE_JSON_PATH = join(
