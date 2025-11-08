@@ -125,12 +125,15 @@ function processThemeColors(themeData) {
   colors["editor.foreground"] = defaultFg;
   colors["terminal.background"] = defaultBg;
   colors["terminal.foreground"] = defaultFg;
-  colors["sideBar.background"] =
+
+  // Always set sidebar colors with appropriate contrast
+  const sidebarBg =
     themeType === "dark"
-      ? adjustColorLuminance(defaultBg, 0.1)
-      : adjustColorLuminance(defaultBg, -0.1);
-  colors["activityBar.background"] = colors["sideBar.background"];
-  colors["panel.background"] = colors["sideBar.background"];
+      ? adjustColorLuminance(defaultBg, 0.1) // Make slightly lighter in dark themes
+      : adjustColorLuminance(defaultBg, -0.1); // Make slightly darker in light themes
+  colors["sideBar.background"] = sidebarBg;
+  colors["activityBar.background"] = sidebarBg;
+  colors["panel.background"] = sidebarBg;
 
   // Process each face and its mappings
   for (const [face, faceData] of Object.entries(themeData)) {
@@ -271,6 +274,29 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
       );
     });
   });
+
+  // Ensure sidebar/activityBar/panel backgrounds are always present.
+  // If the Emacs theme doesn't define corresponding faces, compute a
+  // reasonable fallback based on the theme's default background.
+  const effectiveType = detectThemeType(emacsTheme);
+  const effectiveDefaultBg = normalizeColor(
+    emacsTheme.default?.bg ||
+      (effectiveType === "dark" ? "#000000" : "#ffffff"),
+  );
+  const computedSidebarBg =
+    effectiveType === "dark"
+      ? adjustColorLuminance(effectiveDefaultBg, 0.1)
+      : adjustColorLuminance(effectiveDefaultBg, -0.1);
+
+  if (!vsCodeTheme.colors["sideBar.background"]) {
+    vsCodeTheme.colors["sideBar.background"] = computedSidebarBg;
+  }
+  if (!vsCodeTheme.colors["activityBar.background"]) {
+    vsCodeTheme.colors["activityBar.background"] = computedSidebarBg;
+  }
+  if (!vsCodeTheme.colors["panel.background"]) {
+    vsCodeTheme.colors["panel.background"] = computedSidebarBg;
+  }
 
   // Process syntax highlighting and UI colors
   for (const [faceName, faceData] of Object.entries(emacsTheme)) {
