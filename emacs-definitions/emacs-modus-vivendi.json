@@ -1,4 +1,669 @@
 {
+  "diff-hl-margin-unknown": {
+    "fg": "#989898"
+  },
+  "diff-hl-margin-ignored": {
+    "fg": "#989898"
+  },
+  "diff-hl-margin-change": {
+    "bg": "#8a7a00"
+  },
+  "diff-hl-margin-delete": {
+    "bg": "#b81a1f"
+  },
+  "diff-hl-margin-insert": {
+    "bg": "#237f3f"
+  },
+  "diff-hl-dired-ignored": {
+    "fg": "#989898"
+  },
+  "diff-hl-dired-unknown": {
+    "fg": "#989898"
+  },
+  "diff-hl-dired-change": {
+    "bg": "#8a7a00"
+  },
+  "diff-hl-dired-delete": {
+    "bg": "#b81a1f"
+  },
+  "diff-hl-dired-insert": {
+    "bg": "#237f3f"
+  },
+  "org-indent": {
+    "fg": "#000000"
+  },
+  "org-superstar-first": {
+    "fg": "#fec43f"
+  },
+  "org-superstar-ordered-item": {
+    "fg": "#ffffff",
+    "bg": "#000000"
+  },
+  "org-superstar-item": {
+    "fg": "#ffffff"
+  },
+  "org-superstar-leading": {
+    "fg": "gray",
+    "bg": "#000000"
+  },
+  "eww-valid-certificate": {
+    "fg": "#6ae4b9"
+  },
+  "eww-invalid-certificate": {
+    "fg": "#ff5f59"
+  },
+  "eww-form-textarea": {
+    "fg": "#ffffff",
+    "bg": "#303030"
+  },
+  "eww-form-text": {
+    "fg": "#ffffff",
+    "bg": "#303030"
+  },
+  "eww-form-select": {
+    "fg": "#ffffff",
+    "bg": "#535353"
+  },
+  "eww-form-checkbox": {
+    "fg": "#ffffff",
+    "bg": "#303030"
+  },
+  "eww-form-file": {
+    "fg": "#ffffff",
+    "bg": "#535353"
+  },
+  "eww-form-submit": {
+    "fg": "#ffffff",
+    "bg": "#535353"
+  },
+  "gnus-header-content": {
+    "fg": "#caa6df"
+  },
+  "gnus-header-newsgroups": {
+    "fg": "#caa6df"
+  },
+  "gnus-header-subject": {
+    "fg": "#f78fe7"
+  },
+  "gnus-header-from": {
+    "fg": "#b6a0ff"
+  },
+  "gnus-button": {
+    "fg": "#79a8ff"
+  },
+  "gnus-emphasis-highlight-words": {
+    "fg": "#fec43f"
+  },
+  "mm-uu-extract": {
+    "fg": "#2fafff"
+  },
+  "shr-mark": {
+    "fg": "#ffffff",
+    "bg": "#552f5f"
+  },
+  "shr-code": {
+    "fg": "#f78fe7"
+  },
+  "shr-h6": {
+    "fg": "#ff9580"
+  },
+  "shr-h5": {
+    "fg": "#88ca9f"
+  },
+  "shr-h4": {
+    "fg": "#feacd0"
+  },
+  "shr-h3": {
+    "fg": "#82b0ec"
+  },
+  "shr-h2": {
+    "fg": "#d2b580"
+  },
+  "shr-h1": {
+    "fg": "#ffffff"
+  },
+  "shr-selected-link": {
+    "fg": "#00d3d0",
+    "bg": "#004065"
+  },
+  "shr-link": {
+    "fg": "#79a8ff"
+  },
+  "gnus-splash": {
+    "fg": "#cccccc"
+  },
+  "gnus-summary-low-read": {
+    "fg": "#989898"
+  },
+  "gnus-summary-high-read": {
+    "fg": "#989898"
+  },
+  "gnus-summary-normal-read": {
+    "fg": "#989898"
+  },
+  "gnus-summary-low-undownloaded": {
+    "fg": "#fec43f"
+  },
+  "gnus-summary-high-undownloaded": {
+    "fg": "#fec43f"
+  },
+  "gnus-summary-normal-undownloaded": {
+    "fg": "#fec43f"
+  },
+  "gnus-summary-high-ancient": {
+    "fg": "#c6daff"
+  },
+  "gnus-summary-normal-ancient": {
+    "fg": "#989898"
+  },
+  "gnus-summary-low-ticked": {
+    "fg": "#ff5f59"
+  },
+  "gnus-summary-high-ticked": {
+    "fg": "#ff5f59"
+  },
+  "gnus-summary-normal-ticked": {
+    "fg": "#ff5f59"
+  },
+  "gnus-summary-cancelled": {
+    "fg": "#fec43f"
+  },
+  "gnus-summary-selected": {
+    "fg": "#ffffff",
+    "bg": "#45605e"
+  },
+  "gnus-group-mail-low": {
+    "fg": "#989898"
+  },
+  "gnus-group-mail-low-empty": {
+    "fg": "#989898"
+  },
+  "gnus-group-mail-3": {
+    "fg": "#b6a0ff"
+  },
+  "gnus-group-mail-3-empty": {
+    "fg": "#b6a0ff"
+  },
+  "gnus-group-mail-2": {
+    "fg": "#feacd0"
+  },
+  "gnus-group-mail-2-empty": {
+    "fg": "#feacd0"
+  },
+  "gnus-group-mail-1": {
+    "fg": "#f78fe7"
+  },
+  "gnus-group-mail-1-empty": {
+    "fg": "#f78fe7"
+  },
+  "gnus-group-news-low": {
+    "fg": "#989898"
+  },
+  "gnus-group-news-low-empty": {
+    "fg": "#989898"
+  },
+  "gnus-group-news-6": {
+    "fg": "#989898"
+  },
+  "gnus-group-news-6-empty": {
+    "fg": "#989898"
+  },
+  "gnus-group-news-5": {
+    "fg": "#c6daff"
+  },
+  "gnus-group-news-5-empty": {
+    "fg": "#c6daff"
+  },
+  "gnus-group-news-4": {
+    "fg": "#caa6df"
+  },
+  "gnus-group-news-4-empty": {
+    "fg": "#caa6df"
+  },
+  "gnus-group-news-3": {
+    "fg": "#d2b580"
+  },
+  "gnus-group-news-3-empty": {
+    "fg": "#d2b580"
+  },
+  "gnus-group-news-2": {
+    "fg": "#00d3d0"
+  },
+  "gnus-group-news-2-empty": {
+    "fg": "#00d3d0"
+  },
+  "gnus-group-news-1": {
+    "fg": "#44bc44"
+  },
+  "gnus-group-news-1-empty": {
+    "fg": "#44bc44"
+  },
+  "doc-view-svg-face": {
+    "fg": "black",
+    "bg": "white"
+  },
+  "org-habit-overdue-future-face": {
+    "bg": "#702020"
+  },
+  "org-habit-overdue-face": {
+    "bg": "#b52c2c"
+  },
+  "org-habit-alert-future-face": {
+    "bg": "#b08940"
+  },
+  "org-habit-alert-face": {
+    "fg": "#000000",
+    "bg": "#f1e00a"
+  },
+  "org-habit-ready-future-face": {
+    "bg": "#007800"
+  },
+  "org-habit-ready-face": {
+    "fg": "#000000",
+    "bg": "#0fed00"
+  },
+  "org-habit-clear-future-face": {
+    "bg": "#1f2f8f"
+  },
+  "org-habit-clear-face": {
+    "fg": "#000000",
+    "bg": "#2fafef"
+  },
+  "restclient-request-hook-args-face": {
+    "fg": "#79a8ff"
+  },
+  "restclient-request-hook-name-face": {
+    "fg": "#feacd0"
+  },
+  "restclient-request-hook-face": {
+    "fg": "#ff7f86"
+  },
+  "restclient-header-value-face": {
+    "fg": "#79a8ff"
+  },
+  "restclient-header-name-face": {
+    "fg": "#00d3d0"
+  },
+  "restclient-file-upload-face": {
+    "fg": "#9ac8e0"
+  },
+  "restclient-url-face": {
+    "fg": "#feacd0"
+  },
+  "restclient-method-face": {
+    "fg": "#b6a0ff"
+  },
+  "restclient-variable-usage-face": {
+    "fg": "#ff7f86"
+  },
+  "restclient-variable-multiline-face": {
+    "fg": "#9ac8e0"
+  },
+  "restclient-variable-elisp-face": {
+    "fg": "#feacd0"
+  },
+  "restclient-variable-string-face": {
+    "fg": "#79a8ff"
+  },
+  "restclient-variable-name-face": {
+    "fg": "#ff7f86"
+  },
+  "sh-escaped-newline": {
+    "fg": "#79a8ff"
+  },
+  "sh-quoted-exec": {
+    "fg": "#f78fe7"
+  },
+  "sh-heredoc": {
+    "fg": "#79a8ff"
+  },
+  "treesit-explorer-anonymous-node": {
+    "fg": "#989898"
+  },
+  "org-mode-line-clock-overrun": {
+    "fg": "#ffa9bf"
+  },
+  "org-tag-group": {
+    "fg": "#caa6df"
+  },
+  "org-macro": {
+    "fg": "#b6a0ff"
+  },
+  "org-latex-and-related": {
+    "fg": "#6ae4b9"
+  },
+  "org-agenda-calendar-sexp": {
+    "fg": "#c6daff"
+  },
+  "org-agenda-calendar-event": {
+    "fg": "#c6daff"
+  },
+  "org-agenda-calendar-daterange": {
+    "fg": "#c6daff"
+  },
+  "org-agenda-diary": {
+    "fg": "#c6daff"
+  },
+  "org-agenda-current-time": {
+    "fg": "#ffffff"
+  },
+  "org-time-grid": {
+    "fg": "#989898"
+  },
+  "org-agenda-filter-regexp": {
+    "fg": "#ffa9bf"
+  },
+  "org-agenda-filter-effort": {
+    "fg": "#ffa9bf"
+  },
+  "org-agenda-filter-category": {
+    "fg": "#ffa9bf"
+  },
+  "org-agenda-filter-tags": {
+    "fg": "#ffa9bf"
+  },
+  "org-agenda-restriction-lock": {
+    "fg": "#989898",
+    "bg": "#1e1e1e"
+  },
+  "org-upcoming-distant-deadline": {
+    "fg": "#ffffff"
+  },
+  "org-upcoming-deadline": {
+    "fg": "#ff9580"
+  },
+  "org-imminent-deadline": {
+    "fg": "#ff7f86"
+  },
+  "org-scheduled-previously": {
+    "fg": "#dfaf7a"
+  },
+  "org-agenda-dimmed-todo-face": {
+    "fg": "#989898"
+  },
+  "org-scheduled-today": {
+    "fg": "#dfaf7a"
+  },
+  "org-scheduled": {
+    "fg": "#d2b580"
+  },
+  "org-agenda-date-weekend": {
+    "fg": "#feacd0"
+  },
+  "org-agenda-clocking": {
+    "fg": "#dfaf7a",
+    "bg": "#381d0f"
+  },
+  "org-agenda-date-weekend-today": {
+    "fg": "#feacd0"
+  },
+  "org-agenda-date-today": {
+    "fg": "#00d3d0"
+  },
+  "org-agenda-date": {
+    "fg": "#00d3d0"
+  },
+  "org-agenda-structure-filter": {
+    "fg": "#fec43f"
+  },
+  "org-agenda-structure-secondary": {
+    "fg": "#9ac8e0"
+  },
+  "org-agenda-structure": {
+    "fg": "#c6daff"
+  },
+  "org-clock-overlay": {
+    "fg": "#ffffff",
+    "bg": "#654a39"
+  },
+  "org-verse": {
+    "bg": "#1e1e1e"
+  },
+  "org-quote": {
+    "bg": "#1e1e1e"
+  },
+  "org-verbatim": {
+    "fg": "#f78fe7"
+  },
+  "org-inline-src-block": {
+    "bg": "#1e1e1e"
+  },
+  "org-block-end-line": {
+    "fg": "#989898",
+    "bg": "#1e1e1e"
+  },
+  "org-block-begin-line": {
+    "fg": "#989898",
+    "bg": "#1e1e1e"
+  },
+  "org-block": {
+    "bg": "#1e1e1e"
+  },
+  "org-document-info-keyword": {
+    "fg": "#989898"
+  },
+  "org-document-info": {
+    "fg": "#c6daff"
+  },
+  "org-document-title": {
+    "fg": "#6ae4b9"
+  },
+  "org-meta-line": {
+    "fg": "#989898"
+  },
+  "org-code": {
+    "fg": "#6ae4b9"
+  },
+  "org-formula": {
+    "fg": "#f78fe7"
+  },
+  "org-table-header": {
+    "fg": "#c6daff"
+  },
+  "org-table-row": {
+    "fg": "#c6daff"
+  },
+  "org-table": {
+    "fg": "#c6daff"
+  },
+  "org-checkbox-statistics-done": {
+    "fg": "#44bc44"
+  },
+  "org-checkbox-statistics-todo": {
+    "fg": "#ff5f59"
+  },
+  "org-checkbox": {
+    "fg": "#fec43f"
+  },
+  "org-priority": {
+    "fg": "#caa6df"
+  },
+  "org-headline-done": {
+    "fg": "#44bc44"
+  },
+  "org-headline-todo": {
+    "fg": "#ff5f59"
+  },
+  "org-agenda-done": {
+    "fg": "#44bc44"
+  },
+  "org-done": {
+    "fg": "#44bc44"
+  },
+  "org-todo": {
+    "fg": "#ff5f59"
+  },
+  "org-tag": {
+    "fg": "#caa6df"
+  },
+  "org-sexp-date": {
+    "fg": "#00d3d0"
+  },
+  "org-date-selected": {
+    "fg": "#00d3d0"
+  },
+  "org-date": {
+    "fg": "#00d3d0"
+  },
+  "org-footnote": {
+    "fg": "#79a8ff"
+  },
+  "org-link": {
+    "fg": "#79a8ff"
+  },
+  "org-cite-key": {
+    "fg": "#79a8ff"
+  },
+  "org-cite": {
+    "fg": "#79a8ff"
+  },
+  "org-archived": {
+    "fg": "#ffffff",
+    "bg": "#303030"
+  },
+  "org-warning": {
+    "fg": "#fec43f"
+  },
+  "org-agenda-column-dateline": {
+    "bg": "#303030"
+  },
+  "org-column-title": {
+    "fg": "#ffffff",
+    "bg": "#1e1e1e"
+  },
+  "org-column": {
+    "fg": "#ffffff",
+    "bg": "#1e1e1e"
+  },
+  "org-property-value": {
+    "fg": "#c6daff"
+  },
+  "org-drawer": {
+    "fg": "#989898"
+  },
+  "org-special-keyword": {
+    "fg": "#989898"
+  },
+  "org-level-8": {
+    "fg": "#989898"
+  },
+  "org-level-7": {
+    "fg": "#9ac8e0"
+  },
+  "org-level-6": {
+    "fg": "#ff9580"
+  },
+  "org-level-5": {
+    "fg": "#88ca9f"
+  },
+  "org-level-4": {
+    "fg": "#feacd0"
+  },
+  "org-level-3": {
+    "fg": "#82b0ec"
+  },
+  "org-level-2": {
+    "fg": "#d2b580"
+  },
+  "org-level-1": {
+    "fg": "#ffffff"
+  },
+  "org-dispatcher-highlight": {
+    "fg": "#ffffff",
+    "bg": "#654a39"
+  },
+  "org-hide": {
+    "fg": "#000000"
+  },
+  "org-default": {
+    "fg": "#ffffff",
+    "bg": "#000000"
+  },
+  "outline-8": {
+    "fg": "#989898"
+  },
+  "outline-7": {
+    "fg": "#9ac8e0"
+  },
+  "outline-6": {
+    "fg": "#ff9580"
+  },
+  "outline-5": {
+    "fg": "#88ca9f"
+  },
+  "outline-4": {
+    "fg": "#feacd0"
+  },
+  "outline-3": {
+    "fg": "#82b0ec"
+  },
+  "outline-2": {
+    "fg": "#d2b580"
+  },
+  "outline-1": {
+    "fg": "#ffffff"
+  },
+  "calendar-weekend-header": {
+    "fg": "#feacd0"
+  },
+  "calendar-weekday-header": {
+    "fg": "#00d3d0"
+  },
+  "holiday": {
+    "fg": "#f78fe7"
+  },
+  "diary": {
+    "fg": "#00d3d0"
+  },
+  "whitespace-space-after-tab": {
+    "fg": "#fec43f"
+  },
+  "whitespace-missing-newline-at-eof": {
+    "fg": "black",
+    "bg": "#d0d040"
+  },
+  "whitespace-big-indent": {
+    "bg": "#9d1f1f"
+  },
+  "whitespace-indentation": {
+    "fg": "#646464"
+  },
+  "whitespace-space-before-tab": {
+    "fg": "#fec43f"
+  },
+  "whitespace-line": {
+    "fg": "#fec43f"
+  },
+  "whitespace-trailing": {
+    "bg": "#9d1f1f"
+  },
+  "whitespace-newline": {
+    "fg": "#646464"
+  },
+  "whitespace-tab": {
+    "fg": "#646464"
+  },
+  "whitespace-hspace": {
+    "fg": "#646464"
+  },
+  "whitespace-space": {
+    "fg": "#646464"
+  },
+  "helm-swoop-line-number-face": {
+    "fg": "#999999"
+  },
+  "helm-swoop-target-word-face": {
+    "fg": "#ffffff",
+    "bg": "#7700ff"
+  },
+  "helm-swoop-target-line-block-face": {
+    "fg": "#222222",
+    "bg": "#cccc00"
+  },
+  "helm-swoop-target-line-face": {
+    "fg": "#222222",
+    "bg": "#e3e300"
+  },
   "modus-themes-completion-match-3": {
     "fg": "#d0bc00"
   },
