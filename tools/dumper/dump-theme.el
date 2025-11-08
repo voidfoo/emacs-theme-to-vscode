@@ -68,10 +68,44 @@ Disables all currently enabled themes before loading the target theme."
   (dolist (theme old-themes)
     (enable-theme theme))))
 
-;; Add command to menu
+(defun dump-all-theme-faces ()
+  "Export all available themes to JSON files in emacs-definitions directory."
+  (interactive)
+  (let* ((output-dir (expand-file-name "emacs-definitions"
+                                      (locate-dominating-file default-directory ".git")))
+         (themes (custom-available-themes))
+         (total (length themes))
+         (count 0))
+    
+    ;; Create output directory if needed
+    (unless (file-directory-p output-dir)
+      (make-directory output-dir t))
+    
+    ;; Store current themes to restore later
+    (let ((old-themes custom-enabled-themes))
+      ;; Process each theme
+      (dolist (theme themes)
+        (setq count (1+ count))
+        (message "[%d/%d] Processing theme: %s" count total theme)
+        (let ((output-file (expand-file-name (format "emacs-%s.json" theme) output-dir)))
+          (dump-theme-faces theme output-file)))
+      
+      ;; Restore original themes
+      (dump-theme-disable-all)
+      (dolist (theme old-themes)
+        (enable-theme theme)))
+    
+    (message "Exported %d themes to %s" total output-dir)))
+
+;; Add commands to menu
 (easy-menu-add-item nil '("tools")
-                    ["Dump Theme Faces"
+                    ["Dump Single Theme"
                      (call-interactively #'dump-theme-faces)
-                     :help "Export a theme's face colors to JSON"])
+                     :help "Export a single theme's face colors to JSON"])
+
+(easy-menu-add-item nil '("tools")
+                    ["Dump All Themes"
+                     (call-interactively #'dump-all-theme-faces)
+                     :help "Export all available themes' face colors to JSON"])
 
 (provide 'dump-theme)

@@ -6,16 +6,24 @@ AI coding agent specification for converting Emacs themes to VS Code format.
 
 ### Theme Dumper
 
-- Path: `tools/dumper`
-- Runtime: Emacs v30+
-- Mode: Interactive Emacs GUI function
-- Process:
-  1. Read theme name
-  2. Clear themes via `custom-enabled-themes`
-  3. Load target theme
-  4. Write faces to `emacs-definitions/emacs-{theme-name}.json`
+Location: `tools/dumper`
+Runtime: Emacs v30+
 
-Face definition format:
+Interactive Functions:
+1. Convert single theme:
+   - Input: Theme name
+   - Process:
+     1. Clear current themes via `custom-enabled-themes`
+     2. Load target theme
+     3. Export faces to `emacs-definitions/emacs-{theme-name}.json`
+
+2. Convert all themes:
+   - Process: For each theme in `custom-available-themes`:
+     1. Clear current themes
+     2. Load theme
+     3. Export faces to `emacs-definitions/emacs-{theme-name}.json`
+
+Face export format:
 ```json
 {
   "font-lock-property-use-face": {
@@ -38,8 +46,9 @@ Face definition format:
 
 ### Theme Converter
 
-- Path: `tools/converter`
-- Runtime: Node.js v24
+Location: `tools/converter`
+Runtime: Node.js v24
+Files:
 - Input: `emacs-definitions/emacs-{theme-name}.json`
 - Output: `vscode-extension/themes/{theme-name}.json`
 - Reference: `samples/` directory
@@ -52,9 +61,9 @@ Face definition format:
    - VS Code theme schema
    - Theme type (dark/light)
    - Extension manifest
-4. Clean:
+4. Cleanup:
    - Remove orphaned theme files
-   - Update extension index
+   - Update extension manifest
 
 ## Extension
 
