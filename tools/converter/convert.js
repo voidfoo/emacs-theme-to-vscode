@@ -6,6 +6,30 @@ const VSCODE_THEMES_DIR = path.join(__dirname, '../../vscode-extension/themes');
 const PACKAGE_JSON_PATH = path.join(__dirname, '../../vscode-extension/package.json');
 
 // Map of common Emacs faces to VS Code scopes
+// Helper function to calculate luminance
+function getLuminance(hexColor) {
+  const rgb = hexColor.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+  if (!rgb) return 0;
+  const [r, g, b] = rgb.slice(1).map(x => parseInt(x, 16) / 255);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+// Helper function to calculate contrast ratio
+function getContrastRatio(color1, color2) {
+  const l1 = getLuminance(color1);
+  const l2 = getLuminance(color2);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+// Helper function to adjust color for minimum contrast
+function adjustColorForContrast(foreground, background, minContrast = 4.5) {
+  // Implementation of color adjustment logic
+  // This is a placeholder - would need actual color manipulation code
+  return foreground;
+}
+
 const FACE_TO_SCOPE_MAP = {
   // Basic syntax highlighting
   'font-lock-comment-face': ['comment', 'punctuation.definition.comment'],
@@ -93,8 +117,11 @@ async function readEmacsTheme(filePath) {
 // Additional editor color mappings
 const EDITOR_COLORS = {
   'default': {
-    'bg': 'editor.background',
-    'fg': 'editor.foreground'
+    'bg': ['editor.background', 'terminal.background'],
+    'fg': ['editor.foreground', 'terminal.foreground']
+  },
+  'fringe': {
+    'bg': ['editorGutter.background', 'sideBar.background', 'activityBar.background', 'panel.background']
   },
   'cursor': {
     'bg': 'editorCursor.background',
@@ -154,22 +181,73 @@ function normalizeColor(color) {
 function detectThemeType(themeData) {
   // Get background color from default face
   const defaultFace = themeData.default || {};
-  const bg = defaultFace.bg || '#ffffff';
+  const bg = normalizeColor(defaultFace.bg || '#ffffff');
   
-  // Convert hex to RGB and calculate luminance
-  const hex = bg.replace('#', '');
-  const r = parseInt(hex.substr(0, 2), 16);
-  const g = parseInt(hex.substr(2, 2), 16);
-  const b = parseInt(hex.substr(4, 2), 16);
+  // Calculate luminance using more accurate formula
+  const luminance = getLuminance(bg);
   
-  // Use perceived brightness formula
-  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return luminance < 0.5 ? 'dark' : 'light';
+}
+
+function processThemeColors(themeData) {
+  const colors = {};
+  const themeType = detectThemeType(themeData);
+  const defaultBg = normalizeColor(themeData.default?.bg || (themeType === 'dark' ? '#000000' : '#ffffff'));
   
-  return brightness < 128 ? 'dark' : 'light';
+  // Process each face and its mappings
+  for (const [face, faceData] of Object.entries(themeData)) {
+    if (!faceData) continue;
+
+    // Convert colors and check contrast
+    const fg = normalizeColor(faceData.fg);
+    const bg = normalizeColor(faceData.bg);
+
+    if (fg && EDITOR_COLORS[face]?.fg) {
+      const targets = Array.isArray(EDITOR_COLORS[face].fg) 
+        ? EDITOR_COLORS[face].fg 
+        : [EDITOR_COLORS[face].fg];
+      
+      for (const target of targets) {
+        // Adjust color if contrast is insufficient
+        colors[target] = getContrastRatio(fg, defaultBg) < 4.5
+          ? adjustColorForContrast(fg, defaultBg)
+          : fg;
+      }
+    }
+
+    if (bg && EDITOR_COLORS[face]?.bg) {
+      const targets = Array.isArray(EDITOR_COLORS[face].bg)
+        ? EDITOR_COLORS[face].bg
+        : [EDITOR_COLORS[face].bg];
+      
+      for (const target of targets) {
+        colors[target] = bg;
+      }
+    }
+  }
+
+  // Add selection and find match colors with transparency
+  if (colors['editor.findMatchBackground']) {
+    colors['editor.findMatchBackground'] += '80'; // 50% opacity
+  }
+  if (colors['editor.selectionBackground']) {
+    colors['editor.selectionBackground'] += '40'; // 25% opacity
+  }
+
+  // Handle diff backgrounds specially
+  if (themeData['diff-added']?.fg) {
+    colors['diffEditor.insertedTextBackground'] = normalizeColor(themeData['diff-added'].fg) + '20';
+  }
+  if (themeData['diff-removed']?.fg) {
+    colors['diffEditor.removedTextBackground'] = normalizeColor(themeData['diff-removed'].fg) + '20';
+  }
+
+  return colors;
 }
 
 function inferScopes(faceName, faceData) {
   const scopes = [];
+  const defaultBg = normalizeColor(faceData.default?.bg || '#ffffff');
   
   // Common patterns to infer scopes
   const patterns = [
