@@ -52,6 +52,10 @@ Files:
 - Input: `emacs-definitions/emacs-{theme-name}.json`
 - Output: `vscode-extension/themes/{theme-name}.json`
 - Reference: `samples/` directory
+Notes:
+- ESM module
+- type-checking using TypeScript
+- consistent format using `prettier`
 
 ## Pipeline
 

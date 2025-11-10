@@ -1,8 +1,8 @@
 # Emacs Themes for VS Code
 
-This extension brings popular Emacs themes to Visual Studio Code. The themes have been carefully converted from their original Emacs versions to provide a similar look and feel in VS Code.
+This extension brings popular Emacs themes to Visual Studio Code. The themes have been auto-converted from their original Emacs versions to provide a similar look and feel in VS Code.
 
-## Available Themes
+## Notable Available Themes
 
 ### Spacemacs
 The iconic Spacemacs themes collection, known for its elegant design and carefully chosen colors:
@@ -11,6 +11,9 @@ The iconic Spacemacs themes collection, known for its elegant design and careful
 
 ### Leuven
 A highly legible light theme originally designed for use with Org mode in Emacs.
+
+### Doom
+The most popular Emacs theme pack.
 
 ## Installation
 
@@ -28,9 +31,10 @@ A highly legible light theme originally designed for use with Org mode in Emacs.
 
 ## Theme Sources
 
-The themes are converted from their original Emacs versions:
+Besides built-in themes, the following themes are converted from their original Emacs versions:
 - [Spacemacs Theme](https://github.com/nashamri/spacemacs-theme)
 - [Leuven Theme](https://github.com/fniessen/emacs-leuven-theme)
+- [Doom Themes](https://github.com/doomemacs/themes)
 
 ## Contributing
 

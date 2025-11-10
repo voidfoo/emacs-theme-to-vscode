@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "emacs-themes" extension will be documented in this file.
+All notable changes to the "emacs-themes" extension.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
+## 0.0.1 (2025-11-09)
 
 - Initial release
