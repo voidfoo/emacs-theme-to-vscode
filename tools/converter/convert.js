@@ -34,7 +34,8 @@ const EDITOR_COLORS = {
     fg: "terminal.foreground",
   },
   fringe: {
-    bg: "editorGutter.background",
+    // Don't map fringe background to gutter - fringe is for breakpoints/indicators,
+    // not the line number gutter. Line-number face handles gutter styling.
   },
   sidebar: {
     bg: ["sideBar.background", "activityBar.background", "panel.background"],
@@ -52,6 +53,7 @@ const EDITOR_COLORS = {
   },
   "line-number": {
     fg: "editorLineNumber.foreground",
+    bg: "editorGutter.background",
   },
   "line-number-current-line": {
     fg: "editorLineNumber.activeForeground",

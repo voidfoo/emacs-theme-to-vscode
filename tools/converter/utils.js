@@ -56,7 +56,7 @@ export function getContrastRatio(color1, color2) {
 export function adjustColorForContrast(
   foreground,
   background,
-  minContrast = 4.5
+  minContrast = 4.5,
 ) {
   // Check current contrast
   const currentContrast = getContrastRatio(foreground, background);
