@@ -26,11 +26,7 @@ const PACKAGE_JSON_PATH = join(
 /** @type {Record<string, {fg?: string | string[]; bg?: string | string[]; }>} */
 const EDITOR_COLORS = {
   default: {
-    bg: [
-      "editor.background",
-      "panel.background",
-      "editorGutter.background",
-    ],
+    bg: ["editor.background", "panel.background", "editorGutter.background"],
     fg: "editor.foreground",
   },
   terminal: {
@@ -202,13 +198,14 @@ function processThemeColors(themeData) {
   if (!colors["input.background"]) {
     colors["input.background"] = adjustColorLuminance(
       defaultBg,
-      themeType === "dark" ? 0.08 : -0.12
+      themeType === "dark" ? 0.08 : -0.12,
     );
   }
   if (!colors["input.foreground"]) {
-    colors["input.foreground"] = getContrastRatio(defaultFg, colors["input.background"]) >= 4.5
-      ? defaultFg
-      : adjustColorForContrast(defaultFg, colors["input.background"]);
+    colors["input.foreground"] =
+      getContrastRatio(defaultFg, colors["input.background"]) >= 4.5
+        ? defaultFg
+        : adjustColorForContrast(defaultFg, colors["input.background"]);
   }
   if (!colors["input.placeholderForeground"]) {
     colors["input.placeholderForeground"] = themeData["minibuffer-prompt"]?.fg
@@ -222,7 +219,8 @@ function processThemeColors(themeData) {
     colors["inlineChatInput.foreground"] = colors["input.foreground"];
   }
   if (!colors["inlineChatInput.placeholderForeground"]) {
-    colors["inlineChatInput.placeholderForeground"] = colors["input.placeholderForeground"];
+    colors["inlineChatInput.placeholderForeground"] =
+      colors["input.placeholderForeground"];
   }
 
   // Ensure cursor color has a foreground (for visibility)
@@ -240,8 +238,8 @@ function processThemeColors(themeData) {
     colors["statusBar.foreground"] = themeData["mode-line"]?.fg
       ? normalizeColor(themeData["mode-line"].fg)
       : getContrastRatio(defaultFg, colors["statusBar.background"]) >= 4.5
-      ? defaultFg
-      : adjustColorForContrast(defaultFg, colors["statusBar.background"]);
+        ? defaultFg
+        : adjustColorForContrast(defaultFg, colors["statusBar.background"]);
   }
   if (!colors["statusBar.noFolderBackground"]) {
     const statusBg = colors["statusBar.background"];
@@ -387,30 +385,36 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
   if (!vsCodeTheme.colors["input.background"]) {
     vsCodeTheme.colors["input.background"] = adjustColorLuminance(
       defaultBg,
-      effectiveType === "dark" ? 0.08 : -0.12
+      effectiveType === "dark" ? 0.08 : -0.12,
     );
   }
   if (!vsCodeTheme.colors["input.foreground"]) {
-    vsCodeTheme.colors["input.foreground"] = getContrastRatio(
-      defaultFg,
-      vsCodeTheme.colors["input.background"]
-    ) >= 4.5
-      ? defaultFg
-      : adjustColorForContrast(defaultFg, vsCodeTheme.colors["input.background"]);
+    vsCodeTheme.colors["input.foreground"] =
+      getContrastRatio(defaultFg, vsCodeTheme.colors["input.background"]) >= 4.5
+        ? defaultFg
+        : adjustColorForContrast(
+            defaultFg,
+            vsCodeTheme.colors["input.background"],
+          );
   }
   if (!vsCodeTheme.colors["input.placeholderForeground"]) {
-    vsCodeTheme.colors["input.placeholderForeground"] = emacsTheme["minibuffer-prompt"]?.fg
+    vsCodeTheme.colors["input.placeholderForeground"] = emacsTheme[
+      "minibuffer-prompt"
+    ]?.fg
       ? normalizeColor(emacsTheme["minibuffer-prompt"].fg)
       : adjustColorForContrast(defaultFg, defaultBg);
   }
   if (!vsCodeTheme.colors["inlineChatInput.background"]) {
-    vsCodeTheme.colors["inlineChatInput.background"] = vsCodeTheme.colors["input.background"];
+    vsCodeTheme.colors["inlineChatInput.background"] =
+      vsCodeTheme.colors["input.background"];
   }
   if (!vsCodeTheme.colors["inlineChatInput.foreground"]) {
-    vsCodeTheme.colors["inlineChatInput.foreground"] = vsCodeTheme.colors["input.foreground"];
+    vsCodeTheme.colors["inlineChatInput.foreground"] =
+      vsCodeTheme.colors["input.foreground"];
   }
   if (!vsCodeTheme.colors["inlineChatInput.placeholderForeground"]) {
-    vsCodeTheme.colors["inlineChatInput.placeholderForeground"] = vsCodeTheme.colors["input.placeholderForeground"];
+    vsCodeTheme.colors["inlineChatInput.placeholderForeground"] =
+      vsCodeTheme.colors["input.placeholderForeground"];
   }
 
   // Ensure cursor color has a foreground (for visibility)
@@ -422,14 +426,23 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
   if (!vsCodeTheme.colors["statusBar.background"]) {
     vsCodeTheme.colors["statusBar.background"] = emacsTheme["mode-line"]?.bg
       ? normalizeColor(emacsTheme["mode-line"].bg)
-      : adjustColorLuminance(defaultBg, effectiveType === "dark" ? 0.08 : -0.08);
+      : adjustColorLuminance(
+          defaultBg,
+          effectiveType === "dark" ? 0.08 : -0.08,
+        );
   }
   if (!vsCodeTheme.colors["statusBar.foreground"]) {
     vsCodeTheme.colors["statusBar.foreground"] = emacsTheme["mode-line"]?.fg
       ? normalizeColor(emacsTheme["mode-line"].fg)
-      : getContrastRatio(defaultFg, vsCodeTheme.colors["statusBar.background"]) >= 4.5
-      ? defaultFg
-      : adjustColorForContrast(defaultFg, vsCodeTheme.colors["statusBar.background"]);
+      : getContrastRatio(
+            defaultFg,
+            vsCodeTheme.colors["statusBar.background"],
+          ) >= 4.5
+        ? defaultFg
+        : adjustColorForContrast(
+            defaultFg,
+            vsCodeTheme.colors["statusBar.background"],
+          );
   }
   if (!vsCodeTheme.colors["statusBar.noFolderBackground"]) {
     const statusBg = vsCodeTheme.colors["statusBar.background"];
