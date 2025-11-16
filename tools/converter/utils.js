@@ -50,16 +50,42 @@ export function getContrastRatio(color1, color2) {
 // Helper function to adjust color for minimum contrast
 /**
  * @param {string} foreground
- * @param {string} _background
+ * @param {string} background
+ * @param {number} minContrast
  */
 export function adjustColorForContrast(
   foreground,
-  _background,
-  _minContrast = 4.5,
+  background,
+  minContrast = 4.5
 ) {
-  // Implementation of color adjustment logic
-  // This is a placeholder - would need actual color manipulation code
-  return foreground;
+  // Check current contrast
+  const currentContrast = getContrastRatio(foreground, background);
+  if (currentContrast >= minContrast) {
+    return foreground;
+  }
+
+  // Need to adjust - make foreground more extreme (lighter or darker)
+  const fgLum = getLuminance(foreground);
+  const bgLum = getLuminance(background);
+
+  // If background is light, darken foreground; if dark, lighten it
+  const shouldDarken = bgLum > 0.5;
+
+  // Try adjustments incrementally
+  for (let factor = 0.1; factor <= 0.5; factor += 0.05) {
+    const adjusted = shouldDarken
+      ? adjustColorLuminance(foreground, -factor)
+      : adjustColorLuminance(foreground, factor);
+    const contrast = getContrastRatio(adjusted, background);
+    if (contrast >= minContrast) {
+      return adjusted;
+    }
+  }
+
+  // If we still can't reach minContrast, return the most extreme adjustment
+  return shouldDarken
+    ? adjustColorLuminance(foreground, -0.5)
+    : adjustColorLuminance(foreground, 0.5);
 }
 
 /**

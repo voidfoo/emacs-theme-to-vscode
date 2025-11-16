@@ -61,7 +61,6 @@ const EDITOR_COLORS = {
       "input.placeholderForeground",
       "inlineChatInput.placeholderForeground",
     ],
-    bg: ["input.background", "inlineChatInput.background"],
   },
   "mode-line": {
     bg: "statusBar.background",
