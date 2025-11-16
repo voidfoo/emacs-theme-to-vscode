@@ -65,8 +65,8 @@ const EDITOR_COLORS = {
     ],
   },
   "mode-line": {
-    bg: "statusBar.background",
-    fg: "statusBar.foreground",
+    bg: ["statusBar.background", "statusBarItem.remoteBackground"],
+    fg: ["statusBar.foreground", "statusBarItem.remoteForeground"],
   },
   "mode-line-inactive": {
     bg: "statusBar.noFolderBackground",
@@ -158,8 +158,8 @@ function processThemeColors(themeData) {
     if (!faceData) continue;
 
     // Convert colors and check contrast
-    const fg = normalizeColor(faceData.fg);
-    const bg = normalizeColor(faceData.bg);
+    const fg = faceData.fg ? normalizeColor(faceData.fg) : null;
+    const bg = faceData.bg ? normalizeColor(faceData.bg) : null;
 
     if (fg && EDITOR_COLORS[face]?.fg) {
       const targets = Array.isArray(EDITOR_COLORS[face].fg)
@@ -247,6 +247,20 @@ function processThemeColors(themeData) {
     if (statusBg) {
       colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
     }
+  }
+
+  // Ensure remote indicator button has appropriate colors
+  if (
+    !colors["statusBarItem.remoteForeground"] &&
+    colors["statusBar.foreground"]
+  ) {
+    colors["statusBarItem.remoteForeground"] = colors["statusBar.foreground"];
+  }
+  if (
+    !colors["statusBarItem.remoteBackground"] &&
+    colors["statusBar.background"]
+  ) {
+    colors["statusBarItem.remoteBackground"] = colors["statusBar.background"];
   }
 
   // Handle diff backgrounds specially
@@ -451,12 +465,23 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
       vsCodeTheme.colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
     }
   }
-  if (!vsCodeTheme.colors["statusBar.noFolderBackground"]) {
-    const statusBg = vsCodeTheme.colors["statusBar.background"];
-    if (statusBg) {
-      vsCodeTheme.colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
-    }
+
+  // Ensure remote indicator button has appropriate colors (fallback to statusBar colors)
+  if (
+    !vsCodeTheme.colors["statusBarItem.remoteForeground"] &&
+    vsCodeTheme.colors["statusBar.foreground"]
+  ) {
+    vsCodeTheme.colors["statusBarItem.remoteForeground"] =
+      vsCodeTheme.colors["statusBar.foreground"];
   }
+  if (
+    !vsCodeTheme.colors["statusBarItem.remoteBackground"] &&
+    vsCodeTheme.colors["statusBar.background"]
+  ) {
+    vsCodeTheme.colors["statusBarItem.remoteBackground"] =
+      vsCodeTheme.colors["statusBar.background"];
+  }
+
   for (const [faceName, faceData] of Object.entries(emacsTheme)) {
     const scopes = FACE_TO_SCOPE_MAP[faceName] || [];
 
