@@ -29,102 +29,282 @@
   },
   "tokenColors": [
     {
-      "name": "restclient-variable-usage-face (inferred)",
+      "name": "git-rebase-comment-heading (inferred)",
       "scope": [
-        "variable"
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#4f97d7"
+      }
+    },
+    {
+      "name": "git-rebase-comment-hash (inferred)",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#7590db"
+      }
+    },
+    {
+      "name": "markdown-header-face",
+      "scope": [
+        "markup.heading"
       ],
       "settings": {
         "foreground": "#bc6ec5"
       }
     },
     {
-      "name": "restclient-variable-multiline-face (inferred)",
+      "name": "markdown-html-tag-delimiter-face (inferred)",
       "scope": [
-        "variable"
+        "entity.name.tag"
       ],
       "settings": {
-        "foreground": "#9f8766"
+        "foreground": "#686868"
       }
     },
     {
-      "name": "restclient-variable-elisp-face (inferred)",
+      "name": "markdown-html-tag-name-face (inferred)",
       "scope": [
-        "variable"
+        "entity.name.tag"
       ],
       "settings": {
-        "foreground": "#bc6ec5"
+        "foreground": "#ce537a"
       }
     },
     {
-      "name": "restclient-variable-string-face (inferred)",
+      "name": "markdown-comment-face (inferred)",
       "scope": [
-        "variable",
-        "string"
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#2aa1ae",
+        "background": "#292e34"
+      }
+    },
+    {
+      "name": "markdown-url-face",
+      "scope": [
+        "markup.underline.link"
       ],
       "settings": {
         "foreground": "#2d9574"
       }
     },
     {
-      "name": "restclient-variable-name-face (inferred)",
+      "name": "markdown-language-keyword-face (inferred)",
       "scope": [
-        "variable"
+        "keyword"
       ],
       "settings": {
-        "foreground": "#bc6ec5"
+        "foreground": "#ce537a"
       }
     },
     {
-      "name": "org-agenda-filter-regexp (inferred)",
+      "name": "markdown-list-face",
       "scope": [
-        "string.regexp"
+        "markup.list"
       ],
       "settings": {
-        "foreground": "#b2b2b2",
-        "background": "#222226"
+        "foreground": "#686868"
       }
     },
     {
-      "name": "org-document-info-keyword (inferred)",
+      "name": "magit-signature-error (inferred)",
       "scope": [
-        "keyword",
-        "comment.documentation"
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#ADD8E6"
+      }
+    },
+    {
+      "name": "magit-keyword-squash (inferred)",
+      "scope": [
+        "keyword"
+      ],
+      "settings": {
+        "foreground": "#dc752f",
+        "background": "#292b2e"
+      }
+    },
+    {
+      "name": "magit-keyword (inferred)",
+      "scope": [
+        "keyword"
+      ],
+      "settings": {
+        "foreground": "#2d9574"
+      }
+    },
+    {
+      "name": "magit-branch-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#dc752f"
+      }
+    },
+    {
+      "name": "magit-diff-whitespace-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "background": "#e0211d"
+      }
+    },
+    {
+      "name": "magit-diff-added-highlight (inferred)",
+      "scope": [
+        "markup.inserted"
+      ],
+      "settings": {
+        "foreground": "#cceecc",
+        "background": "#336633"
+      }
+    },
+    {
+      "name": "magit-diff-added (inferred)",
+      "scope": [
+        "markup.inserted"
+      ],
+      "settings": {
+        "foreground": "#ddffdd",
+        "background": "#335533"
+      }
+    },
+    {
+      "name": "git-commit-comment-file (inferred)",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#2d9574"
+      }
+    },
+    {
+      "name": "git-commit-comment-heading (inferred)",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#4f97d7"
+      }
+    },
+    {
+      "name": "git-commit-comment-detached (inferred)",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#4f97d7",
+        "background": "#293239"
+      }
+    },
+    {
+      "name": "git-commit-comment-branch-remote (inferred)",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#2d9574",
+        "background": "#293235"
+      }
+    },
+    {
+      "name": "git-commit-comment-branch-local (inferred)",
+      "scope": [
+        "comment"
+      ],
+      "settings": {
+        "foreground": "#4f97d7",
+        "background": "#293239"
+      }
+    },
+    {
+      "name": "git-commit-keyword (inferred)",
+      "scope": [
+        "keyword"
+      ],
+      "settings": {
+        "foreground": "#2d9574"
+      }
+    },
+    {
+      "name": "treemacs-git-added-face",
+      "scope": [
+        "gitDecoration.addedResourceForeground"
+      ],
+      "settings": {
+        "foreground": "#67b11d",
+        "background": "#293235"
+      }
+    },
+    {
+      "name": "treemacs-git-untracked-face",
+      "scope": [
+        "gitDecoration.untrackedResourceForeground"
+      ],
+      "settings": {
+        "foreground": "#2d9574",
+        "background": "#293235"
+      }
+    },
+    {
+      "name": "treemacs-git-ignored-face",
+      "scope": [
+        "gitDecoration.ignoredResourceForeground"
+      ],
+      "settings": {
+        "foreground": "#b1951d"
+      }
+    },
+    {
+      "name": "treemacs-git-renamed-face",
+      "scope": [
+        "gitDecoration.renamedResourceForeground"
       ],
       "settings": {
         "foreground": "#9f8766"
       }
     },
     {
-      "name": "org-document-info (inferred)",
+      "name": "treemacs-git-modified-face",
       "scope": [
-        "comment.documentation"
+        "gitDecoration.modifiedResourceForeground"
       ],
       "settings": {
-        "foreground": "#AFEEEE"
+        "foreground": "#4f97d7",
+        "background": "#293239"
       }
     },
     {
-      "name": "org-document-title (inferred)",
+      "name": "treemacs-root-face",
       "scope": [
-        "comment.documentation"
+        "breadcrumb.foreground",
+        "tree.tableColumnHeader.foreground"
       ],
       "settings": {
-        "foreground": "#bc6ec5"
+        "foreground": "#a45bad"
       }
     },
     {
-      "name": "org-warning (inferred)",
+      "name": "treemacs-file-face",
       "scope": [
-        "invalid.deprecated"
+        "explorer.fileForeground"
       ],
       "settings": {
-        "foreground": "#e0211d"
+        "foreground": "#b2b2b2",
+        "background": "#292b2e"
       }
     },
     {
-      "name": "org-special-keyword (inferred)",
+      "name": "treemacs-directory-face",
       "scope": [
-        "keyword"
+        "explorer.directoryForeground"
       ],
       "settings": {
         "foreground": "#bc6ec5"
@@ -177,24 +357,6 @@
       "settings": {
         "foreground": "#292b2e",
         "background": "#e0211d"
-      }
-    },
-    {
-      "name": "vc-git-log-edit-summary-max-warning (inferred)",
-      "scope": [
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#e0211d"
-      }
-    },
-    {
-      "name": "vc-git-log-edit-summary-target-warning (inferred)",
-      "scope": [
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#dc752f"
       }
     },
     {
@@ -289,6 +451,25 @@
       }
     },
     {
+      "name": "vc-dir-status-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#dc752f",
+        "background": "#292b2e"
+      }
+    },
+    {
+      "name": "magit-mode-line-process-error (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#e0211d"
+      }
+    },
+    {
       "name": "spaceline-flycheck-warning (inferred)",
       "scope": [
         "invalid.deprecated"
@@ -304,121 +485,6 @@
       ],
       "settings": {
         "foreground": "#e0211d"
-      }
-    },
-    {
-      "name": "epa-string (inferred)",
-      "scope": [
-        "string"
-      ],
-      "settings": {
-        "foreground": "#FFFFE0"
-      }
-    },
-    {
-      "name": "change-log-function (inferred)",
-      "scope": [
-        "entity.name.function"
-      ],
-      "settings": {
-        "foreground": "#7590db"
-      }
-    },
-    {
-      "name": "vc-dir-status-warning (inferred)",
-      "scope": [
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#dc752f",
-        "background": "#292b2e"
-      }
-    },
-    {
-      "name": "diff-refine-added",
-      "scope": [
-        "diffEditor.insertedTextBackground"
-      ],
-      "settings": {
-        "foreground": "#292b2e",
-        "background": "#67b11d"
-      }
-    },
-    {
-      "name": "diff-refine-removed",
-      "scope": [
-        "diffEditor.removedTextBackground"
-      ],
-      "settings": {
-        "foreground": "#292b2e",
-        "background": "#f2241f"
-      }
-    },
-    {
-      "name": "diff-error (inferred)",
-      "scope": [
-        "invalid"
-      ],
-      "settings": {
-        "foreground": "#FF0000",
-        "background": "#000000"
-      }
-    },
-    {
-      "name": "diff-function (inferred)",
-      "scope": [
-        "entity.name.function"
-      ],
-      "settings": {
-        "foreground": "#bc6ec5",
-        "background": "#373040"
-      }
-    },
-    {
-      "name": "diff-added",
-      "scope": [
-        "diff.insertedTextBackground"
-      ],
-      "settings": {
-        "foreground": "#67b11d"
-      }
-    },
-    {
-      "name": "diff-removed",
-      "scope": [
-        "diff.removedTextBackground"
-      ],
-      "settings": {
-        "foreground": "#f2241f"
-      }
-    },
-    {
-      "name": "diff-file-header",
-      "scope": [
-        "meta.diff.header.file"
-      ],
-      "settings": {
-        "foreground": "#cbc1d5",
-        "background": "#373040"
-      }
-    },
-    {
-      "name": "diff-header",
-      "scope": [
-        "meta.diff.header"
-      ],
-      "settings": {
-        "foreground": "#bc6ec5",
-        "background": "#373040"
-      }
-    },
-    {
-      "name": "dired-warning (inferred)",
-      "scope": [
-        "invalid.deprecated"
-      ],
-      "settings": {
-        "foreground": "#dc752f"
       }
     },
     {
@@ -473,6 +539,127 @@
       ],
       "settings": {
         "foreground": "#2d9574"
+      }
+    },
+    {
+      "name": "diff-refine-added",
+      "scope": [
+        "diffEditor.insertedTextBackground"
+      ],
+      "settings": {
+        "background": "#29422d"
+      }
+    },
+    {
+      "name": "diff-refine-removed",
+      "scope": [
+        "diffEditor.removedTextBackground"
+      ],
+      "settings": {
+        "background": "#512e31"
+      }
+    },
+    {
+      "name": "diff-error (inferred)",
+      "scope": [
+        "invalid"
+      ],
+      "settings": {
+        "foreground": "#FF0000",
+        "background": "#000000"
+      }
+    },
+    {
+      "name": "diff-function (inferred)",
+      "scope": [
+        "entity.name.function"
+      ],
+      "settings": {
+        "foreground": "#bc6ec5",
+        "background": "#373040"
+      }
+    },
+    {
+      "name": "diff-added",
+      "scope": [
+        "diff.insertedTextBackground"
+      ],
+      "settings": {
+        "background": "#293235"
+      }
+    },
+    {
+      "name": "diff-removed",
+      "scope": [
+        "diff.removedTextBackground"
+      ],
+      "settings": {
+        "background": "#3c2a2c"
+      }
+    },
+    {
+      "name": "diff-file-header",
+      "scope": [
+        "meta.diff.header.file"
+      ],
+      "settings": {
+        "foreground": "#cbc1d5",
+        "background": "#373040"
+      }
+    },
+    {
+      "name": "diff-header",
+      "scope": [
+        "meta.diff.header"
+      ],
+      "settings": {
+        "foreground": "#bc6ec5",
+        "background": "#373040"
+      }
+    },
+    {
+      "name": "vc-git-log-edit-summary-max-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#e0211d"
+      }
+    },
+    {
+      "name": "vc-git-log-edit-summary-target-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#dc752f"
+      }
+    },
+    {
+      "name": "change-log-function (inferred)",
+      "scope": [
+        "entity.name.function"
+      ],
+      "settings": {
+        "foreground": "#7590db"
+      }
+    },
+    {
+      "name": "dired-warning (inferred)",
+      "scope": [
+        "invalid.deprecated"
+      ],
+      "settings": {
+        "foreground": "#dc752f"
+      }
+    },
+    {
+      "name": "epa-string (inferred)",
+      "scope": [
+        "string"
+      ],
+      "settings": {
+        "foreground": "#FFFFE0"
       }
     },
     {

@@ -1,606 +1,215 @@
 {
-  "diff-hl-margin-unknown": {
-    "fg": "#4e5059"
-  },
-  "diff-hl-margin-ignored": {
-    "fg": "#4e5059"
-  },
-  "diff-hl-margin-change": {
-    "fg": "#f09383",
-    "bg": "#f09383"
-  },
-  "diff-hl-margin-delete": {
-    "fg": "#e95678",
-    "bg": "#e95678"
-  },
-  "diff-hl-margin-insert": {
-    "fg": "#09f7a0",
-    "bg": "#09f7a0"
-  },
-  "diff-hl-dired-ignored": {
-    "fg": "#4e5059"
-  },
-  "diff-hl-dired-unknown": {
-    "fg": "#4e5059"
-  },
-  "diff-hl-dired-change": {
-    "fg": "#f09383",
-    "bg": "#f09383"
-  },
-  "diff-hl-dired-delete": {
-    "fg": "#e95678",
-    "bg": "#e95678"
-  },
-  "diff-hl-dired-insert": {
-    "fg": "#09f7a0",
-    "bg": "#09f7a0"
-  },
-  "org-indent": {
-    "fg": "#232530"
-  },
-  "org-superstar-first": {
-    "fg": "#27d797"
-  },
-  "org-superstar-ordered-item": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "org-superstar-item": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "org-superstar-leading": {
-    "fg": "gray",
-    "bg": "#232530"
-  },
-  "eww-valid-certificate": {
-    "fg": "#e95678"
-  },
-  "eww-invalid-certificate": {
-    "fg": "#e95678"
-  },
-  "eww-form-textarea": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "eww-form-text": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "eww-form-select": {
-    "fg": "#c7c9cb",
-    "bg": "#1c1e26"
-  },
-  "eww-form-checkbox": {
-    "fg": "#c7c9cb",
-    "bg": "#1c1e26"
-  },
-  "eww-form-file": {
-    "fg": "#c7c9cb",
-    "bg": "#1c1e26"
-  },
-  "eww-form-submit": {
-    "fg": "#c7c9cb",
-    "bg": "#1d1f27"
-  },
-  "gnus-header-content": {
+  "git-rebase-comment-heading": {
     "fg": "#b877db"
   },
-  "gnus-header-name": {
-    "fg": "#09f7a0"
+  "git-rebase-comment-hash": {
+    "fg": "#4e5059"
   },
-  "gnus-header-newsgroups": {
+  "git-rebase-killed-action": {
+    "fg": "#4e5059"
+  },
+  "git-rebase-action": {
     "fg": "#b877db"
   },
-  "gnus-header-subject": {
-    "fg": "#e95678"
+  "git-rebase-label": {
+    "fg": "#4e5059"
   },
-  "gnus-header-from": {
-    "fg": "#b877db"
+  "git-rebase-hash": {
+    "fg": "#4e5059"
   },
-  "gnus-signature": {
+  "forge-suffix-implied": {
     "fg": "#fab795"
   },
-  "gnus-emphasis-highlight-words": {
-    "fg": "yellow",
-    "bg": "black"
+  "forge-suffix-active-and-implied": {
+    "fg": "#fab795"
   },
-  "mm-uu-extract": {
-    "fg": "#ccb7be",
-    "bg": "#2b222c"
+  "forge-suffix-active": {
+    "fg": "#fab795"
   },
-  "shr-mark": {
+  "forge-topic-label": {
+    "bg": "#6a6a6a"
+  },
+  "forge-pullreq-draft": {
+    "fg": "#16161c",
+    "bg": "#e95678"
+  },
+  "forge-pullreq-rejected": {
+    "fg": "#fdf0ed"
+  },
+  "forge-pullreq-merged": {
+    "fg": "#fdf0ed"
+  },
+  "forge-issue-expunged": {
+    "fg": "#fdf0ed"
+  },
+  "forge-issue-completed": {
+    "fg": "#fdf0ed"
+  },
+  "forge-discussion-expunged": {
+    "fg": "#fdf0ed"
+  },
+  "forge-discussion-completed": {
+    "fg": "#fdf0ed"
+  },
+  "forge-topic-slug-saved": {
+    "fg": "orange"
+  },
+  "forge-topic-slug-expunged": {
+    "fg": "#fdf0ed"
+  },
+  "forge-topic-slug-realized": {
+    "fg": "#fdf0ed"
+  },
+  "forge-topic-slug-open": {
+    "fg": "#fdf0ed"
+  },
+  "forge-discussion-answer-heading": {
+    "fg": "#07c580",
+    "bg": "#203a3b"
+  },
+  "forge-topic-header-line": {
+    "fg": "reset",
+    "bg": "#25b2bc"
+  },
+  "forge-dimmed": {
+    "fg": "#fdf0ed"
+  },
+  "eieio-custom-slot-tag-face": {
+    "fg": "light blue"
+  },
+  "edit-indirect-edited-region": {
+    "bg": "#6a6a6a"
+  },
+  "markdown-header-face-6": {
+    "fg": "#e95678"
+  },
+  "markdown-header-face-5": {
+    "fg": "#e95678"
+  },
+  "markdown-header-face-4": {
+    "fg": "#e95678"
+  },
+  "markdown-header-face-3": {
+    "fg": "#e95678"
+  },
+  "markdown-header-face-2": {
+    "fg": "#e95678"
+  },
+  "markdown-header-face-1": {
+    "fg": "#e95678"
+  },
+  "markdown-header-face": {
+    "fg": "#e95678"
+  },
+  "markdown-highlighting-face": {
     "fg": "black",
     "bg": "yellow"
   },
-  "shr-h6": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
+  "markdown-html-entity-face": {
+    "fg": "#e95678"
   },
-  "shr-h5": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "shr-h4": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "shr-selected-link": {
-    "fg": "#fab795",
-    "bg": "red"
-  },
-  "shr-link": {
+  "markdown-html-attr-value-face": {
     "fg": "#fab795"
   },
-  "gnus-splash": {
-    "fg": "#cccccc"
+  "markdown-html-attr-name-face": {
+    "fg": "#e95678"
   },
-  "gnus-summary-low-read": {
-    "fg": "#9fa0a2"
-  },
-  "gnus-summary-high-read": {
-    "fg": "#d2d3d5"
-  },
-  "gnus-summary-normal-read": {
+  "markdown-html-tag-delimiter-face": {
     "fg": "#c7c9cb"
   },
-  "gnus-summary-low-unread": {
-    "fg": "#07c580"
+  "markdown-html-tag-name-face": {
+    "fg": "#b877db"
   },
-  "gnus-summary-high-unread": {
-    "fg": "#3af8b3"
+  "markdown-hr-face": {
+    "fg": "#c7c9cb"
   },
-  "gnus-summary-normal-unread": {
-    "fg": "#09f7a0"
+  "markdown-highlight-face": {
+    "fg": "#16161c",
+    "bg": "#e95678"
   },
-  "gnus-summary-low-undownloaded": {
-    "fg": "cyan4"
+  "markdown-gfm-checkbox-face": {
+    "fg": "#b877db"
   },
-  "gnus-summary-high-undownloaded": {
-    "fg": "cyan4"
+  "markdown-metadata-value-face": {
+    "fg": "#fab795"
   },
-  "gnus-summary-normal-undownloaded": {
-    "fg": "cyan4"
+  "markdown-metadata-key-face": {
+    "fg": "#e95678"
   },
-  "gnus-summary-low-ancient": {
-    "fg": "#c7a49c"
+  "markdown-math-face": {
+    "fg": "#fab795"
   },
-  "gnus-summary-high-ancient": {
-    "fg": "#fad7cf"
+  "markdown-comment-face": {
+    "fg": "#4e5059"
   },
-  "gnus-summary-normal-ancient": {
-    "fg": "#f9cec3"
+  "markdown-line-break-face": {
+    "fg": "#f09383"
   },
-  "gnus-summary-low-ticked": {
-    "fg": "#565875"
+  "markdown-link-title-face": {
+    "fg": "#fab795"
   },
-  "gnus-summary-high-ticked": {
-    "fg": "#898ba8"
+  "markdown-plain-url-face": {
+    "fg": "#f09383"
   },
-  "gnus-summary-normal-ticked": {
+  "markdown-url-face": {
     "fg": "#6c6f93"
   },
-  "gnus-summary-cancelled": {
-    "fg": "#e95678"
-  },
-  "gnus-summary-selected": {
-    "fg": "#21bfc2"
-  },
-  "gnus-group-mail-low": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-mail-low-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-mail-3": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-mail-3-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-mail-2": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-mail-2-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-mail-1": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-mail-1-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-low": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-low-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-6": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-news-6-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-5": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-news-5-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-4": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-news-4-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-3": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-news-3-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-2": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-news-2-empty": {
-    "fg": "#f9cec3"
-  },
-  "gnus-group-news-1": {
-    "fg": "#c7c9cb"
-  },
-  "gnus-group-news-1-empty": {
-    "fg": "#f9cec3"
-  },
-  "doc-view-svg-face": {
-    "fg": "black",
-    "bg": "white"
-  },
-  "org-habit-overdue-future-face": {
-    "bg": "#592e3e"
-  },
-  "org-habit-overdue-face": {
-    "bg": "#823a4f"
-  },
-  "org-habit-alert-future-face": {
-    "bg": "#5e4b47"
-  },
-  "org-habit-alert-face": {
-    "bg": "#8b6a5d"
-  },
-  "org-habit-ready-future-face": {
-    "bg": "#1d4e54"
-  },
-  "org-habit-ready-face": {
-    "bg": "#1e6e74"
-  },
-  "org-habit-clear-future-face": {
-    "bg": "#232530"
-  },
-  "org-habit-clear-face": {
-    "bg": "#6a6a6a"
-  },
-  "restclient-request-hook-args-face": {
-    "fg": "#fab795"
-  },
-  "restclient-request-hook-name-face": {
-    "fg": "#87ceeb"
-  },
-  "restclient-request-hook-face": {
-    "fg": "#87ceeb"
-  },
-  "restclient-header-value-face": {
-    "fg": "#fab795"
-  },
-  "restclient-header-name-face": {
-    "fg": "#e95678"
-  },
-  "restclient-file-upload-face": {
-    "fg": "#fab795"
-  },
-  "restclient-url-face": {
-    "fg": "#87ceeb"
-  },
-  "restclient-method-face": {
-    "fg": "#b877db"
-  },
-  "restclient-variable-usage-face": {
-    "fg": "#87ceeb"
-  },
-  "restclient-variable-multiline-face": {
-    "fg": "#fab795"
-  },
-  "restclient-variable-elisp-face": {
-    "fg": "#87ceeb"
-  },
-  "restclient-variable-string-face": {
-    "fg": "#fab795"
-  },
-  "restclient-variable-name-face": {
-    "fg": "#87ceeb"
-  },
-  "sh-escaped-newline": {
-    "fg": "#fab795"
-  },
-  "sh-quoted-exec": {
-    "fg": "#87ceeb"
-  },
-  "sh-heredoc": {
-    "fg": "#fab795"
-  },
-  "treesit-explorer-anonymous-node": {
-    "fg": "#f9cec3"
-  },
-  "org-mode-line-clock-overrun": {
-    "fg": "#9fa0a2",
-    "bg": "red"
-  },
-  "org-mode-line-clock": {
-    "fg": "#9fa0a2",
-    "bg": "#1a1c23"
-  },
-  "org-tag-group": {
-    "fg": "#fab795"
-  },
-  "org-macro": {
-    "fg": "#fdf0ed"
-  },
-  "org-latex-and-related": {
-    "fg": "#fdf0ed"
-  },
-  "org-agenda-calendar-sexp": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "org-agenda-calendar-event": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "org-agenda-calendar-daterange": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "org-agenda-diary": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "org-agenda-current-time": {
+  "markdown-footnote-text-face": {
     "fg": "#4e5059"
   },
-  "org-time-grid": {
-    "fg": "#4e5059"
+  "markdown-footnote-marker-face": {
+    "fg": "#c7c9cb"
   },
-  "org-agenda-filter-regexp": {
-    "fg": "#9fa0a2",
-    "bg": "#1a1c23"
+  "markdown-reference-face": {
+    "fg": "#fab795"
   },
-  "org-agenda-filter-effort": {
-    "fg": "#9fa0a2",
-    "bg": "#1a1c23"
-  },
-  "org-agenda-filter-category": {
-    "fg": "#9fa0a2",
-    "bg": "#1a1c23"
-  },
-  "org-agenda-filter-tags": {
-    "fg": "#9fa0a2",
-    "bg": "#1a1c23"
-  },
-  "org-agenda-restriction-lock": {
-    "bg": "#1C1C1C"
-  },
-  "org-upcoming-distant-deadline": {
-    "fg": "#75777d"
-  },
-  "org-upcoming-deadline": {
-    "fg": "#a6a8ab"
-  },
-  "org-imminent-deadline": {
+  "markdown-missing-link-face": {
     "fg": "#27d797"
   },
-  "org-scheduled-previously": {
-    "fg": "#fdf0ed"
+  "markdown-link-face": {
+    "fg": "#f09383"
   },
-  "org-agenda-dimmed-todo-face": {
-    "fg": "#4e5059"
-  },
-  "org-scheduled-today": {
-    "fg": "#fadad1"
-  },
-  "org-scheduled": {
-    "fg": "#c7c9cb"
-  },
-  "org-agenda-date-weekend": {
-    "fg": "#6e4783"
-  },
-  "org-agenda-clocking": {
-    "bg": "#22434d"
-  },
-  "org-agenda-date-weekend-today": {
-    "fg": "#d4ade9"
-  },
-  "org-agenda-date-today": {
-    "fg": "#d4ade9"
-  },
-  "org-agenda-date": {
-    "fg": "#b877db"
-  },
-  "org-agenda-structure-filter": {
-    "fg": "#27d797"
-  },
-  "org-agenda-structure-secondary": {
-    "fg": "#c7c9cb"
-  },
-  "org-agenda-structure": {
-    "fg": "#c7c9cb"
-  },
-  "org-clock-overlay": {
-    "fg": "white",
-    "bg": "SkyBlue4"
-  },
-  "org-verse": {
-    "bg": "#1a1c23"
-  },
-  "org-quote": {
-    "bg": "#1a1c23"
-  },
-  "org-verbatim": {
-    "fg": "#09f7a0"
-  },
-  "org-inline-src-block": {
-    "bg": "#1a1c23"
-  },
-  "org-block-end-line": {
-    "fg": "#4e5059",
-    "bg": "#1a1c23"
-  },
-  "org-block-begin-line": {
-    "fg": "#4e5059",
-    "bg": "#1a1c23"
-  },
-  "org-block": {
-    "bg": "#1a1c23"
-  },
-  "org-document-info-keyword": {
-    "fg": "#f9cec3"
-  },
-  "org-document-info": {
-    "fg": "#b877db"
-  },
-  "org-document-title": {
-    "fg": "#b877db"
-  },
-  "org-meta-line": {
+  "markdown-language-info-face": {
     "fg": "#fab795"
   },
-  "org-code": {
+  "markdown-language-keyword-face": {
+    "fg": "#f09383"
+  },
+  "markdown-table-face": {
+    "fg": "#c7c9cb",
+    "bg": "#1a1c23"
+  },
+  "markdown-pre-face": {
+    "fg": "#fab795"
+  },
+  "markdown-inline-code-face": {
     "fg": "#f09383",
     "bg": "#1a1c23"
   },
-  "org-formula": {
-    "fg": "#59e3e3"
+  "markdown-code-face": {
+    "fg": "#f09383",
+    "bg": "#1a1c23"
   },
-  "org-table-header": {
-    "fg": "Black",
-    "bg": "LightGray"
-  },
-  "org-table-row": {
-    "fg": "#b877db"
-  },
-  "org-table": {
-    "fg": "#b877db"
-  },
-  "org-checkbox-statistics-done": {
-    "fg": "#f9cec3"
-  },
-  "org-checkbox-statistics-todo": {
-    "fg": "#09f7a0"
-  },
-  "org-checkbox": {
-    "fg": "#09f7a0"
-  },
-  "org-priority": {
-    "fg": "#e95678"
-  },
-  "org-headline-done": {
-    "fg": "#f9cec3"
-  },
-  "org-headline-todo": {
-    "fg": "Pink2"
-  },
-  "org-agenda-done": {
-    "fg": "#59e3e3"
-  },
-  "org-done": {
-    "fg": "#f9cec3"
-  },
-  "org-todo": {
-    "fg": "#09f7a0"
-  },
-  "org-list-dt": {
-    "fg": "#e95678"
-  },
-  "org-tag": {
+  "markdown-blockquote-face": {
     "fg": "#fab795"
   },
-  "org-sexp-date": {
+  "markdown-list-face": {
+    "fg": "#e95678"
+  },
+  "markdown-header-delimiter-face": {
+    "fg": "#e95678"
+  },
+  "markdown-header-rule-face": {
     "fg": "#c7c9cb"
   },
-  "org-date-selected": {
-    "fg": "Pink"
+  "markdown-markup-face": {
+    "fg": "#c7c9cb"
   },
-  "org-date": {
-    "fg": "#fab795"
-  },
-  "org-ellipsis": {
-    "fg": "#4e5059"
-  },
-  "org-footnote": {
-    "fg": "#f09383"
-  },
-  "org-link": {
-    "fg": "#fab795"
-  },
-  "org-cite-key": {
-    "fg": "#a0ccde"
-  },
-  "org-cite": {
-    "fg": "#8dcde7"
-  },
-  "org-archived": {
-    "fg": "#fab795"
-  },
-  "org-warning": {
-    "fg": "#27d797"
-  },
-  "org-agenda-column-dateline": {
-    "bg": "grey30"
-  },
-  "org-column-title": {
-    "bg": "grey30"
-  },
-  "org-column": {
-    "bg": "grey30"
-  },
-  "org-property-value": {
-    "fg": "#fab795"
-  },
-  "org-drawer": {
-    "fg": "#4e5059"
-  },
-  "org-special-keyword": {
-    "fg": "#fab795"
-  },
-  "org-level-8": {
-    "fg": "#d2f2f2"
-  },
-  "org-level-7": {
-    "fg": "#b5b7c9"
-  },
-  "org-level-6": {
-    "fg": "#90dfe0"
-  },
-  "org-level-5": {
-    "fg": "#9093ae"
-  },
-  "org-level-4": {
-    "fg": "#58cfd1"
-  },
-  "org-level-3": {
+  "markdown-bold-face": {
     "fg": "#b877db"
   },
-  "org-level-2": {
-    "fg": "#6c6f93"
-  },
-  "org-level-1": {
-    "fg": "#21bfc2"
-  },
-  "org-dispatcher-highlight": {
-    "fg": "gold1",
-    "bg": "gray20"
-  },
-  "org-hide": {
-    "fg": "#232530"
+  "markdown-italic-face": {
+    "fg": "#b877db"
   },
   "outline-8": {
     "fg": "#d2f2f2"
@@ -626,20 +235,472 @@
   "outline-1": {
     "fg": "#21bfc2"
   },
-  "calendar-month-header": {
-    "fg": "#87ceeb"
+  "magit-blame-date": {
+    "fg": "#e95678"
   },
-  "calendar-weekend-header": {
-    "fg": "#4e5059"
+  "magit-blame-hash": {
+    "fg": "#59e3e3"
   },
-  "calendar-weekday-header": {
+  "magit-blame-heading": {
+    "fg": "#f09383",
+    "bg": "#232530"
+  },
+  "magit-blame-dimmed": {
+    "fg": "#fdf0ed"
+  },
+  "magit-blame-margin": {
+    "fg": "white",
+    "bg": "grey25"
+  },
+  "magit-blame-highlight": {
+    "fg": "white",
+    "bg": "grey25"
+  },
+  "magit-reflog-other": {
+    "fg": "#59e3e3"
+  },
+  "magit-reflog-remote": {
+    "fg": "#59e3e3"
+  },
+  "magit-reflog-cherry-pick": {
+    "fg": "#09f7a0"
+  },
+  "magit-reflog-rebase": {
+    "fg": "#6c6f93"
+  },
+  "magit-reflog-reset": {
+    "fg": "#e95678"
+  },
+  "magit-reflog-checkout": {
+    "fg": "#21bfc2"
+  },
+  "magit-reflog-merge": {
+    "fg": "#09f7a0"
+  },
+  "magit-reflog-amend": {
+    "fg": "#6c6f93"
+  },
+  "magit-reflog-commit": {
+    "fg": "#09f7a0"
+  },
+  "magit-bisect-bad": {
+    "fg": "#e95678"
+  },
+  "magit-bisect-skip": {
     "fg": "#f09383"
   },
-  "holiday": {
-    "bg": "chocolate4"
+  "magit-bisect-good": {
+    "fg": "#09f7a0"
   },
-  "diary": {
-    "fg": "yellow1"
+  "magit-sequence-exec": {
+    "fg": "#4e5059"
+  },
+  "magit-sequence-onto": {
+    "fg": "#4e5059"
+  },
+  "magit-sequence-done": {
+    "fg": "#4e5059"
+  },
+  "magit-sequence-drop": {
+    "fg": "#e95678"
+  },
+  "magit-sequence-head": {
+    "fg": "#21bfc2"
+  },
+  "magit-sequence-part": {
+    "fg": "#f09383"
+  },
+  "magit-sequence-stop": {
+    "fg": "#09f7a0"
+  },
+  "magit-sequence-pick": {
+    "fg": "#c7c9cb",
+    "bg": "#232530"
+  },
+  "magit-filename": {
+    "fg": "#b877db"
+  },
+  "magit-cherry-equivalent": {
+    "fg": "#b877db"
+  },
+  "magit-cherry-unmatched": {
+    "fg": "#59e3e3"
+  },
+  "magit-signature-error": {
+    "fg": "#e95678"
+  },
+  "magit-signature-revoked": {
+    "fg": "#6c6f93"
+  },
+  "magit-signature-expired-key": {
+    "fg": "#f09383"
+  },
+  "magit-signature-expired": {
+    "fg": "#f09383"
+  },
+  "magit-signature-untrusted": {
+    "fg": "#fab795"
+  },
+  "magit-signature-bad": {
+    "fg": "#e95678"
+  },
+  "magit-signature-good": {
+    "fg": "#09f7a0"
+  },
+  "magit-keyword-squash": {
+    "fg": "#27d797"
+  },
+  "magit-keyword": {
+    "fg": "#fab795"
+  },
+  "magit-refname-pullreq": {
+    "fg": "#4e5059"
+  },
+  "magit-refname-wip": {
+    "fg": "#4e5059"
+  },
+  "magit-refname-stash": {
+    "fg": "#4e5059"
+  },
+  "magit-refname": {
+    "fg": "#4e5059"
+  },
+  "magit-head": {
+    "fg": "#59e3e3"
+  },
+  "magit-branch-warning": {
+    "fg": "#27d797"
+  },
+  "magit-branch-current": {
+    "fg": "#21bfc2"
+  },
+  "magit-branch-local": {
+    "fg": "#59e3e3"
+  },
+  "magit-branch-remote-head": {
+    "fg": "#f09383"
+  },
+  "magit-branch-remote": {
+    "fg": "#f09383"
+  },
+  "magit-tag": {
+    "fg": "#fab795"
+  },
+  "magit-hash": {
+    "fg": "#4e5059"
+  },
+  "magit-dimmed": {
+    "fg": "#fdf0ed"
+  },
+  "magit-header-line-key": {
+    "fg": "#b877db"
+  },
+  "magit-header-line": {
+    "fg": "#fdf0ed",
+    "bg": "#25b2bc"
+  },
+  "magit-log-date": {
+    "fg": "#21bfc2"
+  },
+  "magit-log-author": {
+    "fg": "#f09383"
+  },
+  "magit-log-graph": {
+    "fg": "#4e5059"
+  },
+  "which-func": {
+    "fg": "#21bfc2"
+  },
+  "magit-diffstat-removed": {
+    "fg": "#e95678"
+  },
+  "magit-diffstat-added": {
+    "fg": "#09f7a0"
+  },
+  "magit-diff-whitespace-warning": {
+    "bg": "#e95678"
+  },
+  "magit-diff-context-highlight": {
+    "fg": "#c7c9cb",
+    "bg": "#1c1e26"
+  },
+  "magit-diff-their-highlight": {
+    "fg": "#09f7a0",
+    "bg": "#1d4f46"
+  },
+  "magit-diff-base-highlight": {
+    "fg": "#f09383",
+    "bg": "#4c3b40"
+  },
+  "magit-diff-our-highlight": {
+    "fg": "#e95678",
+    "bg": "#4a2e3e"
+  },
+  "magit-diff-removed-highlight": {
+    "fg": "#e95678",
+    "bg": "#4a2e3e"
+  },
+  "magit-diff-added-highlight": {
+    "fg": "#09f7a0",
+    "bg": "#1d4f46"
+  },
+  "magit-diff-context": {
+    "fg": "#777879",
+    "bg": "#232530"
+  },
+  "magit-diff-their": {
+    "fg": "#07c580",
+    "bg": "#203a3b"
+  },
+  "magit-diff-base": {
+    "fg": "#c07568",
+    "bg": "#373038"
+  },
+  "magit-diff-our": {
+    "fg": "#ba4460",
+    "bg": "#362937"
+  },
+  "magit-diff-removed": {
+    "fg": "#ba4460",
+    "bg": "#362937"
+  },
+  "magit-diff-added": {
+    "fg": "#07c580",
+    "bg": "#203a3b"
+  },
+  "magit-diff-conflict-heading": {
+    "fg": "#232530",
+    "bg": "#4f3d63"
+  },
+  "magit-diff-lines-boundary": {
+    "fg": "#fab795",
+    "bg": "#e95678"
+  },
+  "magit-diff-lines-heading": {
+    "fg": "#fab795",
+    "bg": "#e95678"
+  },
+  "magit-diff-revision-summary-highlight": {
+    "fg": "#232530",
+    "bg": "#b877db"
+  },
+  "magit-diff-revision-summary": {
+    "fg": "#232530",
+    "bg": "#4f3d63"
+  },
+  "magit-diff-conflict-heading-highlight": {
+    "fg": "#232530",
+    "bg": "#b877db"
+  },
+  "magit-diff-hunk-heading-selection": {
+    "fg": "LightSalmon3",
+    "bg": "#b877db"
+  },
+  "magit-diff-hunk-heading-highlight": {
+    "fg": "#232530",
+    "bg": "#b877db"
+  },
+  "magit-diff-hunk-heading": {
+    "fg": "#232530",
+    "bg": "#4f3d63"
+  },
+  "magit-diff-file-heading-selection": {
+    "fg": "#6c6f93",
+    "bg": "#25b2bc"
+  },
+  "magit-diff-file-heading-highlight": {
+    "bg": "#1c1e26"
+  },
+  "magit-diff-file-heading": {
+    "fg": "#c7c9cb"
+  },
+  "smerge-refined-added": {
+    "fg": "#09f7a0",
+    "bg": "#1c1e26"
+  },
+  "smerge-refined-removed": {
+    "fg": "#e95678",
+    "bg": "#232530"
+  },
+  "smerge-markers": {
+    "fg": "#232530",
+    "bg": "#4e5059"
+  },
+  "smerge-base": {
+    "bg": "#22434d"
+  },
+  "smerge-lower": {
+    "bg": "#1d4f46"
+  },
+  "smerge-upper": {
+    "bg": "#4a2e3e"
+  },
+  "git-commit-comment-file": {
+    "fg": "#b877db"
+  },
+  "git-commit-comment-heading": {
+    "fg": "#b877db"
+  },
+  "git-commit-comment-detached": {
+    "fg": "#f09383"
+  },
+  "git-commit-comment-branch-remote": {
+    "fg": "#09f7a0"
+  },
+  "git-commit-comment-branch-local": {
+    "fg": "#6c6f93"
+  },
+  "git-commit-trailer-value": {
+    "fg": "#fab795"
+  },
+  "git-commit-trailer-token": {
+    "fg": "#fab795"
+  },
+  "git-commit-keyword": {
+    "fg": "#59e3e3"
+  },
+  "git-commit-nonempty-second-line": {
+    "fg": "#e95678",
+    "bg": "#16161c"
+  },
+  "git-commit-overlong-summary": {
+    "fg": "#e95678",
+    "bg": "#16161c"
+  },
+  "git-commit-summary": {
+    "fg": "#fab795"
+  },
+  "spacemacs-treemacs-face": {
+    "fg": "#335EA8",
+    "bg": "MediumPurple1"
+  },
+  "pulse-highlight-face": {
+    "bg": "#AAAA33"
+  },
+  "pulse-highlight-start-face": {
+    "bg": "#AAAA33"
+  },
+  "treemacs-marked-file-face": {
+    "fg": "#F0C674",
+    "bg": "#AB3737"
+  },
+  "treemacs-peek-mode-indicator-face": {
+    "bg": "#669966"
+  },
+  "treemacs-fringe-indicator-face": {
+    "fg": "#e95678"
+  },
+  "treemacs-on-success-pulse-face": {
+    "fg": "#16161c",
+    "bg": "#09f7a0"
+  },
+  "treemacs-on-failure-pulse-face": {
+    "fg": "#16161c",
+    "bg": "#e95678"
+  },
+  "treemacs-help-column-face": {
+    "fg": "#b877db"
+  },
+  "treemacs-help-title-face": {
+    "fg": "#9fa0a2",
+    "bg": "#1a1c23"
+  },
+  "treemacs-tags-face": {
+    "fg": "#e95678"
+  },
+  "treemacs-git-conflict-face": {
+    "fg": "#e95678"
+  },
+  "treemacs-git-added-face": {
+    "fg": "#09f7a0"
+  },
+  "treemacs-git-untracked-face": {
+    "fg": "#fab795"
+  },
+  "treemacs-git-ignored-face": {
+    "fg": "#4e5059"
+  },
+  "treemacs-git-renamed-face": {
+    "fg": "#fab795"
+  },
+  "treemacs-git-modified-face": {
+    "fg": "#09f7a0"
+  },
+  "treemacs-git-unmodified-face": {
+    "fg": "#c7c9cb"
+  },
+  "treemacs-term-node-face": {
+    "fg": "#fab795"
+  },
+  "treemacs-root-remote-disconnected-face": {
+    "fg": "#27d797"
+  },
+  "treemacs-root-remote-unreadable-face": {
+    "fg": "#c7c9cb"
+  },
+  "treemacs-root-remote-face": {
+    "fg": "#87ceeb"
+  },
+  "treemacs-root-unreadable-face": {
+    "fg": "#c7c9cb"
+  },
+  "treemacs-root-face": {
+    "fg": "#c7c9cb"
+  },
+  "treemacs-file-face": {
+    "fg": "#c7c9cb"
+  },
+  "treemacs-hl-line-face": {
+    "bg": "#1c1e26"
+  },
+  "treemacs-window-background-face": {
+    "fg": "#c7c9cb",
+    "bg": "#232530"
+  },
+  "treemacs-directory-collapsed-face": {
+    "fg": "#c7c9cb"
+  },
+  "treemacs-directory-face": {
+    "fg": "#c7c9cb"
+  },
+  "helm-swoop-line-number-face": {
+    "fg": "#999999"
+  },
+  "helm-swoop-target-word-face": {
+    "fg": "#09f7a0"
+  },
+  "helm-swoop-target-line-block-face": {
+    "fg": "#fab795"
+  },
+  "helm-swoop-target-line-face": {
+    "fg": "#e95678"
+  },
+  "helm-bookmark-addressbook": {
+    "fg": "tomato"
+  },
+  "helm-bookmark-directory": {
+    "fg": "#e95678"
+  },
+  "helm-bookmark-file-not-found": {
+    "fg": "SlateGray4"
+  },
+  "helm-bookmark-file": {
+    "fg": "DeepSkyBlue2"
+  },
+  "helm-bookmark-man": {
+    "fg": "orange4"
+  },
+  "helm-bookmark-gnus": {
+    "fg": "magenta"
+  },
+  "helm-bookmark-w3m": {
+    "fg": "yellow"
+  },
+  "helm-bookmark-info": {
+    "fg": "green"
+  },
+  "bookmark-face": {
+    "bg": "#362937"
   },
   "whitespace-space-after-tab": {
     "fg": "firebrick",
@@ -684,18 +745,6 @@
   "whitespace-space": {
     "fg": "#6a6a6a"
   },
-  "helm-swoop-line-number-face": {
-    "fg": "#999999"
-  },
-  "helm-swoop-target-word-face": {
-    "fg": "#09f7a0"
-  },
-  "helm-swoop-target-line-block-face": {
-    "fg": "#fab795"
-  },
-  "helm-swoop-target-line-face": {
-    "fg": "#e95678"
-  },
   "helm-M-x-short-doc": {
     "fg": "DimGray"
   },
@@ -723,6 +772,197 @@
   "edebug-enabled-breakpoint": {
     "fg": "#16161c",
     "bg": "#e95678"
+  },
+  "company-template-field": {
+    "fg": "#09f7a0",
+    "bg": "#16161c"
+  },
+  "company-echo-common": {
+    "fg": "firebrick1"
+  },
+  "company-preview-search": {
+    "fg": "#232530",
+    "bg": "#e95678"
+  },
+  "company-preview-common": {
+    "fg": "#e95678",
+    "bg": "#232530"
+  },
+  "company-preview": {
+    "fg": "#4e5059"
+  },
+  "company-tooltip-scrollbar-track": {
+    "fg": "#c7c9cb",
+    "bg": "#16161c"
+  },
+  "company-tooltip-scrollbar-thumb": {
+    "bg": "#e95678"
+  },
+  "company-tooltip-quick-access-selection": {
+    "fg": "#b877db"
+  },
+  "company-tooltip-quick-access": {
+    "fg": "#b877db"
+  },
+  "company-tooltip-annotation-selection": {
+    "fg": "#b877db"
+  },
+  "company-tooltip-annotation": {
+    "fg": "#b877db"
+  },
+  "company-tooltip-common-selection": {
+    "fg": "#e95678"
+  },
+  "company-tooltip-common": {
+    "fg": "#e95678"
+  },
+  "company-tooltip-mouse": {
+    "fg": "#232530",
+    "bg": "#6c6f93"
+  },
+  "company-tooltip-search-selection": {
+    "bg": "#8a59a4"
+  },
+  "company-tooltip-search": {
+    "fg": "#232530",
+    "bg": "#e95678"
+  },
+  "company-tooltip-selection": {
+    "fg": "#c7c9cb",
+    "bg": "#2e2f3a"
+  },
+  "company-tooltip": {
+    "fg": "#c7c9cb",
+    "bg": "#16161c"
+  },
+  "xref-match": {
+    "fg": "#09f7a0",
+    "bg": "#16161c"
+  },
+  "xref-line-number": {
+    "fg": "#e95678"
+  },
+  "xref-file-header": {
+    "fg": "#09f7a0"
+  },
+  "eval-sexp-fu-flash-error": {
+    "fg": "red"
+  },
+  "eval-sexp-fu-flash": {
+    "bg": "slate blue"
+  },
+  "copilot-overlay-face": {
+    "fg": "#f9cec3"
+  },
+  "flycheck-error-list-checker-name": {
+    "fg": "#87ceeb"
+  },
+  "flycheck-error-list-id-with-explainer": {
+    "fg": "#87ceeb"
+  },
+  "flycheck-error-list-id": {
+    "fg": "#87ceeb"
+  },
+  "flycheck-error-list-info": {
+    "fg": "#09f7a0"
+  },
+  "flycheck-error-list-warning": {
+    "fg": "#27d797"
+  },
+  "flycheck-error-list-error": {
+    "fg": "#e95678"
+  },
+  "flycheck-fringe-info": {
+    "fg": "#09f7a0",
+    "bg": "#232530"
+  },
+  "flycheck-fringe-warning": {
+    "fg": "#27d797",
+    "bg": "#232530"
+  },
+  "flycheck-fringe-error": {
+    "fg": "#e95678",
+    "bg": "#232530"
+  },
+  "highlight-numbers-number": {
+    "fg": "#f09383"
+  },
+  "rainbow-delimiters-depth-1-face": {
+    "fg": "#21bfc2"
+  },
+  "rainbow-delimiters-depth-2-face": {
+    "fg": "#6c6f93"
+  },
+  "rainbow-delimiters-depth-3-face": {
+    "fg": "#09f7a0"
+  },
+  "rainbow-delimiters-depth-4-face": {
+    "fg": "#b877db"
+  },
+  "rainbow-delimiters-depth-5-face": {
+    "fg": "#87ceeb"
+  },
+  "rainbow-delimiters-depth-6-face": {
+    "fg": "#21bfc2"
+  },
+  "rainbow-delimiters-depth-7-face": {
+    "fg": "#6c6f93"
+  },
+  "rainbow-delimiters-depth-8-face": {
+    "fg": "#09f7a0"
+  },
+  "rainbow-delimiters-depth-9-face": {
+    "fg": "#b877db"
+  },
+  "rainbow-delimiters-mismatched-face": {
+    "fg": "#e95678"
+  },
+  "rainbow-delimiters-unmatched-face": {
+    "fg": "#e95678"
+  },
+  "rainbow-delimiters-base-error-face": {
+    "fg": "#e95678",
+    "bg": "#232530"
+  },
+  "rainbow-delimiters-base-face": {
+    "fg": "#c7c9cb",
+    "bg": "#232530"
+  },
+  "sp-show-pair-enclosing": {
+    "fg": "#16161c",
+    "bg": "#e95678"
+  },
+  "sp-show-pair-mismatch-face": {
+    "fg": "#fab795",
+    "bg": "#16161c"
+  },
+  "sp-show-pair-match-face": {
+    "fg": "#09f7a0",
+    "bg": "#16161c"
+  },
+  "sp-wrap-tag-overlay-face": {
+    "fg": "#fdf0ed",
+    "bg": "#a33c54"
+  },
+  "sp-wrap-overlay-closing-pair": {
+    "fg": "red",
+    "bg": "#a33c54"
+  },
+  "sp-wrap-overlay-opening-pair": {
+    "fg": "green",
+    "bg": "#a33c54"
+  },
+  "sp-wrap-overlay-face": {
+    "fg": "#fdf0ed",
+    "bg": "#a33c54"
+  },
+  "sp-pair-overlay-face": {
+    "fg": "#fdf0ed",
+    "bg": "#a33c54"
+  },
+  "yas-field-highlight-face": {
+    "fg": "#09f7a0",
+    "bg": "#16161c"
   },
   "helm-descbinds-binding": {
     "fg": "#27d797"
@@ -844,15 +1084,6 @@
   "image-dired-thumb-header-directory-name": {
     "fg": "#9fa0a2",
     "bg": "#1a1c23"
-  },
-  "shell-highlight-undef-alias-face": {
-    "fg": "#e95678"
-  },
-  "shell-highlight-undef-undefined-face": {
-    "fg": "#27d797"
-  },
-  "shell-highlight-undef-defined-face": {
-    "fg": "#87ceeb"
   },
   "helm-buffer-archive": {
     "fg": "gold"
@@ -1083,202 +1314,220 @@
     "fg": "#b877db",
     "bg": "#1d1f27"
   },
-  "company-template-field": {
-    "fg": "#09f7a0",
-    "bg": "#16161c"
+  "diff-hl-change": {
+    "fg": "#f09383",
+    "bg": "#f09383"
   },
-  "company-echo-common": {
-    "fg": "firebrick1"
-  },
-  "company-preview-search": {
-    "fg": "#232530",
-    "bg": "#e95678"
-  },
-  "company-preview-common": {
+  "diff-hl-delete": {
     "fg": "#e95678",
-    "bg": "#232530"
-  },
-  "company-preview": {
-    "fg": "#4e5059"
-  },
-  "company-tooltip-scrollbar-track": {
-    "fg": "#c7c9cb",
-    "bg": "#16161c"
-  },
-  "company-tooltip-scrollbar-thumb": {
     "bg": "#e95678"
   },
-  "company-tooltip-quick-access-selection": {
-    "fg": "#b877db"
-  },
-  "company-tooltip-quick-access": {
-    "fg": "#b877db"
-  },
-  "company-tooltip-annotation-selection": {
-    "fg": "#b877db"
-  },
-  "company-tooltip-annotation": {
-    "fg": "#b877db"
-  },
-  "company-tooltip-common-selection": {
-    "fg": "#e95678"
-  },
-  "company-tooltip-common": {
-    "fg": "#e95678"
-  },
-  "company-tooltip-mouse": {
-    "fg": "#232530",
-    "bg": "#6c6f93"
-  },
-  "company-tooltip-search-selection": {
-    "bg": "#8a59a4"
-  },
-  "company-tooltip-search": {
-    "fg": "#232530",
-    "bg": "#e95678"
-  },
-  "company-tooltip-selection": {
-    "fg": "#c7c9cb",
-    "bg": "#2e2f3a"
-  },
-  "company-tooltip": {
-    "fg": "#c7c9cb",
-    "bg": "#16161c"
-  },
-  "xref-match": {
+  "diff-hl-insert": {
     "fg": "#09f7a0",
-    "bg": "#16161c"
+    "bg": "#09f7a0"
   },
-  "xref-line-number": {
-    "fg": "#e95678"
-  },
-  "xref-file-header": {
-    "fg": "#09f7a0"
-  },
-  "eval-sexp-fu-flash-error": {
-    "fg": "red"
-  },
-  "eval-sexp-fu-flash": {
-    "bg": "slate blue"
-  },
-  "vc-git-log-edit-summary-max-warning": {
-    "fg": "#e95678"
-  },
-  "vc-git-log-edit-summary-target-warning": {
-    "fg": "#27d797"
-  },
-  "copilot-overlay-face": {
+  "vc-dir-status-ignored": {
     "fg": "#f9cec3"
   },
-  "flycheck-error-list-checker-name": {
-    "fg": "#87ceeb"
+  "vc-dir-status-up-to-date": {
+    "fg": "#b877db"
   },
-  "flycheck-error-list-id-with-explainer": {
-    "fg": "#87ceeb"
+  "vc-dir-status-edited": {
+    "fg": "#e95678"
   },
-  "flycheck-error-list-id": {
-    "fg": "#87ceeb"
-  },
-  "flycheck-error-list-info": {
-    "fg": "#09f7a0"
-  },
-  "flycheck-error-list-warning": {
+  "vc-dir-status-warning": {
     "fg": "#27d797"
   },
-  "flycheck-error-list-error": {
-    "fg": "#e95678"
-  },
-  "flycheck-fringe-info": {
-    "fg": "#09f7a0",
-    "bg": "#232530"
-  },
-  "flycheck-fringe-warning": {
-    "fg": "#27d797",
-    "bg": "#232530"
-  },
-  "flycheck-fringe-error": {
-    "fg": "#e95678",
-    "bg": "#232530"
-  },
-  "highlight-numbers-number": {
-    "fg": "#f09383"
-  },
-  "rainbow-delimiters-depth-1-face": {
-    "fg": "#21bfc2"
-  },
-  "rainbow-delimiters-depth-2-face": {
-    "fg": "#6c6f93"
-  },
-  "rainbow-delimiters-depth-3-face": {
-    "fg": "#09f7a0"
-  },
-  "rainbow-delimiters-depth-4-face": {
-    "fg": "#b877db"
-  },
-  "rainbow-delimiters-depth-5-face": {
+  "vc-dir-mark-indicator": {
     "fg": "#87ceeb"
   },
-  "rainbow-delimiters-depth-6-face": {
-    "fg": "#21bfc2"
+  "vc-dir-file": {
+    "fg": "#87ceeb"
   },
-  "rainbow-delimiters-depth-7-face": {
-    "fg": "#6c6f93"
+  "vc-dir-directory": {
+    "fg": "#4e5059"
   },
-  "rainbow-delimiters-depth-8-face": {
+  "vc-dir-header-value": {
+    "fg": "#e95678"
+  },
+  "vc-dir-header": {
+    "fg": "#87ceeb"
+  },
+  "grep-heading": {
     "fg": "#09f7a0"
   },
-  "rainbow-delimiters-depth-9-face": {
+  "magit-mode-line-process-error": {
+    "fg": "#e95678"
+  },
+  "magit-mode-line-process": {
+    "fg": "#e95678"
+  },
+  "magit-process-ng": {
+    "fg": "#e95678"
+  },
+  "magit-process-ok": {
+    "fg": "#09f7a0"
+  },
+  "shell-highlight-undef-alias-face": {
+    "fg": "#e95678"
+  },
+  "shell-highlight-undef-undefined-face": {
+    "fg": "#27d797"
+  },
+  "shell-highlight-undef-defined-face": {
+    "fg": "#87ceeb"
+  },
+  "transient-unreachable-key": {
+    "fg": "#f9cec3"
+  },
+  "transient-key-exit": {
+    "fg": "#ffdddd"
+  },
+  "transient-key-stack": {
+    "fg": "#ff6699"
+  },
+  "transient-key-recurse": {
+    "fg": "#2299ff"
+  },
+  "transient-key-return": {
+    "fg": "#ffffcc"
+  },
+  "transient-key-noop": {
+    "fg": "grey30"
+  },
+  "transient-key-stay": {
+    "fg": "#ddffdd"
+  },
+  "transient-key": {
     "fg": "#b877db"
   },
-  "rainbow-delimiters-mismatched-face": {
-    "fg": "#e95678"
+  "transient-delimiter": {
+    "fg": "#f9cec3"
   },
-  "rainbow-delimiters-unmatched-face": {
-    "fg": "#e95678"
+  "transient-disabled-suffix": {
+    "fg": "black",
+    "bg": "red"
   },
-  "rainbow-delimiters-base-error-face": {
-    "fg": "#e95678",
-    "bg": "#232530"
+  "transient-enabled-suffix": {
+    "fg": "black",
+    "bg": "green"
   },
-  "rainbow-delimiters-base-face": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "sp-show-pair-enclosing": {
+  "transient-active-infix": {
     "fg": "#16161c",
     "bg": "#e95678"
   },
-  "sp-show-pair-mismatch-face": {
-    "fg": "#fab795",
-    "bg": "#16161c"
+  "transient-inapt-suffix": {
+    "fg": "#f9cec3"
   },
-  "sp-show-pair-match-face": {
-    "fg": "#09f7a0",
-    "bg": "#16161c"
+  "transient-unreachable": {
+    "fg": "#f9cec3"
   },
-  "sp-wrap-tag-overlay-face": {
-    "fg": "#fdf0ed",
-    "bg": "#a33c54"
+  "transient-inactive-value": {
+    "fg": "#f9cec3"
   },
-  "sp-wrap-overlay-closing-pair": {
-    "fg": "red",
-    "bg": "#a33c54"
+  "transient-value": {
+    "fg": "#fab795"
   },
-  "sp-wrap-overlay-opening-pair": {
-    "fg": "green",
-    "bg": "#a33c54"
+  "transient-inapt-argument": {
+    "fg": "#f9cec3"
   },
-  "sp-wrap-overlay-face": {
-    "fg": "#fdf0ed",
-    "bg": "#a33c54"
+  "transient-inactive-argument": {
+    "fg": "#f9cec3"
   },
-  "sp-pair-overlay-face": {
-    "fg": "#fdf0ed",
-    "bg": "#a33c54"
+  "transient-argument": {
+    "fg": "#fab795"
   },
-  "yas-field-highlight-face": {
-    "fg": "#09f7a0",
-    "bg": "#16161c"
+  "transient-heading": {
+    "fg": "#b877db"
+  },
+  "magit-left-margin": {
+    "fg": "#c7c9cb",
+    "bg": "#232530"
+  },
+  "magit-section-heading-selection": {
+    "fg": "#f09383"
+  },
+  "magit-section-secondary-heading": {
+    "fg": "#b877db"
+  },
+  "magit-section-heading": {
+    "fg": "#e95678"
+  },
+  "magit-section-highlight": {
+    "bg": "#1c1e26"
+  },
+  "llama-optional-argument": {
+    "fg": "#87ceeb"
+  },
+  "llama-mandatory-argument": {
+    "fg": "#e95678"
+  },
+  "llama-llama-macro": {
+    "fg": "#b877db"
+  },
+  "llama-##-macro": {
+    "fg": "#87ceeb"
+  },
+  "winum-face": {
+    "fg": "#e95678"
+  },
+  "imenu-list-entry-subalist-face-3": {
+    "fg": "sandy brown"
+  },
+  "imenu-list-entry-face-3": {
+    "fg": "sandy brown"
+  },
+  "imenu-list-entry-subalist-face-2": {
+    "fg": "#fab795"
+  },
+  "imenu-list-entry-face-2": {
+    "fg": "#fab795"
+  },
+  "imenu-list-entry-subalist-face-1": {
+    "fg": "#09f7a0"
+  },
+  "imenu-list-entry-face-1": {
+    "fg": "#09f7a0"
+  },
+  "imenu-list-entry-subalist-face-0": {
+    "fg": "#e95678"
+  },
+  "imenu-list-entry-face-0": {
+    "fg": "#e95678"
+  },
+  "hs-ellipsis": {
+    "fg": "#c7c9cb",
+    "bg": "#232530"
+  },
+  "ibuffer-locked-buffer": {
+    "fg": "RosyBrown"
+  },
+  "symbol-overlay-face-8": {
+    "bg": "#2d4b53"
+  },
+  "symbol-overlay-face-7": {
+    "bg": "#18795c"
+  },
+  "symbol-overlay-face-6": {
+    "bg": "#383b4d"
+  },
+  "symbol-overlay-face-5": {
+    "bg": "#5e3345"
+  },
+  "symbol-overlay-face-4": {
+    "bg": "#604548"
+  },
+  "symbol-overlay-face-3": {
+    "bg": "#63504e"
+  },
+  "symbol-overlay-face-2": {
+    "bg": "#5e4574"
+  },
+  "symbol-overlay-face-1": {
+    "bg": "#22626a"
+  },
+  "symbol-overlay-default-face": {
+    "bg": "#42434d"
   },
   "spaceline-python-venv": {
     "fg": "#6c6f93"
@@ -1347,305 +1596,6 @@
     "fg": "#9fa0a2",
     "bg": "#232530"
   },
-  "diff-hl-change": {
-    "fg": "#f09383",
-    "bg": "#f09383"
-  },
-  "diff-hl-delete": {
-    "fg": "#e95678",
-    "bg": "#e95678"
-  },
-  "diff-hl-insert": {
-    "fg": "#09f7a0",
-    "bg": "#09f7a0"
-  },
-  "log-view-commit-body": {
-    "fg": "#4e5059"
-  },
-  "log-edit-unknown-header": {
-    "fg": "#4e5059"
-  },
-  "log-edit-header": {
-    "fg": "#b877db"
-  },
-  "log-edit-summary": {
-    "fg": "#87ceeb"
-  },
-  "message-mml": {
-    "fg": "#4e5059"
-  },
-  "message-cited-text-4": {
-    "fg": "#09f7a0"
-  },
-  "message-cited-text-3": {
-    "fg": "#09f7a0"
-  },
-  "message-cited-text-2": {
-    "fg": "#6c6f93"
-  },
-  "message-cited-text-1": {
-    "fg": "#b877db"
-  },
-  "message-separator": {
-    "fg": "#4e5059"
-  },
-  "message-header-xheader": {
-    "fg": "#fab795"
-  },
-  "message-header-name": {
-    "fg": "#09f7a0"
-  },
-  "message-header-other": {
-    "fg": "#b877db"
-  },
-  "message-header-newsgroups": {
-    "fg": "#fab795"
-  },
-  "message-header-subject": {
-    "fg": "#e95678"
-  },
-  "message-header-cc": {
-    "fg": "#c64965"
-  },
-  "message-header-to": {
-    "fg": "#e95678"
-  },
-  "epa-field-body": {
-    "fg": "turquoise"
-  },
-  "epa-field-name": {
-    "fg": "PaleTurquoise"
-  },
-  "epa-mark": {
-    "fg": "orange"
-  },
-  "epa-string": {
-    "fg": "lightyellow"
-  },
-  "epa-validity-medium": {
-    "fg": "PaleTurquoise"
-  },
-  "epa-validity-high": {
-    "fg": "PaleTurquoise"
-  },
-  "mm-command-output": {
-    "fg": "ForestGreen"
-  },
-  "change-log-acknowledgment": {
-    "fg": "#4e5059"
-  },
-  "change-log-function": {
-    "fg": "#e95678"
-  },
-  "change-log-conditionals": {
-    "fg": "#e95678"
-  },
-  "change-log-list": {
-    "fg": "#b877db"
-  },
-  "change-log-file": {
-    "fg": "#87ceeb"
-  },
-  "change-log-email": {
-    "fg": "#e95678"
-  },
-  "change-log-name": {
-    "fg": "#f09383"
-  },
-  "change-log-date": {
-    "fg": "#fab795"
-  },
-  "vc-dir-status-ignored": {
-    "fg": "#f9cec3"
-  },
-  "vc-dir-status-up-to-date": {
-    "fg": "#b877db"
-  },
-  "vc-dir-status-edited": {
-    "fg": "#e95678"
-  },
-  "vc-dir-status-warning": {
-    "fg": "#27d797"
-  },
-  "vc-dir-mark-indicator": {
-    "fg": "#87ceeb"
-  },
-  "vc-dir-file": {
-    "fg": "#87ceeb"
-  },
-  "vc-dir-directory": {
-    "fg": "#4e5059"
-  },
-  "vc-dir-header-value": {
-    "fg": "#e95678"
-  },
-  "vc-dir-header": {
-    "fg": "#87ceeb"
-  },
-  "diff-refine-added": {
-    "fg": "#09f7a0",
-    "bg": "#1c1e26"
-  },
-  "diff-refine-removed": {
-    "fg": "#e95678",
-    "bg": "#232530"
-  },
-  "diff-refine-changed": {
-    "fg": "#b877db"
-  },
-  "diff-error": {
-    "fg": "red",
-    "bg": "black"
-  },
-  "diff-nonexistent": {
-    "fg": "#21bfc2"
-  },
-  "diff-context": {
-    "fg": "#afb0b2"
-  },
-  "diff-function": {
-    "fg": "#59e3e3"
-  },
-  "diff-indicator-changed": {
-    "fg": "#f09383"
-  },
-  "diff-indicator-added": {
-    "fg": "#09f7a0"
-  },
-  "diff-indicator-removed": {
-    "fg": "#09f7a0"
-  },
-  "diff-changed": {
-    "fg": "#b877db"
-  },
-  "diff-changed-unspecified": {
-    "fg": "#b877db",
-    "bg": "grey20"
-  },
-  "diff-added": {
-    "fg": "#09f7a0",
-    "bg": "#1c1e26"
-  },
-  "diff-removed": {
-    "fg": "#e95678",
-    "bg": "#232530"
-  },
-  "diff-hunk-header": {
-    "fg": "#b877db"
-  },
-  "diff-index": {
-    "fg": "#21bfc2"
-  },
-  "diff-file-header": {
-    "fg": "#21bfc2"
-  },
-  "diff-header": {
-    "fg": "#59e3e3"
-  },
-  "grep-heading": {
-    "fg": "#09f7a0"
-  },
-  "winum-face": {
-    "fg": "#e95678"
-  },
-  "imenu-list-entry-subalist-face-3": {
-    "fg": "sandy brown"
-  },
-  "imenu-list-entry-face-3": {
-    "fg": "sandy brown"
-  },
-  "imenu-list-entry-subalist-face-2": {
-    "fg": "#fab795"
-  },
-  "imenu-list-entry-face-2": {
-    "fg": "#fab795"
-  },
-  "imenu-list-entry-subalist-face-1": {
-    "fg": "#09f7a0"
-  },
-  "imenu-list-entry-face-1": {
-    "fg": "#09f7a0"
-  },
-  "imenu-list-entry-subalist-face-0": {
-    "fg": "#e95678"
-  },
-  "imenu-list-entry-face-0": {
-    "fg": "#e95678"
-  },
-  "hs-ellipsis": {
-    "fg": "#c7c9cb",
-    "bg": "#232530"
-  },
-  "ibuffer-locked-buffer": {
-    "fg": "RosyBrown"
-  },
-  "dired-ignored": {
-    "fg": "#4e5059"
-  },
-  "dired-special": {
-    "fg": "#e95678"
-  },
-  "dired-broken-symlink": {
-    "fg": "yellow1",
-    "bg": "red1"
-  },
-  "dired-symlink": {
-    "fg": "#59e3e3"
-  },
-  "dired-directory": {
-    "fg": "#b877db"
-  },
-  "dired-set-id": {
-    "fg": "#27d797"
-  },
-  "dired-perm-write": {
-    "fg": "#c7c9cb"
-  },
-  "dired-warning": {
-    "fg": "#27d797"
-  },
-  "dired-flagged": {
-    "fg": "#e95678"
-  },
-  "dired-marked": {
-    "fg": "#6c6f93"
-  },
-  "dired-mark": {
-    "fg": "#f09383"
-  },
-  "dired-header": {
-    "fg": "#21bfc2"
-  },
-  "vhl/default-face": {
-    "bg": "#6a6a6a"
-  },
-  "symbol-overlay-face-8": {
-    "bg": "#2d4b53"
-  },
-  "symbol-overlay-face-7": {
-    "bg": "#18795c"
-  },
-  "symbol-overlay-face-6": {
-    "bg": "#383b4d"
-  },
-  "symbol-overlay-face-5": {
-    "bg": "#5e3345"
-  },
-  "symbol-overlay-face-4": {
-    "bg": "#604548"
-  },
-  "symbol-overlay-face-3": {
-    "bg": "#63504e"
-  },
-  "symbol-overlay-face-2": {
-    "bg": "#5e4574"
-  },
-  "symbol-overlay-face-1": {
-    "bg": "#22626a"
-  },
-  "symbol-overlay-default-face": {
-    "bg": "#42434d"
-  },
   "persp-face-lighter-default": {
     "fg": "#e95678"
   },
@@ -1695,6 +1645,9 @@
   },
   "anzu-mode-line": {
     "fg": "magenta"
+  },
+  "vhl/default-face": {
+    "bg": "#6a6a6a"
   },
   "info-variable-ref-item": {
     "fg": "Orange",
@@ -1887,6 +1840,205 @@
   },
   "kmacro-menu-mark": {
     "fg": "#f09383"
+  },
+  "diff-refine-added": {
+    "fg": "#09f7a0",
+    "bg": "#1c1e26"
+  },
+  "diff-refine-removed": {
+    "fg": "#e95678",
+    "bg": "#232530"
+  },
+  "diff-refine-changed": {
+    "fg": "#b877db"
+  },
+  "diff-error": {
+    "fg": "red",
+    "bg": "black"
+  },
+  "diff-nonexistent": {
+    "fg": "#21bfc2"
+  },
+  "diff-context": {
+    "fg": "#afb0b2"
+  },
+  "diff-function": {
+    "fg": "#59e3e3"
+  },
+  "diff-indicator-changed": {
+    "fg": "#f09383"
+  },
+  "diff-indicator-added": {
+    "fg": "#09f7a0"
+  },
+  "diff-indicator-removed": {
+    "fg": "#09f7a0"
+  },
+  "diff-changed": {
+    "fg": "#b877db"
+  },
+  "diff-changed-unspecified": {
+    "fg": "#b877db",
+    "bg": "grey20"
+  },
+  "diff-added": {
+    "fg": "#09f7a0",
+    "bg": "#1c1e26"
+  },
+  "diff-removed": {
+    "fg": "#e95678",
+    "bg": "#232530"
+  },
+  "diff-hunk-header": {
+    "fg": "#b877db"
+  },
+  "diff-index": {
+    "fg": "#21bfc2"
+  },
+  "diff-file-header": {
+    "fg": "#21bfc2"
+  },
+  "diff-header": {
+    "fg": "#59e3e3"
+  },
+  "vc-git-log-edit-summary-max-warning": {
+    "fg": "#e95678"
+  },
+  "vc-git-log-edit-summary-target-warning": {
+    "fg": "#27d797"
+  },
+  "log-view-commit-body": {
+    "fg": "#4e5059"
+  },
+  "log-edit-unknown-header": {
+    "fg": "#4e5059"
+  },
+  "log-edit-header": {
+    "fg": "#b877db"
+  },
+  "log-edit-summary": {
+    "fg": "#87ceeb"
+  },
+  "change-log-acknowledgment": {
+    "fg": "#4e5059"
+  },
+  "change-log-function": {
+    "fg": "#e95678"
+  },
+  "change-log-conditionals": {
+    "fg": "#e95678"
+  },
+  "change-log-list": {
+    "fg": "#b877db"
+  },
+  "change-log-file": {
+    "fg": "#87ceeb"
+  },
+  "change-log-email": {
+    "fg": "#e95678"
+  },
+  "change-log-name": {
+    "fg": "#f09383"
+  },
+  "change-log-date": {
+    "fg": "#fab795"
+  },
+  "message-mml": {
+    "fg": "#4e5059"
+  },
+  "message-cited-text-4": {
+    "fg": "#09f7a0"
+  },
+  "message-cited-text-3": {
+    "fg": "#09f7a0"
+  },
+  "message-cited-text-2": {
+    "fg": "#6c6f93"
+  },
+  "message-cited-text-1": {
+    "fg": "#b877db"
+  },
+  "message-separator": {
+    "fg": "#4e5059"
+  },
+  "message-header-xheader": {
+    "fg": "#fab795"
+  },
+  "message-header-name": {
+    "fg": "#09f7a0"
+  },
+  "message-header-other": {
+    "fg": "#b877db"
+  },
+  "message-header-newsgroups": {
+    "fg": "#fab795"
+  },
+  "message-header-subject": {
+    "fg": "#e95678"
+  },
+  "message-header-cc": {
+    "fg": "#c64965"
+  },
+  "message-header-to": {
+    "fg": "#e95678"
+  },
+  "dired-ignored": {
+    "fg": "#4e5059"
+  },
+  "dired-special": {
+    "fg": "#e95678"
+  },
+  "dired-broken-symlink": {
+    "fg": "yellow1",
+    "bg": "red1"
+  },
+  "dired-symlink": {
+    "fg": "#59e3e3"
+  },
+  "dired-directory": {
+    "fg": "#b877db"
+  },
+  "dired-set-id": {
+    "fg": "#27d797"
+  },
+  "dired-perm-write": {
+    "fg": "#c7c9cb"
+  },
+  "dired-warning": {
+    "fg": "#27d797"
+  },
+  "dired-flagged": {
+    "fg": "#e95678"
+  },
+  "dired-marked": {
+    "fg": "#6c6f93"
+  },
+  "dired-mark": {
+    "fg": "#f09383"
+  },
+  "dired-header": {
+    "fg": "#21bfc2"
+  },
+  "epa-field-body": {
+    "fg": "turquoise"
+  },
+  "epa-field-name": {
+    "fg": "PaleTurquoise"
+  },
+  "epa-mark": {
+    "fg": "orange"
+  },
+  "epa-string": {
+    "fg": "lightyellow"
+  },
+  "epa-validity-medium": {
+    "fg": "PaleTurquoise"
+  },
+  "epa-validity-high": {
+    "fg": "PaleTurquoise"
+  },
+  "mm-command-output": {
+    "fg": "ForestGreen"
   },
   "info-index-match": {
     "fg": "#09f7a0",
