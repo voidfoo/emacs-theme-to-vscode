@@ -68,7 +68,7 @@ const EDITOR_COLORS = {
     bg: ["input.background", "inlineChatInput.background"],
   },
   "mode-line": {
-    bg: ["statusBar.background", "input.background", "inlineChatInput.background"],
+    bg: "statusBar.background",
     fg: "statusBar.foreground",
   },
   "mode-line-inactive": {
@@ -197,16 +197,18 @@ function processThemeColors(themeData) {
     colors["editor.selectionBackground"] += "40"; // 25% opacity
   }
 
-  // Ensure input/chat colors have reasonable fallbacks based on mode-line or default
+  // Ensure input/chat colors have reasonable fallbacks based on computed luminance
+  // Don't use mode-line colors as they're designed for status bars, not input fields
   if (!colors["input.background"]) {
-    colors["input.background"] = themeData["mode-line"]?.bg
-      ? normalizeColor(themeData["mode-line"].bg)
-      : adjustColorLuminance(defaultBg, themeType === "dark" ? 0.05 : -0.05);
+    colors["input.background"] = adjustColorLuminance(
+      defaultBg,
+      themeType === "dark" ? 0.08 : -0.12
+    );
   }
   if (!colors["input.foreground"]) {
-    colors["input.foreground"] = themeData["mode-line"]?.fg
-      ? normalizeColor(themeData["mode-line"].fg)
-      : defaultFg;
+    colors["input.foreground"] = getContrastRatio(defaultFg, colors["input.background"]) >= 4.5
+      ? defaultFg
+      : adjustColorForContrast(defaultFg, colors["input.background"]);
   }
   if (!colors["input.placeholderForeground"]) {
     colors["input.placeholderForeground"] = themeData["minibuffer-prompt"]?.fg
@@ -228,7 +230,7 @@ function processThemeColors(themeData) {
     colors["editorCursor.foreground"] = defaultFg;
   }
 
-  // Ensure statusBar colors have appropriate defaults
+  // Ensure statusBar colors have appropriate defaults (use mode-line if available, otherwise compute)
   if (!colors["statusBar.background"]) {
     colors["statusBar.background"] = themeData["mode-line"]?.bg
       ? normalizeColor(themeData["mode-line"].bg)
@@ -237,7 +239,9 @@ function processThemeColors(themeData) {
   if (!colors["statusBar.foreground"]) {
     colors["statusBar.foreground"] = themeData["mode-line"]?.fg
       ? normalizeColor(themeData["mode-line"].fg)
-      : defaultFg;
+      : getContrastRatio(defaultFg, colors["statusBar.background"]) >= 4.5
+      ? defaultFg
+      : adjustColorForContrast(defaultFg, colors["statusBar.background"]);
   }
   if (!colors["statusBar.noFolderBackground"]) {
     const statusBg = colors["statusBar.background"];
@@ -378,16 +382,21 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
       (effectiveType === "dark" ? "#FFFFFF" : "#000000"),
   );
 
-  // Ensure input/chat colors have reasonable fallbacks based on mode-line or default
+  // Ensure input/chat colors have reasonable fallbacks based on computed luminance
+  // Don't use mode-line colors as they're designed for status bars, not input fields
   if (!vsCodeTheme.colors["input.background"]) {
-    vsCodeTheme.colors["input.background"] = emacsTheme["mode-line"]?.bg
-      ? normalizeColor(emacsTheme["mode-line"].bg)
-      : adjustColorLuminance(defaultBg, effectiveType === "dark" ? 0.05 : -0.05);
+    vsCodeTheme.colors["input.background"] = adjustColorLuminance(
+      defaultBg,
+      effectiveType === "dark" ? 0.08 : -0.12
+    );
   }
   if (!vsCodeTheme.colors["input.foreground"]) {
-    vsCodeTheme.colors["input.foreground"] = emacsTheme["mode-line"]?.fg
-      ? normalizeColor(emacsTheme["mode-line"].fg)
-      : defaultFg;
+    vsCodeTheme.colors["input.foreground"] = getContrastRatio(
+      defaultFg,
+      vsCodeTheme.colors["input.background"]
+    ) >= 4.5
+      ? defaultFg
+      : adjustColorForContrast(defaultFg, vsCodeTheme.colors["input.background"]);
   }
   if (!vsCodeTheme.colors["input.placeholderForeground"]) {
     vsCodeTheme.colors["input.placeholderForeground"] = emacsTheme["minibuffer-prompt"]?.fg
@@ -409,11 +418,24 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
     vsCodeTheme.colors["editorCursor.foreground"] = defaultFg;
   }
 
-  // Ensure statusBar colors have appropriate defaults
+  // Ensure statusBar colors have appropriate defaults (use mode-line if available, otherwise compute)
+  if (!vsCodeTheme.colors["statusBar.background"]) {
+    vsCodeTheme.colors["statusBar.background"] = emacsTheme["mode-line"]?.bg
+      ? normalizeColor(emacsTheme["mode-line"].bg)
+      : adjustColorLuminance(defaultBg, effectiveType === "dark" ? 0.08 : -0.08);
+  }
   if (!vsCodeTheme.colors["statusBar.foreground"]) {
     vsCodeTheme.colors["statusBar.foreground"] = emacsTheme["mode-line"]?.fg
       ? normalizeColor(emacsTheme["mode-line"].fg)
-      : defaultFg;
+      : getContrastRatio(defaultFg, vsCodeTheme.colors["statusBar.background"]) >= 4.5
+      ? defaultFg
+      : adjustColorForContrast(defaultFg, vsCodeTheme.colors["statusBar.background"]);
+  }
+  if (!vsCodeTheme.colors["statusBar.noFolderBackground"]) {
+    const statusBg = vsCodeTheme.colors["statusBar.background"];
+    if (statusBg) {
+      vsCodeTheme.colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
+    }
   }
   if (!vsCodeTheme.colors["statusBar.noFolderBackground"]) {
     const statusBg = vsCodeTheme.colors["statusBar.background"];
