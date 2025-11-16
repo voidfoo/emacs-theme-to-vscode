@@ -26,7 +26,11 @@ const PACKAGE_JSON_PATH = join(
 /** @type {Record<string, {fg?: string | string[]; bg?: string | string[]; }>} */
 const EDITOR_COLORS = {
   default: {
-    bg: "editor.background",
+    bg: [
+      "editor.background",
+      "panel.background",
+      "editorGutter.background",
+    ],
     fg: "editor.foreground",
   },
   terminal: {
@@ -55,6 +59,23 @@ const EDITOR_COLORS = {
   },
   "line-number-current-line": {
     fg: "editorLineNumber.activeForeground",
+  },
+  "minibuffer-prompt": {
+    fg: [
+      "input.placeholderForeground",
+      "inlineChatInput.placeholderForeground",
+    ],
+    bg: ["input.background", "inlineChatInput.background"],
+  },
+  "mode-line": {
+    bg: ["statusBar.background", "input.background", "inlineChatInput.background"],
+    fg: "statusBar.foreground",
+  },
+  "mode-line-inactive": {
+    bg: "statusBar.noFolderBackground",
+  },
+  "vertical-border": {
+    fg: "editorGroup.border",
   },
 };
 
@@ -174,6 +195,55 @@ function processThemeColors(themeData) {
   }
   if (colors["editor.selectionBackground"]) {
     colors["editor.selectionBackground"] += "40"; // 25% opacity
+  }
+
+  // Ensure input/chat colors have reasonable fallbacks based on mode-line or default
+  if (!colors["input.background"]) {
+    colors["input.background"] = themeData["mode-line"]?.bg
+      ? normalizeColor(themeData["mode-line"].bg)
+      : adjustColorLuminance(defaultBg, themeType === "dark" ? 0.05 : -0.05);
+  }
+  if (!colors["input.foreground"]) {
+    colors["input.foreground"] = themeData["mode-line"]?.fg
+      ? normalizeColor(themeData["mode-line"].fg)
+      : defaultFg;
+  }
+  if (!colors["input.placeholderForeground"]) {
+    colors["input.placeholderForeground"] = themeData["minibuffer-prompt"]?.fg
+      ? normalizeColor(themeData["minibuffer-prompt"].fg)
+      : adjustColorForContrast(defaultFg, defaultBg);
+  }
+  if (!colors["inlineChatInput.background"]) {
+    colors["inlineChatInput.background"] = colors["input.background"];
+  }
+  if (!colors["inlineChatInput.foreground"]) {
+    colors["inlineChatInput.foreground"] = colors["input.foreground"];
+  }
+  if (!colors["inlineChatInput.placeholderForeground"]) {
+    colors["inlineChatInput.placeholderForeground"] = colors["input.placeholderForeground"];
+  }
+
+  // Ensure cursor color has a foreground (for visibility)
+  if (!colors["editorCursor.foreground"]) {
+    colors["editorCursor.foreground"] = defaultFg;
+  }
+
+  // Ensure statusBar colors have appropriate defaults
+  if (!colors["statusBar.background"]) {
+    colors["statusBar.background"] = themeData["mode-line"]?.bg
+      ? normalizeColor(themeData["mode-line"].bg)
+      : adjustColorLuminance(defaultBg, themeType === "dark" ? 0.08 : -0.08);
+  }
+  if (!colors["statusBar.foreground"]) {
+    colors["statusBar.foreground"] = themeData["mode-line"]?.fg
+      ? normalizeColor(themeData["mode-line"].fg)
+      : defaultFg;
+  }
+  if (!colors["statusBar.noFolderBackground"]) {
+    const statusBg = colors["statusBar.background"];
+    if (statusBg) {
+      colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
+    }
   }
 
   // Handle diff backgrounds specially
@@ -298,7 +368,59 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
     vsCodeTheme.colors["panel.background"] = computedSidebarBg;
   }
 
-  // Process syntax highlighting and UI colors
+  // Get default theme values for fallbacks
+  const defaultBg = normalizeColor(
+    emacsTheme.default?.bg ||
+      (effectiveType === "dark" ? "#000000" : "#ffffff"),
+  );
+  const defaultFg = normalizeColor(
+    emacsTheme.default?.fg ||
+      (effectiveType === "dark" ? "#FFFFFF" : "#000000"),
+  );
+
+  // Ensure input/chat colors have reasonable fallbacks based on mode-line or default
+  if (!vsCodeTheme.colors["input.background"]) {
+    vsCodeTheme.colors["input.background"] = emacsTheme["mode-line"]?.bg
+      ? normalizeColor(emacsTheme["mode-line"].bg)
+      : adjustColorLuminance(defaultBg, effectiveType === "dark" ? 0.05 : -0.05);
+  }
+  if (!vsCodeTheme.colors["input.foreground"]) {
+    vsCodeTheme.colors["input.foreground"] = emacsTheme["mode-line"]?.fg
+      ? normalizeColor(emacsTheme["mode-line"].fg)
+      : defaultFg;
+  }
+  if (!vsCodeTheme.colors["input.placeholderForeground"]) {
+    vsCodeTheme.colors["input.placeholderForeground"] = emacsTheme["minibuffer-prompt"]?.fg
+      ? normalizeColor(emacsTheme["minibuffer-prompt"].fg)
+      : adjustColorForContrast(defaultFg, defaultBg);
+  }
+  if (!vsCodeTheme.colors["inlineChatInput.background"]) {
+    vsCodeTheme.colors["inlineChatInput.background"] = vsCodeTheme.colors["input.background"];
+  }
+  if (!vsCodeTheme.colors["inlineChatInput.foreground"]) {
+    vsCodeTheme.colors["inlineChatInput.foreground"] = vsCodeTheme.colors["input.foreground"];
+  }
+  if (!vsCodeTheme.colors["inlineChatInput.placeholderForeground"]) {
+    vsCodeTheme.colors["inlineChatInput.placeholderForeground"] = vsCodeTheme.colors["input.placeholderForeground"];
+  }
+
+  // Ensure cursor color has a foreground (for visibility)
+  if (!vsCodeTheme.colors["editorCursor.foreground"]) {
+    vsCodeTheme.colors["editorCursor.foreground"] = defaultFg;
+  }
+
+  // Ensure statusBar colors have appropriate defaults
+  if (!vsCodeTheme.colors["statusBar.foreground"]) {
+    vsCodeTheme.colors["statusBar.foreground"] = emacsTheme["mode-line"]?.fg
+      ? normalizeColor(emacsTheme["mode-line"].fg)
+      : defaultFg;
+  }
+  if (!vsCodeTheme.colors["statusBar.noFolderBackground"]) {
+    const statusBg = vsCodeTheme.colors["statusBar.background"];
+    if (statusBg) {
+      vsCodeTheme.colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
+    }
+  }
   for (const [faceName, faceData] of Object.entries(emacsTheme)) {
     const scopes = FACE_TO_SCOPE_MAP[faceName] || [];
 
