@@ -6,8 +6,6 @@ This extension brings popular Emacs themes to Visual Studio Code. The themes hav
 
 ### Spacemacs
 The iconic Spacemacs themes collection, known for its elegant design and carefully chosen colors:
-- **Spacemacs Dark** - The default dark variant, optimized for long coding sessions
-- **Spacemacs Light** - A clean and readable light variant
 
 ### Leuven
 A highly legible light theme originally designed for use with Org mode in Emacs.
@@ -38,6 +36,8 @@ Besides built-in themes, the following themes are converted from their original 
 - [Spacemacs Theme](https://github.com/nashamri/spacemacs-theme)
 - [Leuven Theme](https://github.com/fniessen/emacs-leuven-theme)
 - [Doom Themes](https://github.com/doomemacs/themes)
+- [Modus Themes](https://github.com/protesilaos/modus-themes)
+- [Ef (εὖ) Themes](https://github.com/protesilaos/ef-themes)
 
 ## Contributing
 

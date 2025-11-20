@@ -2,6 +2,10 @@
 
 All notable changes to the "emacs-themes" extension.
 
+## 0.0.5 (2025-11-19)
+
+- Add links to README.md
+
 ## 0.0.4 (2025-11-16)
 
 - add Modus and EF to README.md
