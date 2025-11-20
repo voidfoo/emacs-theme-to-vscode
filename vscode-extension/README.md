@@ -15,6 +15,9 @@ A highly legible light theme originally designed for use with Org mode in Emacs.
 ### Doom
 The most popular Emacs theme pack.
 
+### Modus and Ef (εὖ)
+Accessible, colorful and legible themes by Protesilaos Stavrou.
+
 ## Installation
 
 1. Open VS Code
