@@ -2,6 +2,10 @@
 
 All notable changes to the "emacs-themes" extension.
 
+## 0.0.6 (2025-11-20)
+
+- Set "activityBar.foreground" and "activityBar.inactiveForeground" for better contrast.
+
 ## 0.0.5 (2025-11-19)
 
 - Add links to README.md
