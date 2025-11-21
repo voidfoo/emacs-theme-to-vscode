@@ -153,6 +153,15 @@ function processThemeColors(themeData) {
   colors["activityBar.background"] = sidebarBg;
   colors["panel.background"] = sidebarBg;
 
+  // Set activity bar foreground colors based on theme type
+  if (themeType === "dark") {
+    colors["activityBar.foreground"] = "#cccccc";
+    colors["activityBar.inactiveForeground"] = "#888888";
+  } else {
+    colors["activityBar.foreground"] = "#333333";
+    colors["activityBar.inactiveForeground"] = "#666666";
+  }
+
   // Process each face and its mappings
   for (const [face, faceData] of Object.entries(themeData)) {
     if (!faceData) continue;
@@ -383,6 +392,16 @@ function convertToVSCodeTheme(emacsTheme, themeName) {
   }
   if (!vsCodeTheme.colors["panel.background"]) {
     vsCodeTheme.colors["panel.background"] = computedSidebarBg;
+  }
+
+  // Set activity bar foreground colors based on theme type
+  if (!vsCodeTheme.colors["activityBar.foreground"]) {
+    vsCodeTheme.colors["activityBar.foreground"] =
+      effectiveType === "dark" ? "#cccccc" : "#333333";
+  }
+  if (!vsCodeTheme.colors["activityBar.inactiveForeground"]) {
+    vsCodeTheme.colors["activityBar.inactiveForeground"] =
+      effectiveType === "dark" ? "#888888" : "#666666";
   }
 
   // Get default theme values for fallbacks
