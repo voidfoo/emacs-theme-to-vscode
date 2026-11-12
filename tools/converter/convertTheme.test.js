@@ -30,6 +30,32 @@ test("classifies representative real theme dumps", async () => {
   }
 });
 
+test("combines exported font styles, including style-only faces", () => {
+  const { tokenColors } = convertToVSCodeTheme(
+    {
+      default: { fg: "#fff", bg: "#000" },
+      "font-lock-keyword-face": {
+        bold: true,
+        italic: true,
+        underline: true,
+        strike: true,
+      },
+      "font-lock-string-face": { fg: "#fff", italic: true },
+    },
+    "example",
+  );
+  assert.equal(
+    tokenColors.find((rule) => rule.name === "font-lock-keyword-face")?.settings
+      .fontStyle,
+    "bold italic underline strikethrough",
+  );
+  assert.equal(
+    tokenColors.find((rule) => rule.name === "font-lock-string-face")?.settings
+      .fontStyle,
+    "italic",
+  );
+});
+
 test("applies translucent selection, find and diff-hl colors", () => {
   const theme = {
     default: { fg: "#fff", bg: "#000" },

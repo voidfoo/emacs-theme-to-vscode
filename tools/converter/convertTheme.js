@@ -314,14 +314,12 @@ function buildTokenColors(emacsTheme, vsCodeTheme) {
       if (faceData.fg) settings.foreground = normalizeColor(faceData.fg);
       if (faceData.bg) settings.background = normalizeColor(faceData.bg);
 
-      // Convert Emacs face attributes to VS Code settings
-      if (faceData.weight === "bold") settings.fontStyle = "bold";
-      if (faceData.slant === "italic") {
-        settings.fontStyle = settings.fontStyle
-          ? `${settings.fontStyle} italic`
-          : "italic";
-      }
-      if (faceData.underline) settings.fontStyle = "underline";
+      const styles = [];
+      if (faceData.bold) styles.push("bold");
+      if (faceData.italic) styles.push("italic");
+      if (faceData.underline) styles.push("underline");
+      if (faceData.strike) styles.push("strikethrough");
+      if (styles.length) settings.fontStyle = styles.join(" ");
 
       if (
         settings.foreground === defaultFg &&

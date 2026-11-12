@@ -8,6 +8,7 @@ All notable changes to the "emacs-themes" extension.
 - Make selections and find matches translucent and map diff-hl colors.
 - Use explicit syntax mappings and apply Emacs UI faces to workbench colors.
 - Improve fallback color contrast using WCAG relative luminance.
+- Support exported font styles when the Emacs face dumps are refreshed.
 
 ## 0.0.6 (2025-11-20)
 

@@ -24,7 +24,7 @@ This tool extracts face definitions from Emacs themes and saves them as JSON fil
 
 ## Output Format
 
-The tool creates a JSON file mapping face names to their colors:
+The tool creates a JSON file mapping face names to their colors and styles:
 
 ```json
 {
@@ -33,9 +33,12 @@ The tool creates a JSON file mapping face names to their colors:
   },
   "font-lock-string-face": {
     "fg": "#008000",
-    "bg": "#FFFFFF"
+    "bg": "#FFFFFF",
+    "italic": true
   }
 }
 ```
 
-Only faces with explicit foreground or background colors are included.
+Faces with a color or a bold, italic, underline, or strike style are included.
+Style flags are emitted only when true. Keep theme options at their defaults
+when exporting; bold and italic options are not enabled by the dumper.

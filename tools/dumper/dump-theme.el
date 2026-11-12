@@ -9,7 +9,7 @@
     (disable-theme theme)))
 
 (defun dump-theme-faces (theme-name output-file)
-  "Dump face colors from THEME-NAME to OUTPUT-FILE in JSON format.
+  "Dump face colors and styles from THEME-NAME to OUTPUT-FILE in JSON format.
 THEME-NAME should be a symbol naming an available theme.
 OUTPUT-FILE is the path where the JSON will be written.
 Disables all currently enabled themes before loading the target theme."
@@ -41,17 +41,29 @@ Disables all currently enabled themes before loading the target theme."
 
       ;; Collect face attributes
       (dolist (face all-faces)
-        (let ((fg (face-attribute face :foreground nil t))
-              (bg (face-attribute face :background nil t)))
-          ;; Only store faces that have explicit colors
+        (let* ((fg (face-attribute face :foreground nil t))
+               (bg (face-attribute face :background nil t))
+               (weight (face-attribute face :weight nil t))
+               (slant (face-attribute face :slant nil t))
+               (underline (face-attribute face :underline nil t))
+               (strike (face-attribute face :strike-through nil t))
+               (bold (memq weight '(semi-bold demibold bold extra-bold ultra-bold heavy black ultra-heavy)))
+               (italic (memq slant '(italic oblique reverse-italic reverse-oblique)))
+               (underline (and underline (not (eq underline 'unspecified))))
+               (strike (and strike (not (eq strike 'unspecified)))))
           (when (or (not (eq fg 'unspecified))
-                    (not (eq bg 'unspecified)))
+                    (not (eq bg 'unspecified))
+                    bold italic underline strike)
             (puthash (symbol-name face)
                      (let ((attrs (make-hash-table :test 'equal)))
                        (unless (eq fg 'unspecified)
                          (puthash "fg" fg attrs))
                        (unless (eq bg 'unspecified)
                          (puthash "bg" bg attrs))
+                       (when bold (puthash "bold" t attrs))
+                       (when italic (puthash "italic" t attrs))
+                       (when underline (puthash "underline" t attrs))
+                       (when strike (puthash "strike" t attrs))
                        attrs)
                      face-attrs))))
 
