@@ -2,6 +2,7 @@
 
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { readFile } from "node:fs/promises";
 import { convertToVSCodeTheme, detectThemeType } from "./convertTheme.js";
 
 test("converts dark and light themes without running the CLI", () => {
@@ -12,6 +13,21 @@ test("converts dark and light themes without running the CLI", () => {
   const result = convertToVSCodeTheme(dark, "example");
   assert.equal(result.name, "example");
   assert.equal(result.colors["editor.background"], "#000000");
+});
+
+test("classifies representative real theme dumps", async () => {
+  for (const [name, expected] of [
+    ["modus-vivendi", "dark"],
+    ["modus-operandi", "light"],
+    ["doom-one", "dark"],
+    ["leuven", "light"],
+  ]) {
+    const data = await readFile(
+      new URL(`../../emacs-definitions/emacs-${name}.json`, import.meta.url),
+      "utf8",
+    );
+    assert.equal(detectThemeType(JSON.parse(data)), expected);
+  }
 });
 
 test("applies translucent selection, find and diff-hl colors", () => {

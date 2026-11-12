@@ -77,15 +77,35 @@ export function withAlpha(color, alpha) {
   );
 }
 
-// Helper function to calculate luminance
-/**
- * @param {string} hexColor
- */
+/** @param {string} hexColor */
 export function getLuminance(hexColor) {
-  const rgb = hexColor.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
-  if (!rgb) return 0;
-  const [r, g, b] = rgb.slice(1).map((x) => parseInt(x, 16) / 255);
+  const color = normalizeColor(hexColor);
+  const [r, g, b] = [1, 3, 5].map((i) => {
+    const channel = parseInt(color.slice(i, i + 2), 16) / 255;
+    return channel <= 0.04045
+      ? channel / 12.92
+      : ((channel + 0.055) / 1.055) ** 2.4;
+  });
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+/**
+ * @param {string} color
+ * @param {string} target
+ * @param {number} amount
+ */
+function mix(color, target, amount) {
+  const from = normalizeColor(color);
+  const to = normalizeColor(target);
+  return `#${[1, 3, 5]
+    .map((i) => {
+      const a = parseInt(from.slice(i, i + 2), 16);
+      const b = parseInt(to.slice(i, i + 2), 16);
+      return Math.round(a + (b - a) * amount)
+        .toString(16)
+        .padStart(2, "0");
+    })
+    .join("")}`;
 }
 
 /**
@@ -93,20 +113,10 @@ export function getLuminance(hexColor) {
  * @param {number} factor
  */
 export function adjustColorLuminance(hexColor, factor) {
-  const rgb = hexColor.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
-  if (!rgb) return hexColor;
-
-  const [r, g, b] = rgb.slice(1).map((x) => parseInt(x, 16));
-  const adjust = (/** @type {number} */ value) => {
-    const newValue = Math.round(value * (1 + factor));
-    return Math.min(255, Math.max(0, newValue));
-  };
-
-  const newR = adjust(r).toString(16).padStart(2, "0");
-  const newG = adjust(g).toString(16).padStart(2, "0");
-  const newB = adjust(b).toString(16).padStart(2, "0");
-
-  return `#${newR}${newG}${newB}`;
+  if (!Number.isFinite(factor) || factor < -1 || factor > 1) {
+    throw new RangeError(`Invalid luminance factor: ${factor}`);
+  }
+  return mix(hexColor, factor < 0 ? "#000000" : "#ffffff", Math.abs(factor));
 }
 
 // Helper function to calculate contrast ratio
@@ -133,34 +143,29 @@ export function adjustColorForContrast(
   background,
   minContrast = 4.5,
 ) {
-  // Check current contrast
-  const currentContrast = getContrastRatio(foreground, background);
-  if (currentContrast >= minContrast) {
-    return foreground;
+  if (!Number.isFinite(minContrast) || minContrast < 1 || minContrast > 21) {
+    throw new RangeError(`Invalid contrast ratio: ${minContrast}`);
   }
-
-  // Need to adjust - make foreground more extreme (lighter or darker)
-  const fgLum = getLuminance(foreground);
-  const bgLum = getLuminance(background);
-
-  // If background is light, darken foreground; if dark, lighten it
-  const shouldDarken = bgLum > 0.5;
-
-  // Try adjustments incrementally
-  for (let factor = 0.1; factor <= 0.5; factor += 0.05) {
-    const adjusted = shouldDarken
-      ? adjustColorLuminance(foreground, -factor)
-      : adjustColorLuminance(foreground, factor);
-    const contrast = getContrastRatio(adjusted, background);
-    if (contrast >= minContrast) {
-      return adjusted;
-    }
+  const fg = normalizeColor(foreground);
+  const bg = normalizeColor(background);
+  if (getContrastRatio(fg, bg) >= minContrast) return fg;
+  const target =
+    getContrastRatio("#ffffff", bg) > getContrastRatio("#000000", bg)
+      ? "#ffffff"
+      : "#000000";
+  if (getContrastRatio(target, bg) < minContrast) {
+    throw new RangeError(
+      `Contrast ratio ${minContrast} is unattainable against ${bg}`,
+    );
   }
-
-  // If we still can't reach minContrast, return the most extreme adjustment
-  return shouldDarken
-    ? adjustColorLuminance(foreground, -0.5)
-    : adjustColorLuminance(foreground, 0.5);
+  let low = 0;
+  let high = 1;
+  for (let i = 0; i < 24; i++) {
+    const mid = (low + high) / 2;
+    if (getContrastRatio(mix(fg, target, mid), bg) >= minContrast) high = mid;
+    else low = mid;
+  }
+  return mix(fg, target, high);
 }
 
 /**

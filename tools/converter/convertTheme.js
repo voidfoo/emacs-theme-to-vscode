@@ -2,7 +2,6 @@
 
 import { FACE_TO_SCOPE_MAP } from "./faceToScopeMap.js";
 import {
-  getLuminance,
   adjustColorLuminance,
   getContrastRatio,
   adjustColorForContrast,
@@ -106,10 +105,9 @@ export function detectThemeType(themeData) {
   const defaultFace = themeData.default || {};
   const bg = normalizeColor(defaultFace.bg || "#ffffff");
 
-  // Calculate luminance using more accurate formula
-  const luminance = getLuminance(bg);
-
-  return luminance < 0.5 ? "dark" : "light";
+  return getContrastRatio("#ffffff", bg) > getContrastRatio("#000000", bg)
+    ? "dark"
+    : "light";
 }
 
 /** @typedef {{ [s: string]: any; default: { fg: string; bg: string } }} EmacsTheme */
