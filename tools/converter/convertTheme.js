@@ -78,189 +78,6 @@ export function detectThemeType(themeData) {
 }
 
 /**
- * @param {{ [s: string]: any; "default": { fg: string; bg: string } }} themeData
- */
-function processThemeColors(themeData) {
-  /** @type {Record<string, string | undefined >} */
-  const colors = {};
-  const themeType = detectThemeType(themeData);
-  const defaultBg = normalizeColor(
-    themeData.default?.bg || (themeType === "dark" ? "#000000" : "#ffffff"),
-  );
-  const defaultFg = normalizeColor(
-    themeData.default?.fg || (themeType === "dark" ? "#FFFFFF" : "#000000"),
-  );
-
-  // Set up base theme colors
-  colors["editor.background"] = defaultBg;
-  colors["editor.foreground"] = defaultFg;
-  colors["terminal.background"] = defaultBg;
-  colors["terminal.foreground"] = defaultFg;
-
-  // Always set sidebar colors with appropriate contrast
-  const sidebarBg =
-    themeType === "dark"
-      ? adjustColorLuminance(defaultBg, 0.1) // Make slightly lighter in dark themes
-      : adjustColorLuminance(defaultBg, -0.1); // Make slightly darker in light themes
-  colors["sideBar.background"] = sidebarBg;
-  colors["activityBar.background"] = sidebarBg;
-  colors["panel.background"] = sidebarBg;
-
-  // Set activity bar foreground colors based on theme type
-  if (themeType === "dark") {
-    colors["activityBar.foreground"] = "#cccccc";
-    colors["activityBar.inactiveForeground"] = "#888888";
-  } else {
-    colors["activityBar.foreground"] = "#333333";
-    colors["activityBar.inactiveForeground"] = "#666666";
-  }
-
-  // Process each face and its mappings
-  for (const [face, faceData] of Object.entries(themeData)) {
-    if (!faceData) continue;
-
-    // Convert colors and check contrast
-    const fg = faceData.fg ? normalizeColor(faceData.fg) : null;
-    const bg = faceData.bg ? normalizeColor(faceData.bg) : null;
-
-    if (fg && EDITOR_COLORS[face]?.fg) {
-      const targets = Array.isArray(EDITOR_COLORS[face].fg)
-        ? EDITOR_COLORS[face].fg
-        : [EDITOR_COLORS[face].fg];
-
-      for (const target of targets) {
-        // Adjust color if contrast is insufficient
-        colors[target] =
-          getContrastRatio(fg, defaultBg) < 4.5
-            ? adjustColorForContrast(fg, defaultBg)
-            : fg;
-      }
-    }
-
-    if (bg && EDITOR_COLORS[face]?.bg) {
-      const targets = Array.isArray(EDITOR_COLORS[face].bg)
-        ? EDITOR_COLORS[face].bg
-        : [EDITOR_COLORS[face].bg];
-
-      for (const target of targets) {
-        colors[target] = bg;
-      }
-    }
-  }
-
-  // Add selection and find match colors with transparency
-  if (colors["editor.findMatchBackground"]) {
-    colors["editor.findMatchBackground"] = withAlpha(
-      colors["editor.findMatchBackground"],
-      0.5,
-    );
-  }
-  if (colors["editor.selectionBackground"]) {
-    colors["editor.selectionBackground"] = withAlpha(
-      colors["editor.selectionBackground"],
-      0.25,
-    );
-  }
-
-  // Ensure input/chat colors have reasonable fallbacks based on computed luminance
-  // Don't use mode-line colors as they're designed for status bars, not input fields
-  if (!colors["input.background"]) {
-    colors["input.background"] = adjustColorLuminance(
-      defaultBg,
-      themeType === "dark" ? 0.08 : -0.12,
-    );
-  }
-  if (!colors["input.foreground"]) {
-    colors["input.foreground"] =
-      getContrastRatio(defaultFg, colors["input.background"]) >= 4.5
-        ? defaultFg
-        : adjustColorForContrast(defaultFg, colors["input.background"]);
-  }
-  if (!colors["input.placeholderForeground"]) {
-    colors["input.placeholderForeground"] = themeData["minibuffer-prompt"]?.fg
-      ? normalizeColor(themeData["minibuffer-prompt"].fg)
-      : adjustColorForContrast(defaultFg, defaultBg);
-  }
-  if (!colors["inlineChatInput.background"]) {
-    colors["inlineChatInput.background"] = colors["input.background"];
-  }
-  if (!colors["inlineChatInput.foreground"]) {
-    colors["inlineChatInput.foreground"] = colors["input.foreground"];
-  }
-  if (!colors["inlineChatInput.placeholderForeground"]) {
-    colors["inlineChatInput.placeholderForeground"] =
-      colors["input.placeholderForeground"];
-  }
-
-  // Ensure cursor color has a foreground (for visibility)
-  if (!colors["editorCursor.foreground"]) {
-    colors["editorCursor.foreground"] = defaultFg;
-  }
-
-  // Ensure statusBar colors have appropriate defaults (use mode-line if available, otherwise compute)
-  if (!colors["statusBar.background"]) {
-    colors["statusBar.background"] = themeData["mode-line"]?.bg
-      ? normalizeColor(themeData["mode-line"].bg)
-      : adjustColorLuminance(defaultBg, themeType === "dark" ? 0.08 : -0.08);
-  }
-  if (!colors["statusBar.foreground"]) {
-    colors["statusBar.foreground"] = themeData["mode-line"]?.fg
-      ? normalizeColor(themeData["mode-line"].fg)
-      : getContrastRatio(defaultFg, colors["statusBar.background"]) >= 4.5
-        ? defaultFg
-        : adjustColorForContrast(defaultFg, colors["statusBar.background"]);
-  }
-  if (!colors["statusBar.noFolderBackground"]) {
-    const statusBg = colors["statusBar.background"];
-    if (statusBg) {
-      colors["statusBar.noFolderBackground"] = withAlpha(statusBg, 0.25);
-    }
-  }
-
-  // Ensure remote indicator button has appropriate colors
-  if (
-    !colors["statusBarItem.remoteForeground"] &&
-    colors["statusBar.foreground"]
-  ) {
-    colors["statusBarItem.remoteForeground"] = colors["statusBar.foreground"];
-  }
-  if (
-    !colors["statusBarItem.remoteBackground"] &&
-    colors["statusBar.background"]
-  ) {
-    colors["statusBarItem.remoteBackground"] = colors["statusBar.background"];
-  }
-
-  // Handle diff backgrounds specially
-  const diffMappings = {
-    "diff-hl-margin-insert": {
-      fg: "diffEditor.insertedLineBackground",
-      bg: "diffEditor.insertedTextBackground",
-    },
-    "diff-hl-margin-delete": {
-      fg: "diffEditor.removedLineBackground",
-      bg: "diffEditor.removedTextBackground",
-    },
-    "diff-hl-margin-change": {
-      fg: "diffEditor.modifiedLineBackground",
-      bg: "diffEditor.modifiedTextBackground",
-    },
-  };
-
-  for (const [face, mapping] of Object.entries(diffMappings)) {
-    if (themeData[face]) {
-      const fgColor = normalizeColor(themeData[face].fg);
-      if (fgColor) {
-        colors[mapping.fg] = withAlpha(fgColor, 0x30 / 255);
-        colors[mapping.bg] = withAlpha(fgColor, 0x20 / 255);
-      }
-    }
-  }
-
-  return colors;
-}
-
-/**
  * @param {string} faceName
  * @param {{ default: { bg: any; }; }} faceData
  */
@@ -301,22 +118,26 @@ function inferScopes(faceName, faceData) {
   return scopes;
 }
 
-/**
- * @param {{ [s: string]: any; "default": { fg: string; bg: string } }}  emacsTheme
- * @param {string} themeName
- */
-export function convertToVSCodeTheme(emacsTheme, themeName) {
+/** @typedef {{ [s: string]: any; default: { fg: string; bg: string } }} EmacsTheme */
+/** @typedef {{ name: string, type: string, colors: Record<string, string>, tokenColors: any[] }} VSCodeTheme */
+
+/** @param {EmacsTheme} emacsTheme */
+function computeBase(emacsTheme) {
   const type = detectThemeType(emacsTheme);
-
-  /** @type {{ name: string, type: string; colors: Record<string, string>; tokenColors: any[] }} */
-  const vsCodeTheme = {
-    name: themeName,
+  return {
     type,
-    colors: {},
-    tokenColors: [],
+    defaultBg: normalizeColor(
+      emacsTheme.default?.bg || (type === "dark" ? "#000000" : "#ffffff"),
+    ),
+    defaultFg: normalizeColor(
+      emacsTheme.default?.fg || (type === "dark" ? "#ffffff" : "#000000"),
+    ),
   };
+}
 
-  // Process editor colors
+/** @param {EmacsTheme} emacsTheme
+ * @param {VSCodeTheme} vsCodeTheme */
+function applyEditorColors(emacsTheme, vsCodeTheme) {
   Object.entries(EDITOR_COLORS).forEach(([faceName, colorMap]) => {
     const face = emacsTheme[faceName] || {};
     Object.entries(colorMap).forEach(([prop, vscodeProp]) => {
@@ -330,18 +151,47 @@ export function convertToVSCodeTheme(emacsTheme, themeName) {
     });
   });
 
+  for (const [face, kind] of Object.entries({
+    "diff-hl-margin-insert": "inserted",
+    "diff-hl-margin-delete": "removed",
+    "diff-hl-margin-change": "modified",
+  })) {
+    const fg = emacsTheme[face]?.fg;
+    if (fg) {
+      vsCodeTheme.colors[`diffEditor.${kind}LineBackground`] = withAlpha(
+        fg,
+        0x30 / 255,
+      );
+      vsCodeTheme.colors[`diffEditor.${kind}TextBackground`] = withAlpha(
+        fg,
+        0x20 / 255,
+      );
+    }
+  }
+  /** @type {[string, number][]} */
+  const transparentColors = [
+    ["editor.selectionBackground", 0.25],
+    ["editor.findMatchBackground", 0.5],
+  ];
+  for (const [key, alpha] of transparentColors) {
+    if (vsCodeTheme.colors[key]) {
+      vsCodeTheme.colors[key] = withAlpha(vsCodeTheme.colors[key], alpha);
+    }
+  }
+}
+
+/** @param {EmacsTheme} emacsTheme
+ * @param {VSCodeTheme} vsCodeTheme
+ * @param {ReturnType<typeof computeBase>} base */
+function applyFallbacks(emacsTheme, vsCodeTheme, base) {
+  const { type: effectiveType, defaultBg, defaultFg } = base;
   // Ensure sidebar/activityBar/panel backgrounds are always present.
   // If the Emacs theme doesn't define corresponding faces, compute a
   // reasonable fallback based on the theme's default background.
-  const effectiveType = detectThemeType(emacsTheme);
-  const effectiveDefaultBg = normalizeColor(
-    emacsTheme.default?.bg ||
-      (effectiveType === "dark" ? "#000000" : "#ffffff"),
-  );
   const computedSidebarBg =
     effectiveType === "dark"
-      ? adjustColorLuminance(effectiveDefaultBg, 0.1)
-      : adjustColorLuminance(effectiveDefaultBg, -0.1);
+      ? adjustColorLuminance(defaultBg, 0.1)
+      : adjustColorLuminance(defaultBg, -0.1);
 
   if (!vsCodeTheme.colors["sideBar.background"]) {
     vsCodeTheme.colors["sideBar.background"] = computedSidebarBg;
@@ -362,16 +212,6 @@ export function convertToVSCodeTheme(emacsTheme, themeName) {
     vsCodeTheme.colors["activityBar.inactiveForeground"] =
       effectiveType === "dark" ? "#888888" : "#666666";
   }
-
-  // Get default theme values for fallbacks
-  const defaultBg = normalizeColor(
-    emacsTheme.default?.bg ||
-      (effectiveType === "dark" ? "#000000" : "#ffffff"),
-  );
-  const defaultFg = normalizeColor(
-    emacsTheme.default?.fg ||
-      (effectiveType === "dark" ? "#FFFFFF" : "#000000"),
-  );
 
   // Ensure input/chat colors have reasonable fallbacks based on computed luminance
   // Don't use mode-line colors as they're designed for status bars, not input fields
@@ -462,18 +302,15 @@ export function convertToVSCodeTheme(emacsTheme, themeName) {
     vsCodeTheme.colors["statusBarItem.remoteBackground"] =
       vsCodeTheme.colors["statusBar.background"];
   }
+}
 
+/** @param {EmacsTheme} emacsTheme
+ * @param {VSCodeTheme} vsCodeTheme */
+function buildTokenColors(emacsTheme, vsCodeTheme) {
   for (const [faceName, faceData] of Object.entries(emacsTheme)) {
     const scopes = FACE_TO_SCOPE_MAP[faceName] || [];
 
-    // Handle editor colors
-    if (faceName === "default") {
-      if (faceData.fg)
-        vsCodeTheme.colors["editor.foreground"] = normalizeColor(faceData.fg);
-      if (faceData.bg)
-        vsCodeTheme.colors["editor.background"] = normalizeColor(faceData.bg);
-      continue;
-    }
+    if (faceName === "default") continue;
 
     // Handle token colors
     if (scopes.length > 0) {
@@ -513,6 +350,23 @@ export function convertToVSCodeTheme(emacsTheme, themeName) {
       });
     }
   }
+}
 
+/**
+ * @param {EmacsTheme} emacsTheme
+ * @param {string} themeName
+ */
+export function convertToVSCodeTheme(emacsTheme, themeName) {
+  const base = computeBase(emacsTheme);
+  /** @type {VSCodeTheme} */
+  const vsCodeTheme = {
+    name: themeName,
+    type: base.type,
+    colors: {},
+    tokenColors: [],
+  };
+  applyEditorColors(emacsTheme, vsCodeTheme);
+  applyFallbacks(emacsTheme, vsCodeTheme, base);
+  buildTokenColors(emacsTheme, vsCodeTheme);
   return vsCodeTheme;
 }
