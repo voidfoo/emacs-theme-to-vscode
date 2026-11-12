@@ -29,3 +29,40 @@ test("applies translucent selection, find and diff-hl colors", () => {
   assert.equal(colors["diffEditor.insertedTextBackground"], "#00ff0020");
   assert.equal(colors["diffEditor.removedLineBackground"], undefined);
 });
+
+test("uses explicit ordered token mappings and workbench color targets", () => {
+  const theme = {
+    default: { fg: "#fff", bg: "#000" },
+    "font-lock-string-face": { fg: "#f00" },
+    "font-lock-punctuation-face": { fg: "#0f0" },
+    "font-lock-number-face": { fg: "#fff" },
+    "font-lock-function-call-face": { fg: "#abc" },
+    "next-error": { fg: "#123" },
+    "company-tooltip": { bg: "#456" },
+    "treemacs-git-modified-face": { fg: "#789" },
+    "diff-refine-added": { bg: "#012" },
+    "diff-hl-margin-insert": { fg: "#0f0" },
+  };
+  const { colors, tokenColors } = convertToVSCodeTheme(theme, "example");
+  assert.deepEqual(
+    tokenColors.map((rule) => rule.name),
+    [
+      "font-lock-punctuation-face",
+      "font-lock-string-face",
+      "font-lock-function-call-face",
+    ],
+  );
+  assert.ok(tokenColors[1].scope.includes("punctuation.definition.string"));
+  assert.equal(colors["editorSuggestWidget.background"], "#445566");
+  assert.equal(colors["gitDecoration.modifiedResourceForeground"], "#778899");
+  assert.equal(colors["diffEditor.insertedTextBackground"], "#001122");
+  const workbench =
+    /^(editor|statusBar|diff|diffEditor|gitDecoration|editorSuggestWidget|editorLineNumber|editorGutter|scrollbarSlider|breadcrumb|explorer|tree)\./;
+  assert.ok(
+    tokenColors.every(
+      (rule) =>
+        !rule.name.includes("(inferred)") &&
+        rule.scope.every((scope) => !workbench.test(scope)),
+    ),
+  );
+});

@@ -38,6 +38,11 @@ const EDITOR_COLORS = {
   highlight: {
     bg: "editor.findMatchBackground",
   },
+  "secondary-selection": { bg: "editor.selectionHighlightBackground" },
+  match: { bg: "editor.findMatchBackground" },
+  isearch: { bg: "editor.findMatchBackground" },
+  "lazy-highlight": { bg: "editor.findMatchHighlightBackground" },
+  "show-paren-match": { bg: "editor.wordHighlightStrongBackground" },
   "line-number": {
     fg: "editorLineNumber.foreground",
     bg: "editorGutter.background",
@@ -61,6 +66,36 @@ const EDITOR_COLORS = {
   "vertical-border": {
     fg: "editorGroup.border",
   },
+  "header-line": { bg: "editorGroupHeader.tabsBackground" },
+  "diff-added": { bg: "diffEditor.insertedLineBackground" },
+  "diff-removed": { bg: "diffEditor.removedLineBackground" },
+  "diff-refine-added": { bg: "diffEditor.insertedTextBackground" },
+  "diff-refine-removed": { bg: "diffEditor.removedTextBackground" },
+  "treemacs-root-face": { fg: "breadcrumb.foreground" },
+  "treemacs-git-modified-face": {
+    fg: "gitDecoration.modifiedResourceForeground",
+  },
+  "treemacs-git-added-face": { fg: "gitDecoration.addedResourceForeground" },
+  "treemacs-git-renamed-face": {
+    fg: "gitDecoration.renamedResourceForeground",
+  },
+  "treemacs-git-deleted-face": {
+    fg: "gitDecoration.deletedResourceForeground",
+  },
+  "treemacs-git-untracked-face": {
+    fg: "gitDecoration.untrackedResourceForeground",
+  },
+  "treemacs-git-ignored-face": {
+    fg: "gitDecoration.ignoredResourceForeground",
+  },
+  "company-tooltip": {
+    bg: "editorSuggestWidget.background",
+    fg: "editorSuggestWidget.foreground",
+  },
+  "company-scrollbar-bg": { bg: "scrollbarSlider.background" },
+  "company-scrollbar-fg": { bg: "scrollbarSlider.hoverBackground" },
+  "company-tooltip-selection": { bg: "editorSuggestWidget.selectedBackground" },
+  "company-tooltip-common": { fg: "editorSuggestWidget.highlightForeground" },
 };
 
 /**
@@ -77,49 +112,9 @@ export function detectThemeType(themeData) {
   return luminance < 0.5 ? "dark" : "light";
 }
 
-/**
- * @param {string} faceName
- * @param {{ default: { bg: any; }; }} faceData
- */
-function inferScopes(faceName, faceData) {
-  /**
-   * @type {string[]}
-   */
-  const scopes = [];
-  const defaultBg = normalizeColor(faceData.default?.bg || "#ffffff");
-
-  // Common patterns to infer scopes
-  const patterns = [
-    { regex: /.*-keyword.*/, scope: "keyword" },
-    { regex: /.*-function.*/, scope: "entity.name.function" },
-    { regex: /.*-type.*/, scope: "entity.name.type" },
-    { regex: /.*-variable.*/, scope: "variable" },
-    { regex: /.*-constant.*/, scope: "constant" },
-    { regex: /.*-string.*/, scope: "string" },
-    { regex: /.*-comment.*/, scope: "comment" },
-    { regex: /.*-doc.*/, scope: "comment.documentation" },
-    { regex: /.*-error.*/, scope: "invalid" },
-    { regex: /.*warning.*/, scope: "invalid.deprecated" },
-    { regex: /.*-diff-add.*/, scope: "markup.inserted" },
-    { regex: /.*-diff-del.*/, scope: "markup.deleted" },
-    { regex: /.*-diff-changed.*/, scope: "markup.changed" },
-    { regex: /.*-html-tag.*/, scope: "entity.name.tag" },
-    { regex: /.*-css-selector.*/, scope: "entity.other.attribute-name.class" },
-    { regex: /.*-css-property.*/, scope: "support.type.property-name" },
-    { regex: /.*-regexp.*/, scope: "string.regexp" },
-  ];
-
-  patterns.forEach(({ regex, scope }) => {
-    if (regex.test(faceName)) {
-      scopes.push(scope);
-    }
-  });
-
-  return scopes;
-}
-
 /** @typedef {{ [s: string]: any; default: { fg: string; bg: string } }} EmacsTheme */
-/** @typedef {{ name: string, type: string, colors: Record<string, string>, tokenColors: any[] }} VSCodeTheme */
+/** @typedef {{name: string, scope: string[], settings: {foreground?: string, background?: string, fontStyle?: string}}} TokenRule */
+/** @typedef {{ name: string, type: string, colors: Record<string, string>, tokenColors: TokenRule[] }} VSCodeTheme */
 
 /** @param {EmacsTheme} emacsTheme */
 function computeBase(emacsTheme) {
@@ -158,11 +153,11 @@ function applyEditorColors(emacsTheme, vsCodeTheme) {
   })) {
     const fg = emacsTheme[face]?.fg;
     if (fg) {
-      vsCodeTheme.colors[`diffEditor.${kind}LineBackground`] = withAlpha(
+      vsCodeTheme.colors[`diffEditor.${kind}LineBackground`] ??= withAlpha(
         fg,
         0x30 / 255,
       );
-      vsCodeTheme.colors[`diffEditor.${kind}TextBackground`] = withAlpha(
+      vsCodeTheme.colors[`diffEditor.${kind}TextBackground`] ??= withAlpha(
         fg,
         0x20 / 255,
       );
@@ -307,10 +302,13 @@ function applyFallbacks(emacsTheme, vsCodeTheme, base) {
 /** @param {EmacsTheme} emacsTheme
  * @param {VSCodeTheme} vsCodeTheme */
 function buildTokenColors(emacsTheme, vsCodeTheme) {
-  for (const [faceName, faceData] of Object.entries(emacsTheme)) {
-    const scopes = FACE_TO_SCOPE_MAP[faceName] || [];
-
-    if (faceName === "default") continue;
+  const defaultFg = normalizeColor(
+    emacsTheme.default?.fg ||
+      (vsCodeTheme.type === "dark" ? "#ffffff" : "#000000"),
+  );
+  for (const [faceName, scopes] of Object.entries(FACE_TO_SCOPE_MAP)) {
+    const faceData = emacsTheme[faceName];
+    if (!faceData) continue;
 
     // Handle token colors
     if (scopes.length > 0) {
@@ -327,6 +325,12 @@ function buildTokenColors(emacsTheme, vsCodeTheme) {
       }
       if (faceData.underline) settings.fontStyle = "underline";
 
+      if (
+        settings.foreground === defaultFg &&
+        !settings.background &&
+        !settings.fontStyle
+      )
+        continue;
       if (Object.keys(settings).length > 0) {
         vsCodeTheme.tokenColors.push({
           name: faceName,
@@ -334,20 +338,6 @@ function buildTokenColors(emacsTheme, vsCodeTheme) {
           settings,
         });
       }
-    }
-
-    // Try to infer additional scopes based on face name patterns
-    const inferredScopes = inferScopes(faceName, faceData);
-    if (inferredScopes.length > 0) {
-      const settings = {};
-      if (faceData.fg) settings.foreground = normalizeColor(faceData.fg);
-      if (faceData.bg) settings.background = normalizeColor(faceData.bg);
-
-      vsCodeTheme.tokenColors.push({
-        name: `${faceName} (inferred)`,
-        scope: inferredScopes,
-        settings,
-      });
     }
   }
 }
