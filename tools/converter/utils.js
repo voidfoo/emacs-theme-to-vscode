@@ -11,7 +11,37 @@ export function normalizeColor(color) {
   const lower = color.toLowerCase();
   const value = (NAMED_COLORS[lower] ?? lower).toLowerCase();
   if (/^color-\d+$/.test(value)) {
-    return `#${parseInt(value.slice(6), 10).toString(16).padStart(6, "0")}`;
+    const index = Number(value.slice(6));
+    if (index > 255) throw new RangeError(`Invalid xterm color: ${color}`);
+    const ansi = [
+      "#000000",
+      "#800000",
+      "#008000",
+      "#808000",
+      "#000080",
+      "#800080",
+      "#008080",
+      "#c0c0c0",
+      "#808080",
+      "#ff0000",
+      "#00ff00",
+      "#ffff00",
+      "#0000ff",
+      "#ff00ff",
+      "#00ffff",
+      "#ffffff",
+    ];
+    if (index < 16) return ansi[index];
+    const levels = [0, 95, 135, 175, 215, 255];
+    const channels =
+      index < 232
+        ? [
+            levels[Math.floor((index - 16) / 36)],
+            levels[Math.floor((index - 16) / 6) % 6],
+            levels[(index - 16) % 6],
+          ]
+        : Array(3).fill(8 + 10 * (index - 232));
+    return `#${channels.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
   }
   if (/^#[0-9a-f]{3}$/.test(value)) {
     return `#${[...value.slice(1)].map((digit) => digit + digit).join("")}`;
