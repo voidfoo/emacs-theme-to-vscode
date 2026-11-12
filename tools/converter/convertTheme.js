@@ -1,12 +1,13 @@
 // @ts-check
 
 import { FACE_TO_SCOPE_MAP } from "./faceToScopeMap.js";
-import { NAMED_COLORS } from "./namedColors.js";
 import {
   getLuminance,
   adjustColorLuminance,
   getContrastRatio,
   adjustColorForContrast,
+  normalizeColor,
+  withAlpha,
 } from "./utils.js";
 
 /** @type {Record<string, {fg?: string | string[]; bg?: string | string[]; }>} */
@@ -61,40 +62,6 @@ const EDITOR_COLORS = {
     fg: "editorGroup.border",
   },
 };
-
-/**
- * @param {string} color
- */
-export function normalizeColor(color) {
-  if (!color) {
-    throw new Error("Color is invalid");
-  }
-
-  // Convert named colors to hex
-  if (typeof color === "string") {
-    const lowerColor = color.toLowerCase();
-
-    // Check predefined colors first
-    if (NAMED_COLORS[lowerColor]) {
-      return NAMED_COLORS[lowerColor];
-    }
-
-    // Handle numeric colors (e.g., "color-123")
-    if (color.startsWith("color-")) {
-      const hexColor = `#${parseInt(color.slice(6)).toString(16).padStart(6, "0")}`;
-      return hexColor;
-    }
-
-    // Return as-is if it's already a hex color
-    if (color.startsWith("#")) {
-      return color;
-    }
-
-    console.log(`Warning: Unknown color name "${color}"`);
-  }
-
-  return color;
-}
 
 /**
  * @param {{ [s: string]: any; "default": { fg: string; bg: string } }} themeData
@@ -183,10 +150,16 @@ function processThemeColors(themeData) {
 
   // Add selection and find match colors with transparency
   if (colors["editor.findMatchBackground"]) {
-    colors["editor.findMatchBackground"] += "80"; // 50% opacity
+    colors["editor.findMatchBackground"] = withAlpha(
+      colors["editor.findMatchBackground"],
+      0.5,
+    );
   }
   if (colors["editor.selectionBackground"]) {
-    colors["editor.selectionBackground"] += "40"; // 25% opacity
+    colors["editor.selectionBackground"] = withAlpha(
+      colors["editor.selectionBackground"],
+      0.25,
+    );
   }
 
   // Ensure input/chat colors have reasonable fallbacks based on computed luminance
@@ -240,7 +213,7 @@ function processThemeColors(themeData) {
   if (!colors["statusBar.noFolderBackground"]) {
     const statusBg = colors["statusBar.background"];
     if (statusBg) {
-      colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
+      colors["statusBar.noFolderBackground"] = withAlpha(statusBg, 0.25);
     }
   }
 
@@ -278,8 +251,8 @@ function processThemeColors(themeData) {
     if (themeData[face]) {
       const fgColor = normalizeColor(themeData[face].fg);
       if (fgColor) {
-        colors[mapping.fg] = fgColor + "30"; // 19% opacity
-        colors[mapping.bg] = fgColor + "20"; // 12% opacity
+        colors[mapping.fg] = withAlpha(fgColor, 0x30 / 255);
+        colors[mapping.bg] = withAlpha(fgColor, 0x20 / 255);
       }
     }
   }
@@ -467,7 +440,10 @@ export function convertToVSCodeTheme(emacsTheme, themeName) {
   if (!vsCodeTheme.colors["statusBar.noFolderBackground"]) {
     const statusBg = vsCodeTheme.colors["statusBar.background"];
     if (statusBg) {
-      vsCodeTheme.colors["statusBar.noFolderBackground"] = statusBg + "40"; // 25% opacity
+      vsCodeTheme.colors["statusBar.noFolderBackground"] = withAlpha(
+        statusBg,
+        0.25,
+      );
     }
   }
 

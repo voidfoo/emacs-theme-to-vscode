@@ -1,6 +1,51 @@
 // @ts-check
 
 import fs from "node:fs/promises";
+import { NAMED_COLORS } from "./namedColors.js";
+
+/** @param {string} color */
+export function normalizeColor(color) {
+  if (typeof color !== "string" || !color) {
+    throw new Error(`Invalid color: ${color}`);
+  }
+  const lower = color.toLowerCase();
+  const value = (NAMED_COLORS[lower] ?? lower).toLowerCase();
+  if (/^color-\d+$/.test(value)) {
+    return `#${parseInt(value.slice(6), 10).toString(16).padStart(6, "0")}`;
+  }
+  if (/^#[0-9a-f]{3}$/.test(value)) {
+    return `#${[...value.slice(1)].map((digit) => digit + digit).join("")}`;
+  }
+  if (/^#[0-9a-f]{6}([0-9a-f]{2})?$/.test(value)) {
+    return value.slice(0, 7);
+  }
+  if (/^#[0-9a-f]{12}$/.test(value)) {
+    return `#${[1, 5, 9]
+      .map((i) =>
+        Math.round(parseInt(value.slice(i, i + 4), 16) / 257)
+          .toString(16)
+          .padStart(2, "0"),
+      )
+      .join("")}`;
+  }
+  throw new Error(`Unknown or invalid color: ${color}`);
+}
+
+/**
+ * @param {string} color
+ * @param {number} alpha
+ */
+export function withAlpha(color, alpha) {
+  if (!Number.isFinite(alpha) || alpha < 0 || alpha > 1) {
+    throw new RangeError(`Invalid alpha: ${alpha}`);
+  }
+  return (
+    normalizeColor(color) +
+    Math.round(alpha * 255)
+      .toString(16)
+      .padStart(2, "0")
+  );
+}
 
 // Helper function to calculate luminance
 /**

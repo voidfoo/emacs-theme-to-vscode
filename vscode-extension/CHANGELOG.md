@@ -2,6 +2,10 @@
 
 All notable changes to the "emacs-themes" extension.
 
+## Unreleased
+
+- Normalize exported color values, including short and 16-bit Emacs colors.
+
 ## 0.0.6 (2025-11-20)
 
 - Set "activityBar.foreground" and "activityBar.inactiveForeground" for better contrast.
