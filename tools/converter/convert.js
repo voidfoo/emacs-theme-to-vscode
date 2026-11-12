@@ -23,11 +23,14 @@ async function updatePackageJson(themes) {
     uiTheme: theme.type === "dark" ? "vs-dark" : "vs",
     path: `./themes/${theme.name}.json`,
   }));
-  await fs.writeFile(PACKAGE_JSON_PATH, JSON.stringify(packageJson, null, 2));
+  await fs.writeFile(
+    PACKAGE_JSON_PATH,
+    JSON.stringify(packageJson, null, 2) + "\n",
+  );
 }
 
 async function main() {
-  const files = await fs.readdir(EMACS_DEFS_DIR);
+  const files = (await fs.readdir(EMACS_DEFS_DIR)).sort();
   /** @type {{ name: string; type: string }[]} */
   const convertedThemes = [];
   await fs.mkdir(VSCODE_THEMES_DIR, { recursive: true });
@@ -40,7 +43,7 @@ async function main() {
     const vsCodeTheme = convertToVSCodeTheme(emacsTheme, themeName);
     convertedThemes.push(vsCodeTheme);
     const outputPath = join(VSCODE_THEMES_DIR, `${themeName}.json`);
-    await fs.writeFile(outputPath, JSON.stringify(vsCodeTheme, null, 2));
+    await fs.writeFile(outputPath, JSON.stringify(vsCodeTheme, null, 2) + "\n");
   }
 
   await updatePackageJson(convertedThemes);
