@@ -1,6 +1,7 @@
 {
   "type": "module",
   "scripts": {
+    "analyze-colors": "node analyze-colors.js",
     "check": "tsc",
     "format": "prettier --write *.js *.json",
     "test": "node --test"
