@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "check": "tsc",
-    "format": "prettier --write *.js *.json"
+    "format": "prettier --write *.js *.json",
+    "test": "node --test"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",
