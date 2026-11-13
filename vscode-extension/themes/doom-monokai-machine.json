@@ -26,12 +26,6 @@
     "diffEditor.removedLineBackground": "#3a4449",
     "diffEditor.insertedTextBackground": "#3a4449",
     "diffEditor.removedTextBackground": "#3a4449",
-    "breadcrumb.foreground": "#ffed72",
-    "gitDecoration.modifiedResourceForeground": "#baa0f8",
-    "gitDecoration.addedResourceForeground": "#a2e57b",
-    "gitDecoration.renamedResourceForeground": "#ffb270",
-    "gitDecoration.untrackedResourceForeground": "#ffb270",
-    "gitDecoration.ignoredResourceForeground": "#6b7678",
     "editorSuggestWidget.background": "#1e2528",
     "editorSuggestWidget.foreground": "#f2fffc",
     "editorSuggestWidget.selectedBackground": "#2e363b",
@@ -47,6 +41,44 @@
     "editorCursor.foreground": "#f2fffc"
   },
   "tokenColors": [
+    {
+      "name": "font-lock-punctuation-face",
+      "scope": [
+        "punctuation"
+      ],
+      "settings": {
+        "foreground": "#f5dadc"
+      }
+    },
+    {
+      "name": "font-lock-bracket-face",
+      "scope": [
+        "punctuation.section",
+        "meta.brace"
+      ],
+      "settings": {
+        "foreground": "#f5dadc"
+      }
+    },
+    {
+      "name": "font-lock-delimiter-face",
+      "scope": [
+        "punctuation.separator",
+        "punctuation.terminator"
+      ],
+      "settings": {
+        "foreground": "#f5dadc"
+      }
+    },
+    {
+      "name": "font-lock-misc-punctuation-face",
+      "scope": [
+        "punctuation.accessor"
+      ],
+      "settings": {
+        "foreground": "#f5dadc"
+      }
+    },
     {
       "name": "font-lock-comment-face",
       "scope": [
@@ -111,12 +143,22 @@
       }
     },
     {
+      "name": "font-lock-operator-face",
+      "scope": [
+        "keyword.operator"
+      ],
+      "settings": {
+        "foreground": "#ff6d7e"
+      }
+    },
+    {
       "name": "font-lock-negation-char-face",
       "scope": [
         "keyword.operator.logical"
       ],
       "settings": {
-        "foreground": "#ff6d7e"
+        "foreground": "#ff6d7e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -147,7 +189,29 @@
         "support.function"
       ],
       "settings": {
-        "foreground": "#a2e57b"
+        "foreground": "#baeca1",
+        "fontStyle": "italic"
+      }
+    },
+    {
+      "name": "font-lock-property-name-face",
+      "scope": [
+        "variable.other.property",
+        "support.type.property-name"
+      ],
+      "settings": {
+        "foreground": "#abe5f5",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-property-use-face",
+      "scope": [
+        "variable.other.object.property",
+        "meta.property"
+      ],
+      "settings": {
+        "foreground": "#abe5f5"
       }
     },
     {
@@ -187,7 +251,8 @@
         "constant.character.escape"
       ],
       "settings": {
-        "foreground": "#ff6d7e"
+        "foreground": "#ff6d7e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -205,7 +270,8 @@
         "punctuation.definition.group.regexp"
       ],
       "settings": {
-        "foreground": "#ff6d7e"
+        "foreground": "#ff6d7e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -214,7 +280,8 @@
         "constant.character.escape.backslash.regexp"
       ],
       "settings": {
-        "foreground": "#ff6d7e"
+        "foreground": "#ff6d7e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -224,7 +291,8 @@
         "keyword.control.import"
       ],
       "settings": {
-        "foreground": "#ff6d7e"
+        "foreground": "#ff6d7e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -260,7 +328,8 @@
         "invalid.illegal"
       ],
       "settings": {
-        "foreground": "#ff6d7e"
+        "foreground": "#ff6d7e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -279,43 +348,6 @@
       ],
       "settings": {
         "foreground": "#7cd5f1"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#ffed72"
-      }
-    },
-    {
-      "name": "markdown-code-face",
-      "scope": [
-        "markup.fenced_code",
-        "markup.inline.raw"
-      ],
-      "settings": {
-        "background": "#373f43"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#7cd5f1"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#ff6d7e"
       }
     }
   ]

@@ -24,14 +24,8 @@
     "editorGroupHeader.tabsBackground": "#666666",
     "diffEditor.insertedLineBackground": "#335533",
     "diffEditor.removedLineBackground": "#553333",
-    "diffEditor.insertedTextBackground": "#22aa22",
-    "diffEditor.removedTextBackground": "#aa2222",
-    "breadcrumb.foreground": "#e9b2e3",
-    "gitDecoration.modifiedResourceForeground": "#fcaf3e",
-    "gitDecoration.addedResourceForeground": "#8cc4ff",
-    "gitDecoration.renamedResourceForeground": "#e9b96e",
-    "gitDecoration.untrackedResourceForeground": "#e9b96e",
-    "gitDecoration.ignoredResourceForeground": "#73d216",
+    "diffEditor.insertedTextBackground": "#228822",
+    "diffEditor.removedTextBackground": "#882222",
     "editorSuggestWidget.background": "#424242",
     "editorSuggestWidget.selectedBackground": "#4f4f4f",
     "editorSuggestWidget.highlightForeground": "#afeeee",
@@ -202,12 +196,39 @@
       }
     },
     {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
       "name": "font-lock-regexp-face",
       "scope": [
         "string.regexp"
       ],
       "settings": {
         "foreground": "#e9b96e"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -272,34 +293,8 @@
         "meta.diff.header.file"
       ],
       "settings": {
-        "background": "#999999"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#fce94f"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#e9b96e"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#b3b3b3"
+        "background": "#999999",
+        "fontStyle": "bold"
       }
     }
   ]

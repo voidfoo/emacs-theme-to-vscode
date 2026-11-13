@@ -26,15 +26,9 @@
     "diffEditor.removedLineBackground": "#ffeeee",
     "diffEditor.insertedTextBackground": "#bbffbb",
     "diffEditor.removedTextBackground": "#ffcccc",
-    "breadcrumb.foreground": "#204a87",
-    "gitDecoration.modifiedResourceForeground": "#b35000",
-    "gitDecoration.addedResourceForeground": "#204a87",
-    "gitDecoration.renamedResourceForeground": "#5c3566",
-    "gitDecoration.untrackedResourceForeground": "#5c3566",
-    "gitDecoration.ignoredResourceForeground": "#5f615c",
-    "editorSuggestWidget.background": "#fff8dc",
+    "editorSuggestWidget.background": "#f8f8ff",
     "editorSuggestWidget.foreground": "#000000",
-    "editorSuggestWidget.selectedBackground": "#add8e6",
+    "editorSuggestWidget.selectedBackground": "#e6e6fa",
     "editorSuggestWidget.highlightForeground": "#8b0000",
     "sideBar.background": "#d6d6d4",
     "activityBar.background": "#d6d6d4",
@@ -54,7 +48,8 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#5f615c"
+        "foreground": "#5f615c",
+        "fontStyle": "italic"
       }
     },
     {
@@ -63,7 +58,8 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#5f615c"
+        "foreground": "#5f615c",
+        "fontStyle": "italic"
       }
     },
     {
@@ -95,7 +91,8 @@
         "entity.name.type.instance.jsdoc"
       ],
       "settings": {
-        "foreground": "#204a87"
+        "foreground": "#204a87",
+        "fontStyle": "bold"
       }
     },
     {
@@ -199,7 +196,17 @@
         "support.constant"
       ],
       "settings": {
-        "foreground": "#204a87"
+        "foreground": "#204a87",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -209,6 +216,24 @@
       ],
       "settings": {
         "foreground": "#5c3566"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -273,34 +298,8 @@
         "meta.diff.header.file"
       ],
       "settings": {
-        "background": "#bfbfbf"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#a40000"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#5c3566"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#7f7f7f"
+        "background": "#bfbfbf",
+        "fontStyle": "bold"
       }
     }
   ]

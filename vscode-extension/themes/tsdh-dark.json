@@ -21,14 +21,8 @@
     "statusBar.noFolderBackground": "#4d4d4d",
     "diffEditor.insertedLineBackground": "#006400",
     "diffEditor.removedLineBackground": "#8b0000",
-    "diffEditor.insertedTextBackground": "#22aa22",
-    "diffEditor.removedTextBackground": "#aa2222",
-    "breadcrumb.foreground": "#1e90ff",
-    "gitDecoration.modifiedResourceForeground": "#9acd32",
-    "gitDecoration.addedResourceForeground": "#9370db",
-    "gitDecoration.renamedResourceForeground": "#cd5c5c",
-    "gitDecoration.untrackedResourceForeground": "#ffa07a",
-    "gitDecoration.ignoredResourceForeground": "#cd853f",
+    "diffEditor.insertedTextBackground": "#228822",
+    "diffEditor.removedTextBackground": "#882222",
     "editorSuggestWidget.background": "#424242",
     "editorSuggestWidget.selectedBackground": "#4f4f4f",
     "editorSuggestWidget.highlightForeground": "#afeeee",
@@ -105,7 +99,8 @@
         "storage.modifier"
       ],
       "settings": {
-        "foreground": "#20b2aa"
+        "foreground": "#20b2aa",
+        "fontStyle": "bold"
       }
     },
     {
@@ -201,12 +196,39 @@
       }
     },
     {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
       "name": "font-lock-regexp-face",
       "scope": [
         "string.regexp"
       ],
       "settings": {
         "foreground": "#ffa07a"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -225,7 +247,8 @@
         "invalid.deprecated"
       ],
       "settings": {
-        "foreground": "#ff69b4"
+        "foreground": "#ff69b4",
+        "fontStyle": "bold"
       }
     },
     {
@@ -234,7 +257,8 @@
         "invalid.illegal"
       ],
       "settings": {
-        "foreground": "#ff1493"
+        "foreground": "#ff1493",
+        "fontStyle": "bold"
       }
     },
     {
@@ -270,34 +294,8 @@
         "meta.diff.header.file"
       ],
       "settings": {
-        "background": "#999999"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#00ff7f"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#ffa07a"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#b3b3b3"
+        "background": "#999999",
+        "fontStyle": "bold"
       }
     }
   ]

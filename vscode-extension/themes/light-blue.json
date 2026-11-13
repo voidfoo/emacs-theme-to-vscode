@@ -26,15 +26,9 @@
     "diffEditor.removedLineBackground": "#ffeeee",
     "diffEditor.insertedTextBackground": "#bbffbb",
     "diffEditor.removedTextBackground": "#ffcccc",
-    "breadcrumb.foreground": "#006d6d",
-    "gitDecoration.modifiedResourceForeground": "#a0522d",
-    "gitDecoration.addedResourceForeground": "#228b22",
-    "gitDecoration.renamedResourceForeground": "#8b008b",
-    "gitDecoration.untrackedResourceForeground": "#8b008b",
-    "gitDecoration.ignoredResourceForeground": "#b22222",
-    "editorSuggestWidget.background": "#fff8dc",
+    "editorSuggestWidget.background": "#f8f8ff",
     "editorSuggestWidget.foreground": "#000000",
-    "editorSuggestWidget.selectedBackground": "#add8e6",
+    "editorSuggestWidget.selectedBackground": "#e6e6fa",
     "editorSuggestWidget.highlightForeground": "#8b0000",
     "sideBar.background": "#9cc2cf",
     "activityBar.background": "#9cc2cf",
@@ -203,12 +197,39 @@
       }
     },
     {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
       "name": "font-lock-regexp-face",
       "scope": [
         "string.regexp"
       ],
       "settings": {
         "foreground": "#8b008b"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -227,7 +248,8 @@
         "invalid.deprecated"
       ],
       "settings": {
-        "foreground": "#ff4500"
+        "foreground": "#ff4500",
+        "fontStyle": "bold"
       }
     },
     {
@@ -236,7 +258,8 @@
         "invalid.illegal"
       ],
       "settings": {
-        "foreground": "#ff0000"
+        "foreground": "#ff0000",
+        "fontStyle": "bold"
       }
     },
     {
@@ -273,34 +296,8 @@
         "meta.diff.header.file"
       ],
       "settings": {
-        "background": "#bfbfbf"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#ff0000"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#8b008b"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#7f7f7f"
+        "background": "#bfbfbf",
+        "fontStyle": "bold"
       }
     }
   ]

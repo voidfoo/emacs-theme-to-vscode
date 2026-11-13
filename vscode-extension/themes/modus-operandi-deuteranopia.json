@@ -19,8 +19,8 @@
     "inlineChatInput.placeholderForeground": "#0031a9",
     "statusBar.background": "#d0d6ff",
     "statusBarItem.remoteBackground": "#d0d6ff",
-    "statusBar.foreground": "#0f0f0f",
-    "statusBarItem.remoteForeground": "#0f0f0f",
+    "statusBar.foreground": "#000000",
+    "statusBarItem.remoteForeground": "#000000",
     "statusBar.noFolderBackground": "#e6e6e6",
     "editorGroup.border": "#9f9f9f",
     "editorGroupHeader.tabsBackground": "#f2f2f2",
@@ -28,12 +28,7 @@
     "diffEditor.removedLineBackground": "#f4f099",
     "diffEditor.insertedTextBackground": "#babcef",
     "diffEditor.removedTextBackground": "#ede06f",
-    "breadcrumb.foreground": "#3548cf",
-    "gitDecoration.modifiedResourceForeground": "#695500",
-    "gitDecoration.addedResourceForeground": "#0031a9",
-    "gitDecoration.untrackedResourceForeground": "#0031a9",
-    "gitDecoration.ignoredResourceForeground": "#595959",
-    "editorSuggestWidget.background": "#f2f2f2",
+    "editorSuggestWidget.background": "#f3f3f3",
     "editorSuggestWidget.selectedBackground": "#c0deff",
     "editorSuggestWidget.highlightForeground": "#3548cf",
     "sideBar.background": "#e6e6e6",
@@ -292,34 +287,6 @@
       "settings": {
         "foreground": "#000000",
         "background": "#f3d000"
-      }
-    },
-    {
-      "name": "markdown-code-face",
-      "scope": [
-        "markup.fenced_code",
-        "markup.inline.raw"
-      ],
-      "settings": {
-        "background": "#f2f2f2"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#193668"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#595959"
       }
     }
   ]

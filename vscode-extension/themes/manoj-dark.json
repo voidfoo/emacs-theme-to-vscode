@@ -22,14 +22,8 @@
     "statusBarItem.remoteForeground": "#0000ff",
     "statusBar.noFolderBackground": "#4d4d4d",
     "editorGroupHeader.tabsBackground": "#333333",
-    "diffEditor.insertedTextBackground": "#22aa22",
-    "diffEditor.removedTextBackground": "#aa2222",
-    "breadcrumb.foreground": "#8470ff",
-    "gitDecoration.modifiedResourceForeground": "#7fffd4",
-    "gitDecoration.addedResourceForeground": "#63b8ff",
-    "gitDecoration.renamedResourceForeground": "#f08080",
-    "gitDecoration.untrackedResourceForeground": "#ffc1c1",
-    "gitDecoration.ignoredResourceForeground": "#ff7f24",
+    "diffEditor.insertedTextBackground": "#228822",
+    "diffEditor.removedTextBackground": "#882222",
     "editorSuggestWidget.background": "#424242",
     "editorSuggestWidget.selectedBackground": "#4f4f4f",
     "editorSuggestWidget.highlightForeground": "#afeeee",
@@ -51,7 +45,8 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#ff7f24"
+        "foreground": "#ff7f24",
+        "fontStyle": "italic"
       }
     },
     {
@@ -82,7 +77,8 @@
         "comment.block.documentation"
       ],
       "settings": {
-        "foreground": "#f08080"
+        "foreground": "#f08080",
+        "fontStyle": "italic"
       }
     },
     {
@@ -92,7 +88,8 @@
         "entity.name.type.instance.jsdoc"
       ],
       "settings": {
-        "foreground": "#8470ff"
+        "foreground": "#8470ff",
+        "fontStyle": "bold"
       }
     },
     {
@@ -125,7 +122,8 @@
         "support.function"
       ],
       "settings": {
-        "foreground": "#00fa9a"
+        "foreground": "#00fa9a",
+        "fontStyle": "bold"
       }
     },
     {
@@ -135,7 +133,8 @@
         "support.function"
       ],
       "settings": {
-        "foreground": "#00fa9a"
+        "foreground": "#00fa9a",
+        "fontStyle": "bold"
       }
     },
     {
@@ -196,7 +195,17 @@
         "support.constant"
       ],
       "settings": {
-        "foreground": "#8470ff"
+        "foreground": "#8470ff",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -209,13 +218,32 @@
       }
     },
     {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
       "name": "font-lock-preprocessor-face",
       "scope": [
         "meta.preprocessor",
         "keyword.control.import"
       ],
       "settings": {
-        "foreground": "#6495ed"
+        "foreground": "#6495ed",
+        "fontStyle": "italic"
       }
     },
     {
@@ -224,7 +252,8 @@
         "invalid.deprecated"
       ],
       "settings": {
-        "foreground": "#ffc0cb"
+        "foreground": "#ffc0cb",
+        "fontStyle": "bold"
       }
     },
     {
@@ -233,7 +262,8 @@
         "invalid.illegal"
       ],
       "settings": {
-        "foreground": "#ffc0cb"
+        "foreground": "#ffc0cb",
+        "fontStyle": "bold"
       }
     },
     {
@@ -271,34 +301,8 @@
       ],
       "settings": {
         "foreground": "#fffff0",
-        "background": "#333333"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#00fa9a"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#ffc1c1"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#b3b3b3"
+        "background": "#333333",
+        "fontStyle": "bold"
       }
     }
   ]

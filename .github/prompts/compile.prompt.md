@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 ---
 
 - Update the app to follow [the specification](../../spec/main.md)

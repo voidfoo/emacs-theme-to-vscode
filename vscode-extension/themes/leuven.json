@@ -4,7 +4,7 @@
   "colors": {
     "editor.background": "#ffffff",
     "panel.background": "#ffffff",
-    "editorGutter.background": "#ffffff",
+    "editorGutter.background": "#f3f4f7",
     "editor.foreground": "#333333",
     "editorCursor.background": "#21bdff",
     "editor.selectionBackground": "#8ed3ff40",
@@ -12,8 +12,8 @@
     "editor.selectionHighlightBackground": "#ffff00",
     "editor.findMatchHighlightBackground": "#ffff00",
     "editor.wordHighlightStrongBackground": "#c0e8c3",
-    "editorLineNumber.foreground": "#7f7f7f",
-    "editorLineNumber.activeForeground": "#7f7f7f",
+    "editorLineNumber.foreground": "#566d96",
+    "editorLineNumber.activeForeground": "#566d96",
     "input.placeholderForeground": "#000000",
     "inlineChatInput.placeholderForeground": "#000000",
     "statusBar.background": "#335ea8",
@@ -26,12 +26,6 @@
     "diffEditor.removedLineBackground": "#fee8e9",
     "diffEditor.insertedTextBackground": "#97f295",
     "diffEditor.removedTextBackground": "#ffb6ba",
-    "breadcrumb.foreground": "#d0372d",
-    "gitDecoration.modifiedResourceForeground": "#ba36a5",
-    "gitDecoration.addedResourceForeground": "#6434a3",
-    "gitDecoration.renamedResourceForeground": "#036a07",
-    "gitDecoration.untrackedResourceForeground": "#008000",
-    "gitDecoration.ignoredResourceForeground": "#a0a1a7",
     "editorSuggestWidget.background": "#f7f7f7",
     "editorSuggestWidget.foreground": "#000000",
     "editorSuggestWidget.selectedBackground": "#c1e0fd",
@@ -54,7 +48,8 @@
         "punctuation.definition.comment"
       ],
       "settings": {
-        "foreground": "#a0a1a7"
+        "foreground": "#a0a1a7",
+        "fontStyle": "italic"
       }
     },
     {
@@ -75,7 +70,7 @@
         "punctuation.definition.string"
       ],
       "settings": {
-        "foreground": "#008000"
+        "foreground": "#0e700e"
       }
     },
     {
@@ -95,7 +90,7 @@
         "entity.name.type.instance.jsdoc"
       ],
       "settings": {
-        "foreground": "#d0372d"
+        "foreground": "#da3b01"
       }
     },
     {
@@ -199,7 +194,16 @@
         "support.constant"
       ],
       "settings": {
-        "foreground": "#d0372d"
+        "foreground": "#da3b01"
+      }
+    },
+    {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -208,7 +212,25 @@
         "string.regexp"
       ],
       "settings": {
-        "foreground": "#008000"
+        "foreground": "#0e700e"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -227,7 +249,8 @@
         "invalid.deprecated"
       ],
       "settings": {
-        "foreground": "#ff0000"
+        "foreground": "#ff0000",
+        "fontStyle": "bold"
       }
     },
     {
@@ -256,7 +279,8 @@
       ],
       "settings": {
         "foreground": "#000000",
-        "background": "#ffa5a5"
+        "background": "#ffa5a5",
+        "fontStyle": "bold underline"
       }
     },
     {
@@ -266,7 +290,8 @@
       ],
       "settings": {
         "foreground": "#800000",
-        "background": "#ffffaf"
+        "background": "#ffffaf",
+        "fontStyle": "bold"
       }
     },
     {
@@ -276,34 +301,8 @@
       ],
       "settings": {
         "foreground": "#800000",
-        "background": "#ffffaf"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#006699"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#006daf"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#7f7f7f"
+        "background": "#ffffaf",
+        "fontStyle": "bold"
       }
     }
   ]
