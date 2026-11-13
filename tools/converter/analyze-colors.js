@@ -1,7 +1,9 @@
-// Color name analyzer
-import fs from "fs/promises";
-import { join } from "path";
+// @ts-check
+import fs from "node:fs/promises";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const EMACS_DEFS_DIR = join(__dirname, "../../emacs-definitions");
 
 async function analyzeColors() {
@@ -13,6 +15,7 @@ async function analyzeColors() {
 
     const filePath = join(EMACS_DEFS_DIR, file);
     const content = await fs.readFile(filePath, "utf8");
+    /** @type {Record<string, {fg?: string, bg?: string}>} */
     const theme = JSON.parse(content);
 
     for (const face of Object.values(theme)) {
@@ -30,4 +33,7 @@ async function analyzeColors() {
   console.log(JSON.stringify(sortedColors, null, 2));
 }
 
-analyzeColors().catch(console.error);
+analyzeColors().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

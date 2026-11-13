@@ -28,10 +28,20 @@ Face export format:
 {
   "font-lock-property-use-face": {
     "fg": "#BA36A5",
-    "bg": "cyan"
+    "bg": "cyan",
+    "bold": true,
+    "italic": true,
+    "underline": true,
+    "strike": true
   }
 }
 ```
+
+Style flags are emitted only when true, including for faces without colors.
+Dump with the theme's default settings: do not enable Modus or Ef theme
+bold/italic options solely for export. Existing face dumps must be regenerated
+by a human with all theme families installed before styles appear in the
+generated VS Code themes.
 
 ```elisp
 (defun list-theme-face-colors ()
