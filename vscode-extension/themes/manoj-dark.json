@@ -22,8 +22,8 @@
     "statusBarItem.remoteForeground": "#0000ff",
     "statusBar.noFolderBackground": "#4d4d4d",
     "editorGroupHeader.tabsBackground": "#333333",
-    "diffEditor.insertedTextBackground": "#228822",
-    "diffEditor.removedTextBackground": "#882222",
+    "diffEditor.insertedTextBackground": "#2288224d",
+    "diffEditor.removedTextBackground": "#8822224d",
     "editorSuggestWidget.background": "#424242",
     "editorSuggestWidget.selectedBackground": "#4f4f4f",
     "editorSuggestWidget.highlightForeground": "#afeeee",
@@ -118,7 +118,8 @@
       "name": "font-lock-function-name-face",
       "scope": [
         "entity.name.function",
-        "support.function"
+        "support.function",
+        "entity.name.tag"
       ],
       "settings": {
         "foreground": "#00fa9a",
@@ -285,6 +286,24 @@
         "foreground": "#fffff0",
         "background": "#333333",
         "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "diff-added",
+      "scope": [
+        "markup.inserted"
+      ],
+      "settings": {
+        "foreground": "#00ff00"
+      }
+    },
+    {
+      "name": "diff-removed",
+      "scope": [
+        "markup.deleted"
+      ],
+      "settings": {
+        "foreground": "#ff8c69"
       }
     },
     {

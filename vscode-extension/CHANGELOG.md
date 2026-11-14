@@ -9,6 +9,9 @@ All notable changes to the "emacs-themes" extension.
 - Use explicit syntax mappings and apply Emacs UI faces to workbench colors.
 - Improve fallback color contrast using WCAG relative luminance.
 - Support exported font styles when the Emacs face dumps are refreshed.
+- Restore HTML tag and diff (`+`/`-`/changed line) token colors lost when inferred scopes were removed.
+- Skip `header-line`-derived tab strip backgrounds that clash with the editor foreground (e.g. black tabs in `adwaita`).
+- Make diff editor line/text backgrounds translucent so code stays readable (e.g. inserted text in `doom-earl-grey`).
 
 ## 0.0.6 (2025-11-20)
 

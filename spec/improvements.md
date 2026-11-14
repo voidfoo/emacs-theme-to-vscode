@@ -113,6 +113,12 @@ Document the choice in `spec/main.md`.
 - The only legitimate wins of inference are the newer `font-lock-*` faces
   that `FACE_TO_SCOPE_MAP` does not cover. All 28 `font-lock-*` faces exist in
   the dumps (see `emacs-definitions/emacs-modus-vivendi.json`).
+  - **Correction (follow-up)**: inference also supplied the only
+    `entity.name.tag` and `markup.inserted` rules (from
+    `markdown-html-tag-*` and `magit-diff-added*`). These are now mapped
+    explicitly: `font-lock-function-name-face` → `entity.name.tag` (as in
+    `sgml-mode`/`html-ts-mode`) and `diff-added`/`diff-removed`/`diff-changed`
+    → `markup.inserted`/`markup.deleted`/`markup.changed`.
 - **Related bug**: ~20 entries in `FACE_TO_SCOPE_MAP` are VS Code *workbench
   color IDs*, not TextMate scopes (e.g. `region` → `editor.selectionBackground`,
   `company-tooltip` → `editorSuggestWidget.background`,

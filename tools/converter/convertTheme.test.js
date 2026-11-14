@@ -193,6 +193,59 @@ for (const {
   });
 }
 
+test("maps HTML tags and diff lines to token colors", () => {
+  const { colors, tokenColors } = convertToVSCodeTheme(
+    {
+      default: { fg: "#fff", bg: "#000" },
+      "font-lock-function-name-face": { fg: "#abc" },
+      "diff-added": { fg: "#0f0", bg: "#010" },
+      "diff-removed": { fg: "#f00" },
+      "diff-changed": { fg: "#ff0" },
+    },
+    "example",
+  );
+  /** @param {string} scope */
+  const fg = (scope) =>
+    tokenColors.findLast((rule) => rule.scope.includes(scope))?.settings
+      .foreground;
+  assert.equal(fg("entity.name.tag"), "#aabbcc");
+  assert.equal(fg("markup.inserted"), "#00ff00");
+  assert.equal(fg("markup.deleted"), "#ff0000");
+  assert.equal(fg("markup.changed"), "#ffff00");
+  assert.equal(colors["diffEditor.insertedLineBackground"], "#00110040");
+});
+
+test("diff backgrounds from Emacs faces are translucent overlays", () => {
+  const { colors } = convertToVSCodeTheme(
+    {
+      default: { fg: "#605a52", bg: "#fcfbf9" },
+      "diff-removed": { bg: "#bebbb6" },
+      "diff-refine-added": { fg: "#fcfbf9", bg: "#747b4d" },
+      "diff-refine-removed": { bg: "#9a6763" },
+    },
+    "doom-earl-grey",
+  );
+  assert.equal(colors["diffEditor.removedLineBackground"], "#bebbb640");
+  assert.equal(colors["diffEditor.insertedTextBackground"], "#747b4d4d");
+  assert.equal(colors["diffEditor.removedTextBackground"], "#9a67634d");
+});
+
+test("drops a tab strip background that clashes with the default foreground", () => {
+  for (const [headerBg, expected] of [
+    ["black", undefined],
+    ["#e0e0e0", "#e0e0e0"],
+  ]) {
+    const { colors } = convertToVSCodeTheme(
+      {
+        default: { fg: "#2e3436", bg: "#ededed" },
+        "header-line": { fg: "#ccc", bg: headerBg },
+      },
+      "example",
+    );
+    assert.equal(colors["editorGroupHeader.tabsBackground"], expected);
+  }
+});
+
 test("uses explicit ordered token mappings and workbench color targets", () => {
   const theme = {
     default: { fg: "#fff", bg: "#000" },
@@ -219,7 +272,7 @@ test("uses explicit ordered token mappings and workbench color targets", () => {
   assert.ok(tokenColors[1].scope.includes("punctuation.definition.string"));
   assert.equal(colors["editorSuggestWidget.background"], "#445566");
   assert.equal(colors["gitDecoration.modifiedResourceForeground"], "#778899");
-  assert.equal(colors["diffEditor.insertedTextBackground"], "#001122");
+  assert.equal(colors["diffEditor.insertedTextBackground"], "#0011224d");
   const workbench =
     /^(editor|statusBar|diff|diffEditor|gitDecoration|editorSuggestWidget|editorLineNumber|editorGutter|scrollbarSlider|breadcrumb|explorer|tree)\./;
   assert.ok(
