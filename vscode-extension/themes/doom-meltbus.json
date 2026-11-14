@@ -21,8 +21,8 @@
     "statusBarItem.remoteForeground": "#dddddd",
     "editorGroup.border": "#111111",
     "editorGroupHeader.tabsBackground": "#000000",
-    "diffEditor.insertedTextBackground": "#7cab7c",
-    "diffEditor.removedTextBackground": "#fac7c7",
+    "diffEditor.insertedTextBackground": "#7cab7c4d",
+    "diffEditor.removedTextBackground": "#fac7c74d",
     "editorSuggestWidget.background": "#000000",
     "editorSuggestWidget.foreground": "#dddddd",
     "editorSuggestWidget.selectedBackground": "#464646",
@@ -289,6 +289,33 @@
         "foreground": "#dddddd",
         "background": "#464646",
         "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "diff-added",
+      "scope": [
+        "markup.inserted"
+      ],
+      "settings": {
+        "foreground": "#7cab7c"
+      }
+    },
+    {
+      "name": "diff-removed",
+      "scope": [
+        "markup.deleted"
+      ],
+      "settings": {
+        "foreground": "#fac7c7"
+      }
+    },
+    {
+      "name": "diff-changed",
+      "scope": [
+        "markup.changed"
+      ],
+      "settings": {
+        "foreground": "#da8548"
       }
     },
     {

@@ -34,7 +34,12 @@ export const FACE_TO_SCOPE_MAP = {
   "font-lock-operator-face": ["keyword.operator"],
   "font-lock-negation-char-face": ["keyword.operator.logical"],
   "font-lock-builtin-face": ["support.function", "support.class"],
-  "font-lock-function-name-face": ["entity.name.function", "support.function"],
+  // sgml-mode and html-ts-mode highlight tag names with this face.
+  "font-lock-function-name-face": [
+    "entity.name.function",
+    "support.function",
+    "entity.name.tag",
+  ],
   "font-lock-function-call-face": [
     "meta.function-call entity.name.function",
     "support.function",
@@ -74,6 +79,9 @@ export const FACE_TO_SCOPE_MAP = {
   // Trailing whitespace and paren mismatch highlights are not syntax scopes.
   "diff-header": ["meta.diff.header"],
   "diff-file-header": ["meta.diff.header.file"],
+  "diff-added": ["markup.inserted"],
+  "diff-removed": ["markup.deleted"],
+  "diff-changed": ["markup.changed"],
   "css-selector": [
     "entity.name.tag.css",
     "entity.other.attribute-name.class.css",

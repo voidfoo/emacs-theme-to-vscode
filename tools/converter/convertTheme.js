@@ -144,6 +144,24 @@ function applyEditorColors(emacsTheme, vsCodeTheme) {
     });
   });
 
+  /** @type {[string, number][]} */
+  const transparentColors = [
+    ["editor.selectionBackground", 0.25],
+    ["editor.findMatchBackground", 0.5],
+    // VS Code keeps syntax colors in diffs and stacks text over line
+    // backgrounds, so opaque Emacs diff faces (e.g. diff-refine-*, designed
+    // for their own contrasting fg) would make code unreadable.
+    ["diffEditor.insertedLineBackground", 0.25],
+    ["diffEditor.removedLineBackground", 0.25],
+    ["diffEditor.insertedTextBackground", 0.3],
+    ["diffEditor.removedTextBackground", 0.3],
+  ];
+  for (const [key, alpha] of transparentColors) {
+    if (vsCodeTheme.colors[key]) {
+      vsCodeTheme.colors[key] = withAlpha(vsCodeTheme.colors[key], alpha);
+    }
+  }
+
   for (const [face, kind] of Object.entries({
     "diff-hl-margin-insert": "inserted",
     "diff-hl-margin-delete": "removed",
@@ -161,16 +179,6 @@ function applyEditorColors(emacsTheme, vsCodeTheme) {
       );
     }
   }
-  /** @type {[string, number][]} */
-  const transparentColors = [
-    ["editor.selectionBackground", 0.25],
-    ["editor.findMatchBackground", 0.5],
-  ];
-  for (const [key, alpha] of transparentColors) {
-    if (vsCodeTheme.colors[key]) {
-      vsCodeTheme.colors[key] = withAlpha(vsCodeTheme.colors[key], alpha);
-    }
-  }
 }
 
 /** @param {EmacsTheme} emacsTheme
@@ -178,6 +186,13 @@ function applyEditorColors(emacsTheme, vsCodeTheme) {
  * @param {ReturnType<typeof computeBase>} base */
 function applyFallbacks(emacsTheme, vsCodeTheme, base) {
   const { type: effectiveType, defaultBg, defaultFg } = base;
+  // VS Code derives tab text colors from the theme type, so a header-line
+  // background that clashes with the default foreground makes tabs unreadable
+  // (e.g. adwaita's black header-line in a light theme).
+  const tabsBg = vsCodeTheme.colors["editorGroupHeader.tabsBackground"];
+  if (tabsBg && getContrastRatio(defaultFg, tabsBg) < 3) {
+    delete vsCodeTheme.colors["editorGroupHeader.tabsBackground"];
+  }
   // Ensure sidebar/activityBar/panel backgrounds are always present.
   // If the Emacs theme doesn't define corresponding faces, compute a
   // reasonable fallback based on the theme's default background.

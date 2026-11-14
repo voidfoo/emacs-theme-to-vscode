@@ -23,10 +23,10 @@
     "statusBar.noFolderBackground": "#e0dbdb",
     "editorGroup.border": "#bab7bc",
     "editorGroupHeader.tabsBackground": "#efe7e7",
-    "diffEditor.insertedLineBackground": "#c2efcf",
-    "diffEditor.removedLineBackground": "#ffcfda",
-    "diffEditor.insertedTextBackground": "#bae0c8",
-    "diffEditor.removedTextBackground": "#ffb9c9",
+    "diffEditor.insertedLineBackground": "#c2efcf40",
+    "diffEditor.removedLineBackground": "#ffcfda40",
+    "diffEditor.insertedTextBackground": "#bae0c84d",
+    "diffEditor.removedTextBackground": "#ffb9c94d",
     "editorSuggestWidget.background": "#f0ebde",
     "editorSuggestWidget.selectedBackground": "#f2d5c9",
     "editorSuggestWidget.highlightForeground": "#3c3bbe",
@@ -127,7 +127,8 @@
       "name": "font-lock-function-name-face",
       "scope": [
         "entity.name.function",
-        "support.function"
+        "support.function",
+        "entity.name.tag"
       ],
       "settings": {
         "foreground": "#9f248a"
@@ -268,6 +269,36 @@
       ],
       "settings": {
         "foreground": "#e00033"
+      }
+    },
+    {
+      "name": "diff-added",
+      "scope": [
+        "markup.inserted"
+      ],
+      "settings": {
+        "foreground": "#005000",
+        "background": "#c2efcf"
+      }
+    },
+    {
+      "name": "diff-removed",
+      "scope": [
+        "markup.deleted"
+      ],
+      "settings": {
+        "foreground": "#8f1313",
+        "background": "#ffcfda"
+      }
+    },
+    {
+      "name": "diff-changed",
+      "scope": [
+        "markup.changed"
+      ],
+      "settings": {
+        "foreground": "#553d00",
+        "background": "#ffe5b9"
       }
     },
     {
