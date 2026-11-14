@@ -1,6 +1,6 @@
 // @ts-check
 
-import { FACE_TO_SCOPE_MAP } from "./faceToScopeMap.js";
+import { EXPLICIT_FACES, FACE_TO_SCOPE_MAP } from "./faceToScopeMap.js";
 import {
   adjustColorLuminance,
   getContrastRatio,
@@ -305,7 +305,8 @@ function buildTokenColors(emacsTheme, vsCodeTheme) {
       (vsCodeTheme.type === "dark" ? "#ffffff" : "#000000"),
   );
   for (const [faceName, scopes] of Object.entries(FACE_TO_SCOPE_MAP)) {
-    const faceData = emacsTheme[faceName];
+    const explicit = EXPLICIT_FACES.has(faceName);
+    const faceData = emacsTheme[faceName] ?? (explicit ? {} : undefined);
     if (!faceData) continue;
 
     // Handle token colors
@@ -321,7 +322,10 @@ function buildTokenColors(emacsTheme, vsCodeTheme) {
       if (faceData.strike) styles.push("strikethrough");
       if (styles.length) settings.fontStyle = styles.join(" ");
 
-      if (
+      if (explicit) {
+        settings.foreground ??= defaultFg;
+        settings.fontStyle ??= "";
+      } else if (
         settings.foreground === defaultFg &&
         !settings.background &&
         !settings.fontStyle

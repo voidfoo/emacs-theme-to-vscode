@@ -33,11 +33,7 @@ export const FACE_TO_SCOPE_MAP = {
   ],
   "font-lock-operator-face": ["keyword.operator"],
   "font-lock-negation-char-face": ["keyword.operator.logical"],
-  "font-lock-builtin-face": [
-    "support.function",
-    "support.class",
-    "support.type",
-  ],
+  "font-lock-builtin-face": ["support.function", "support.class"],
   "font-lock-function-name-face": ["entity.name.function", "support.function"],
   "font-lock-function-call-face": [
     "meta.function-call entity.name.function",
@@ -48,6 +44,7 @@ export const FACE_TO_SCOPE_MAP = {
   "font-lock-property-name-face": [
     "variable.other.property",
     "support.type.property-name",
+    "support.type.vendored.property-name",
   ],
   "font-lock-property-use-face": [
     "variable.other.object.property",
@@ -89,3 +86,11 @@ export const FACE_TO_SCOPE_MAP = {
   "markdown-url-face": ["markup.underline.link"],
   "markdown-list-face": ["markup.list"],
 };
+
+/**
+ * Faces whose scopes are nested under broader mapped selectors (for example,
+ * `support.type.property-name` under `support.type`). Their rules are always
+ * emitted with an explicit foreground and fontStyle so they never inherit the
+ * broader rule's color or italics.
+ */
+export const EXPLICIT_FACES = new Set(["font-lock-property-name-face"]);

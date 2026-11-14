@@ -107,8 +107,7 @@
       "name": "font-lock-builtin-face",
       "scope": [
         "support.function",
-        "support.class",
-        "support.type"
+        "support.class"
       ],
       "settings": {
         "foreground": "#f08080"
@@ -157,10 +156,12 @@
       "name": "font-lock-property-name-face",
       "scope": [
         "variable.other.property",
-        "support.type.property-name"
+        "support.type.property-name",
+        "support.type.vendored.property-name"
       ],
       "settings": {
-        "foreground": "#4eee94"
+        "foreground": "#4eee94",
+        "fontStyle": ""
       }
     },
     {
