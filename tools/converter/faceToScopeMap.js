@@ -71,8 +71,7 @@ export const FACE_TO_SCOPE_MAP = {
   ],
   "font-lock-warning-face": ["invalid.deprecated"],
   error: ["invalid.illegal"],
-  "trailing-whitespace": ["invalid.deprecated"],
-  "show-paren-mismatch": ["invalid.illegal"],
+  // Trailing whitespace and paren mismatch highlights are not syntax scopes.
   "diff-header": ["meta.diff.header"],
   "diff-file-header": ["meta.diff.header.file"],
   "css-selector": [

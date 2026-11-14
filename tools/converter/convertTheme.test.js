@@ -128,6 +128,71 @@ test("support.type does not leak onto JSON property names", () => {
   }
 });
 
+for (const {
+  face,
+  diagnosticFace,
+  scope,
+  diagnostic,
+  decoration,
+  settings,
+} of [
+  {
+    face: "trailing-whitespace",
+    diagnosticFace: "font-lock-warning-face",
+    scope: "invalid.deprecated",
+    diagnostic: { fg: "#aa3300", bold: true, underline: true },
+    decoration: {
+      fg: "#e8e8e8",
+      bg: "#ffffff",
+      italic: true,
+      strike: true,
+    },
+    settings: { foreground: "#aa3300", fontStyle: "bold underline" },
+  },
+  {
+    face: "show-paren-mismatch",
+    diagnosticFace: "error",
+    scope: "invalid.illegal",
+    diagnostic: { fg: "#1122aa", italic: true },
+    decoration: {
+      fg: "#33aa33",
+      bg: "#ffff00",
+      bold: true,
+      underline: true,
+    },
+    settings: { foreground: "#1122aa", fontStyle: "italic" },
+  },
+]) {
+  test(`${face} does not override ${diagnosticFace} token colors`, () => {
+    for (const includeDiagnostic of [true, false]) {
+      const { colors, tokenColors } = convertToVSCodeTheme(
+        {
+          default: { fg: "#101010", bg: "#ffffff" },
+          ...(includeDiagnostic ? { [diagnosticFace]: diagnostic } : {}),
+          [face]: decoration,
+          "show-paren-match": { bg: "#abc" },
+        },
+        "example",
+      );
+      assert.equal(colors["editor.wordHighlightStrongBackground"], "#aabbcc");
+      const tokenScope = `${scope}.example`;
+      const matchingRules = tokenColors.filter((rule) =>
+        rule.scope.some(
+          (selector) =>
+            tokenScope === selector || tokenScope.startsWith(`${selector}.`),
+        ),
+      );
+      assert.deepEqual(
+        matchingRules,
+        includeDiagnostic
+          ? [{ name: diagnosticFace, scope: [scope], settings }]
+          : [],
+      );
+      assert.ok(tokenColors.every((rule) => rule.name !== face));
+    }
+  });
+}
+
 test("uses explicit ordered token mappings and workbench color targets", () => {
   const theme = {
     default: { fg: "#fff", bg: "#000" },

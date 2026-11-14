@@ -36,6 +36,11 @@ node convert.js
 The converter regenerates the extension themes and manifest. Commit those
 outputs together with changes to the converter or face dumps.
 
+The Emacs `trailing-whitespace` and `show-paren-mismatch` faces are not mapped
+to syntax tokens. TextMate's `invalid.deprecated` and `invalid.illegal` scopes
+describe unrelated syntax; token background colors cannot reproduce these
+editor highlights in VS Code.
+
 ## Preview in VS Code
 
 Open the repository in VS Code, select **Run and Debug**, and start the
