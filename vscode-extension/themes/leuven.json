@@ -284,6 +284,36 @@
         "background": "#ffffaf",
         "fontStyle": "bold"
       }
+    },
+    {
+      "name": "markdown-header-face",
+      "scope": [
+        "markup.heading"
+      ],
+      "settings": {
+        "foreground": "#006699",
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "markdown-url-face",
+      "scope": [
+        "markup.underline.link"
+      ],
+      "settings": {
+        "foreground": "#006daf",
+        "fontStyle": "underline"
+      }
+    },
+    {
+      "name": "markdown-list-face",
+      "scope": [
+        "markup.list"
+      ],
+      "settings": {
+        "foreground": "#566d96",
+        "background": "#f3f4f7"
+      }
     }
   ]
 }
