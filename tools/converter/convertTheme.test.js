@@ -72,6 +72,62 @@ test("applies translucent selection, find and diff-hl colors", () => {
   assert.equal(colors["diffEditor.removedLineBackground"], undefined);
 });
 
+test("support.type does not leak onto JSON property names", () => {
+  // Minimal TextMate selector matching: a rule scope matches a token scope if
+  // it equals it or is a dot-separated prefix; the longest match wins.
+  const jsonKeyStack = [
+    "source.json",
+    "meta.structure.dictionary.json",
+    "string.json",
+    "support.type.property-name.json",
+  ];
+  /** @param {import("./convertTheme.js").TokenRule[]} tokenColors */
+  const resolve = (tokenColors) => {
+    /** @type {Record<string, string | undefined>} */
+    const resolved = {};
+    for (const key of /** @type {const} */ (["foreground", "fontStyle"])) {
+      /** @type {{depth: number, len: number, value: string | undefined}} */
+      let best = { depth: -1, len: -1, value: undefined };
+      for (const rule of tokenColors) {
+        if (rule.settings[key] === undefined) continue;
+        for (const sel of rule.scope) {
+          if (sel.includes(" ")) continue;
+          jsonKeyStack.forEach((scope, depth) => {
+            const hit = scope === sel || scope.startsWith(`${sel}.`);
+            const len = sel.split(".").length;
+            if (
+              hit &&
+              (depth > best.depth || (depth === best.depth && len >= best.len))
+            )
+              best = { depth, len, value: rule.settings[key] };
+          });
+        }
+      }
+      resolved[key] = best.value;
+    }
+    return resolved;
+  };
+  for (const propertyFace of [undefined, { fg: "#fff" }, { fg: "#0ff" }]) {
+    const theme = {
+      default: { fg: "#fff", bg: "#000" },
+      "font-lock-string-face": { fg: "#0f0" },
+      "font-lock-type-face": { fg: "#f00", italic: true },
+      "font-lock-builtin-face": { fg: "#00f", italic: true },
+      ...(propertyFace && { "font-lock-property-name-face": propertyFace }),
+    };
+    const { tokenColors } = convertToVSCodeTheme(theme, "example");
+    assert.deepEqual(resolve(tokenColors), {
+      foreground: propertyFace?.fg === "#0ff" ? "#00ffff" : "#ffffff",
+      fontStyle: "",
+    });
+    assert.ok(
+      !tokenColors
+        .find((rule) => rule.name === "font-lock-builtin-face")
+        ?.scope.includes("support.type"),
+    );
+  }
+});
+
 test("uses explicit ordered token mappings and workbench color targets", () => {
   const theme = {
     default: { fg: "#fff", bg: "#000" },
@@ -92,6 +148,7 @@ test("uses explicit ordered token mappings and workbench color targets", () => {
       "font-lock-punctuation-face",
       "font-lock-string-face",
       "font-lock-function-call-face",
+      "font-lock-property-name-face",
     ],
   );
   assert.ok(tokenColors[1].scope.includes("punctuation.definition.string"));

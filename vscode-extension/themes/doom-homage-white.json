@@ -110,8 +110,7 @@
       "name": "font-lock-builtin-face",
       "scope": [
         "support.function",
-        "support.class",
-        "support.type"
+        "support.class"
       ],
       "settings": {
         "fontStyle": "bold"
@@ -142,7 +141,8 @@
       "name": "font-lock-property-name-face",
       "scope": [
         "variable.other.property",
-        "support.type.property-name"
+        "support.type.property-name",
+        "support.type.vendored.property-name"
       ],
       "settings": {
         "foreground": "#383a42",
