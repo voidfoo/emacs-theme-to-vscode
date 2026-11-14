@@ -24,15 +24,9 @@
     "editorGroupHeader.tabsBackground": "#000000",
     "diffEditor.insertedTextBackground": "#bbffbb",
     "diffEditor.removedTextBackground": "#ffcccc",
-    "breadcrumb.foreground": "#f5666d",
-    "gitDecoration.modifiedResourceForeground": "#0084c8",
-    "gitDecoration.addedResourceForeground": "#2f8b58",
-    "gitDecoration.renamedResourceForeground": "#4e9a06",
-    "gitDecoration.untrackedResourceForeground": "#4e9a06",
-    "gitDecoration.ignoredResourceForeground": "#204a87",
-    "editorSuggestWidget.background": "#fff8dc",
+    "editorSuggestWidget.background": "#f8f8ff",
     "editorSuggestWidget.foreground": "#000000",
-    "editorSuggestWidget.selectedBackground": "#add8e6",
+    "editorSuggestWidget.selectedBackground": "#e6e6fa",
     "editorSuggestWidget.highlightForeground": "#8b0000",
     "sideBar.background": "#d5d5d5",
     "activityBar.background": "#d5d5d5",
@@ -105,7 +99,8 @@
         "storage.modifier"
       ],
       "settings": {
-        "foreground": "#a52a2a"
+        "foreground": "#a52a2a",
+        "fontStyle": "bold"
       }
     },
     {
@@ -126,7 +121,8 @@
         "support.function"
       ],
       "settings": {
-        "foreground": "#00578e"
+        "foreground": "#00578e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -136,7 +132,8 @@
         "support.function"
       ],
       "settings": {
-        "foreground": "#00578e"
+        "foreground": "#00578e",
+        "fontStyle": "bold"
       }
     },
     {
@@ -146,7 +143,8 @@
         "variable.other"
       ],
       "settings": {
-        "foreground": "#0084c8"
+        "foreground": "#0084c8",
+        "fontStyle": "bold"
       }
     },
     {
@@ -155,7 +153,8 @@
         "variable.other.readwrite"
       ],
       "settings": {
-        "foreground": "#0084c8"
+        "foreground": "#0084c8",
+        "fontStyle": "bold"
       }
     },
     {
@@ -165,7 +164,8 @@
         "support.type.property-name"
       ],
       "settings": {
-        "foreground": "#0084c8"
+        "foreground": "#0084c8",
+        "fontStyle": "bold"
       }
     },
     {
@@ -175,7 +175,8 @@
         "meta.property"
       ],
       "settings": {
-        "foreground": "#0084c8"
+        "foreground": "#0084c8",
+        "fontStyle": "bold"
       }
     },
     {
@@ -186,7 +187,8 @@
         "entity.name.type"
       ],
       "settings": {
-        "foreground": "#2f8b58"
+        "foreground": "#2f8b58",
+        "fontStyle": "bold"
       }
     },
     {
@@ -201,12 +203,39 @@
       }
     },
     {
+      "name": "font-lock-escape-face",
+      "scope": [
+        "constant.character.escape"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
       "name": "font-lock-regexp-face",
       "scope": [
         "string.regexp"
       ],
       "settings": {
         "foreground": "#4e9a06"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-construct",
+      "scope": [
+        "punctuation.definition.group.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
+      }
+    },
+    {
+      "name": "font-lock-regexp-grouping-backslash",
+      "scope": [
+        "constant.character.escape.backslash.regexp"
+      ],
+      "settings": {
+        "fontStyle": "bold"
       }
     },
     {
@@ -225,7 +254,8 @@
         "invalid.deprecated"
       ],
       "settings": {
-        "foreground": "#f5666d"
+        "foreground": "#f5666d",
+        "fontStyle": "bold"
       }
     },
     {
@@ -271,34 +301,8 @@
         "meta.diff.header.file"
       ],
       "settings": {
-        "background": "#bfbfbf"
-      }
-    },
-    {
-      "name": "markdown-header-face",
-      "scope": [
-        "markup.heading"
-      ],
-      "settings": {
-        "foreground": "#00578e"
-      }
-    },
-    {
-      "name": "markdown-url-face",
-      "scope": [
-        "markup.underline.link"
-      ],
-      "settings": {
-        "foreground": "#4e9a06"
-      }
-    },
-    {
-      "name": "markdown-list-face",
-      "scope": [
-        "markup.list"
-      ],
-      "settings": {
-        "foreground": "#7f7f7f"
+        "background": "#bfbfbf",
+        "fontStyle": "bold"
       }
     }
   ]

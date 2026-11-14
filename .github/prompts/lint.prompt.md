@@ -1,5 +1,5 @@
 ---
-mode: agent
+agent: agent
 ---
 
 - Optimize [the app specification](../../spec/main.md) for clarity and conciseness
