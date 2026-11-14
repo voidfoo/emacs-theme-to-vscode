@@ -2,7 +2,7 @@
 
 All notable changes to the "emacs-themes" extension.
 
-## Unreleased
+## 0.0.7 (2026-11-13)
 
 - Normalize exported color values, including short and 16-bit Emacs colors.
 - Make selections and find matches translucent and map diff-hl colors.
